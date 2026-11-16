@@ -302,31 +302,31 @@ var oPageSettings = {
 
 
 		Object.assign( oTranslations.en, {
-			"Page version":"Page version", "Sample rate":"Sample rate", "Audio buffer":"Audio buffer",
+			"Page":"Page", "Checking...":"Checking...", "Unavailable":"Unavailable", "Page version":"Page version", "Sample rate":"Sample rate", "Audio buffer":"Audio buffer",
 			"Target buffer":"Target buffer", "Output latency":"Output latency", "Audio gaps":"Audio gaps",
 			"Audio skips":"Audio skips", "Sound startup":"Sound startup", "Game data source":"Game data source",
 			"Slowest file read":"Slowest file read", "Offline mode":"Offline mode"
 		} );
 		Object.assign( oTranslations.ru, {
-			"Page version":"Версия страницы", "Sample rate":"Частота дискретизации", "Audio buffer":"Аудиобуфер",
+			"Page":"Страница", "Checking...":"Проверка…", "Unavailable":"Недоступно", "Page version":"Версия страницы", "Sample rate":"Частота дискретизации", "Audio buffer":"Аудиобуфер",
 			"Target buffer":"Целевой буфер", "Output latency":"Задержка вывода", "Audio gaps":"Пропуски аудио",
 			"Audio skips":"Сбои аудио", "Sound startup":"Запуск звука", "Game data source":"Источник игровых данных",
 			"Slowest file read":"Самое долгое чтение", "Offline mode":"Офлайн-режим"
 		} );
 		Object.assign( oTranslations.de, {
-			"Page version":"Seitenversion", "Sample rate":"Abtastrate", "Audio buffer":"Audiopuffer",
+			"Page":"Seite", "Checking...":"Wird geprüft…", "Unavailable":"Nicht verfügbar", "Page version":"Seitenversion", "Sample rate":"Abtastrate", "Audio buffer":"Audiopuffer",
 			"Target buffer":"Zielpuffer", "Output latency":"Ausgabelatenz", "Audio gaps":"Audiolücken",
 			"Audio skips":"Audioaussetzer", "Sound startup":"Soundstart", "Game data source":"Spieldatenquelle",
 			"Slowest file read":"Langsamster Lesevorgang", "Offline mode":"Offline-Modus"
 		} );
 		Object.assign( oTranslations.fr, {
-			"Page version":"Version de la page", "Sample rate":"Fréquence d’échantillonnage", "Audio buffer":"Tampon audio",
+			"Page":"Page", "Checking...":"Vérification…", "Unavailable":"Indisponible", "Page version":"Version de la page", "Sample rate":"Fréquence d’échantillonnage", "Audio buffer":"Tampon audio",
 			"Target buffer":"Tampon cible", "Output latency":"Latence de sortie", "Audio gaps":"Coupures audio",
 			"Audio skips":"Sauts audio", "Sound startup":"Démarrage du son", "Game data source":"Source des données",
 			"Slowest file read":"Lecture la plus lente", "Offline mode":"Mode hors ligne"
 		} );
 		Object.assign( oTranslations.es, {
-			"Page version":"Versión de la página", "Sample rate":"Frecuencia de muestreo", "Audio buffer":"Búfer de audio",
+			"Page":"Página", "Checking...":"Comprobando…", "Unavailable":"No disponible", "Page version":"Versión de la página", "Sample rate":"Frecuencia de muestreo", "Audio buffer":"Búfer de audio",
 			"Target buffer":"Búfer objetivo", "Output latency":"Latencia de salida", "Audio gaps":"Cortes de audio",
 			"Audio skips":"Saltos de audio", "Sound startup":"Inicio del sonido", "Game data source":"Origen de los datos",
 			"Slowest file read":"Lectura más lenta", "Offline mode":"Modo sin conexión"
@@ -658,7 +658,7 @@ var oPageSettings = {
 				return oRow;
 			}
 
-			AddGroup( T( "Page version" ) );
+			AddGroup( T( "Page" ) );
 			AddRow( T( "Page version" ), document.lastModified );
 
 			var oContext = Module.oAudioContext;
