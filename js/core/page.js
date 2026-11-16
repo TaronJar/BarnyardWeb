@@ -252,7 +252,7 @@ function StartAudio()
 			PageLog( "audio " + oContext.state );
 		} );
 
-		MakeScriptBlob( "audio_worklet.js" ).then( function ( a_szUrl ) {
+		MakeScriptBlob( "js/audio/audio_worklet.js" ).then( function ( a_szUrl ) {
 			return oContext.audioWorklet.addModule( a_szUrl );
 		} ).then( function () {
 			var oNode = new AudioWorkletNode( oContext, "game-audio", {

@@ -34,7 +34,7 @@ var oDataPack = {
 			navigator.storage.persist().catch( function () {} );
 
 		return new Promise( function ( a_fnResolve, a_fnReject ) {
-			var oWorker = new Worker( "datapack_worker.js" );
+			var oWorker = new Worker( "js/workers/datapack_worker.js" );
 			oDataPack.oWorker = oWorker;
 
 			oWorker.onmessage = function ( a_oEvent ) {
