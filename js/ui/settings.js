@@ -300,6 +300,38 @@ var oPageSettings = {
 			"Offline: unknown":"Estado del modo sin conexión desconocido",
 		} );
 
+
+		Object.assign( oTranslations.en, {
+			"Page version":"Page version", "Sample rate":"Sample rate", "Audio buffer":"Audio buffer",
+			"Target buffer":"Target buffer", "Output latency":"Output latency", "Audio gaps":"Audio gaps",
+			"Audio skips":"Audio skips", "Sound startup":"Sound startup", "Game data source":"Game data source",
+			"Slowest file read":"Slowest file read", "Offline mode":"Offline mode"
+		} );
+		Object.assign( oTranslations.ru, {
+			"Page version":"Версия страницы", "Sample rate":"Частота дискретизации", "Audio buffer":"Аудиобуфер",
+			"Target buffer":"Целевой буфер", "Output latency":"Задержка вывода", "Audio gaps":"Пропуски аудио",
+			"Audio skips":"Сбои аудио", "Sound startup":"Запуск звука", "Game data source":"Источник игровых данных",
+			"Slowest file read":"Самое долгое чтение", "Offline mode":"Офлайн-режим"
+		} );
+		Object.assign( oTranslations.de, {
+			"Page version":"Seitenversion", "Sample rate":"Abtastrate", "Audio buffer":"Audiopuffer",
+			"Target buffer":"Zielpuffer", "Output latency":"Ausgabelatenz", "Audio gaps":"Audiolücken",
+			"Audio skips":"Audioaussetzer", "Sound startup":"Soundstart", "Game data source":"Spieldatenquelle",
+			"Slowest file read":"Langsamster Lesevorgang", "Offline mode":"Offline-Modus"
+		} );
+		Object.assign( oTranslations.fr, {
+			"Page version":"Version de la page", "Sample rate":"Fréquence d’échantillonnage", "Audio buffer":"Tampon audio",
+			"Target buffer":"Tampon cible", "Output latency":"Latence de sortie", "Audio gaps":"Coupures audio",
+			"Audio skips":"Sauts audio", "Sound startup":"Démarrage du son", "Game data source":"Source des données",
+			"Slowest file read":"Lecture la plus lente", "Offline mode":"Mode hors ligne"
+		} );
+		Object.assign( oTranslations.es, {
+			"Page version":"Versión de la página", "Sample rate":"Frecuencia de muestreo", "Audio buffer":"Búfer de audio",
+			"Target buffer":"Búfer objetivo", "Output latency":"Latencia de salida", "Audio gaps":"Cortes de audio",
+			"Audio skips":"Saltos de audio", "Sound startup":"Inicio del sonido", "Game data source":"Origen de los datos",
+			"Slowest file read":"Lectura más lenta", "Offline mode":"Modo sin conexión"
+		} );
+
 		function T( a_szText )
 		{
 			var oLanguage = oTranslations[ oPageSettings.oValues.szLanguage ] || oTranslations.en;
@@ -601,31 +633,70 @@ var oPageSettings = {
 		}
 
 		// The page's date shows whether an installed app got the newest files
+		// Show diagnostics as a compact, readable table instead of one long sentence.
 		function UpdateAbout()
 		{
-			var szText = T( "Page from" ) + " " + document.lastModified;
+			var oAbout = document.getElementById( "settingsAbout" );
+			var oTable = document.createElement( "table" );
+			oTable.className = "status-table";
+
+			function AddGroup( a_szTitle )
+			{
+				var oRow = oTable.insertRow();
+				oRow.className = "status-table-group";
+				var oCell = oRow.insertCell();
+				oCell.colSpan = 2;
+				oCell.textContent = a_szTitle;
+			}
+
+			function AddRow( a_szLabel, a_szValue, a_szClass )
+			{
+				var oRow = oTable.insertRow();
+				if ( a_szClass ) oRow.className = a_szClass;
+				oRow.insertCell().textContent = a_szLabel;
+				oRow.insertCell().textContent = a_szValue;
+				return oRow;
+			}
+
+			AddGroup( T( "Page version" ) );
+			AddRow( T( "Page version" ), document.lastModified );
+
 			var oContext = Module.oAudioContext;
-
 			if ( oContext )
-				szText += ". " + T( "Sound" ) + " " + oContext.sampleRate + " Hz, " + Math.round( ( Module.iAudioLag || 0 ) * 1000 / 44100 ) + " ms " + T( "in the buffer (worst" ) + " " +
-					Math.round( ( Module.iAudioWorst || 0 ) * 1000 / 44100 ) + " ms, " + T( "target" ) + " " + ( Module._WASM_GetAudioLead ? Math.round( Module._WASM_GetAudioLead() * 1000 / 44100 ) : 46 ) + " ms), " + Math.round( ( ( oContext.baseLatency || 0 ) + ( oContext.outputLatency || 0 ) ) * 1000 ) + " ms " + T( "output" ) + ", " +
-					( Module.iAudioGaps || 0 ) + " " + T( "gaps" ) + ", " + ( Module.iAudioSkips || 0 ) + " " + T( "skips" ) +
-					( Module._WASM_GetAudioWorstStart ? ", " + T( "sounds start within" ) + " " + Math.round( Module._WASM_GetAudioWorstStart() ) + " ms" : "" );
+			{
+				AddGroup( T( "Sound" ) );
+				AddRow( T( "Sample rate" ), oContext.sampleRate + " Hz" );
+				AddRow( T( "Audio buffer" ), Math.round( ( Module.iAudioLag || 0 ) * 1000 / 44100 ) + " ms (max. " +
+					Math.round( ( Module.iAudioWorst || 0 ) * 1000 / 44100 ) + " ms)" );
+				AddRow( T( "Target buffer" ), ( Module._WASM_GetAudioLead ? Math.round( Module._WASM_GetAudioLead() * 1000 / 44100 ) : 46 ) + " ms" );
+				AddRow( T( "Output latency" ), Math.round( ( ( oContext.baseLatency || 0 ) + ( oContext.outputLatency || 0 ) ) * 1000 ) + " ms" );
+				AddRow( T( "Audio gaps" ), String( Module.iAudioGaps || 0 ) );
+				AddRow( T( "Audio skips" ), String( Module.iAudioSkips || 0 ) );
+				if ( Module._WASM_GetAudioWorstStart )
+					AddRow( T( "Sound startup" ), T( "sounds start within" ) + " " + Math.round( Module._WASM_GetAudioWorstStart() ) + " ms" );
+			}
 
-			// How long the game waited for its files at worst, a slow connection or storage shows here
 			if ( Module._WASM_GetFileWorstReadMs )
-				szText += ". " + T( "Files from" ) + " " + T( oDataPack.oPack ? "this device" : "the server" ) + ", " + T( "slowest read" ) + " " + Math.round( Module._WASM_GetFileWorstReadMs() ) + " ms";
+			{
+				AddGroup( T( "Game data source" ) );
+				AddRow( T( "Game data source" ), T( oDataPack.oPack ? "this device" : "the server" ) );
+				AddRow( T( "Slowest file read" ), Math.round( Module._WASM_GetFileWorstReadMs() ) + " ms" );
+			}
 
-			document.getElementById( "settingsAbout" ).textContent = szText;
+			AddGroup( T( "Offline mode" ) );
+			var oOfflineRow = AddRow( T( "Offline mode" ), T( "Checking..." ) );
+			oAbout.replaceChildren( oTable );
+
 			document.getElementById( "settingsUpdateButtons" ).style.display = navigator.serviceWorker && !/[?&]app(&|$)/.test( location.search ) ? "" : "none";
 
-			// Offline starts need the service worker running this page, the page files it keeps and the stored data
 			if ( navigator.serviceWorker && window.caches && !/[?&]app(&|$)/.test( location.search ) )
 			{
 				GetOfflineState().then( function ( a_szState ) {
-					document.getElementById( "settingsAbout" ).textContent = szText + ". " + a_szState;
+					oOfflineRow.cells[ 1 ].textContent = a_szState;
 				} );
 			}
+			else
+				oOfflineRow.cells[ 1 ].textContent = T( "Unavailable" );
 		}
 
 		async function GetOfflineState()
