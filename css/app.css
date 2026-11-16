@@ -2201,3 +2201,14 @@ html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background:
 #settings .settings-group[data-name="game data"] .data-panel + .data-panel {
 	margin-top: 22px !important;
 }
+
+
+/* The Game data section itself was still painting the grey card background. */
+#settings .settings-group[data-name="game data"] {
+	background: transparent !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	padding: 0 !important;
+	margin: 8px 0 28px !important;
+}
