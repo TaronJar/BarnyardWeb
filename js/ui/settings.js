@@ -664,6 +664,8 @@ var oPageSettings = {
 
 			document.getElementById( "settingsRestart" ).style.display     = bRestart ? "" : "none";
 			document.getElementById( "settingsRestartHint" ).style.display = bRestart ? "" : "none";
+			document.querySelector( "#settings .data-maintenance-restart" ).style.display = bRestart ? "" : "none";
+			document.querySelector( "#settings .data-panel-maintenance" ).style.gridTemplateColumns = bRestart ? "" : "minmax(0, 1fr)";
 			document.getElementById( "settingsAuto" ).textContent = T( "Now" ) + " " + Module.oCanvas.width + "x" + Module.oCanvas.height + ( oPageSettings.IsSlowDevice() ? ", " + T( "auto treats this device as slow" ) : "" ) +
 				( Module.oAudioContext && Module.oAudioContext.state != "running" ? ", " + T( "sound is" ) + " " + Module.oAudioContext.state : "" );
 		}
