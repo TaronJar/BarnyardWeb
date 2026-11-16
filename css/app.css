@@ -161,6 +161,19 @@ html,
 			z-index: 20;
 			color: rgba(255, 255, 255, 0.7);
 			cursor: pointer;
+			transition: color .18s ease, filter .18s ease, transform .18s ease;
+			transform-origin: center;
+		}
+
+		#settingsButton:hover,
+		#settingsButton:focus-visible {
+			color: #ffffff;
+			filter: drop-shadow(0 0 5px rgba(56, 168, 255, .9));
+			transform: scale(1.12);
+		}
+
+		#settingsButton:active {
+			transform: scale(1.03);
 		}
 
 		#settings {
