@@ -2343,3 +2343,30 @@ html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background:
 	#settings .status-table td:first-child { width: 45% !important; }
 	#settings .status-table td:last-child { width: 55% !important; }
 }
+
+
+/* Keep the settings title and close control visible while the content scrolls. */
+#settings .settings-content > .head {
+	position: sticky !important;
+	top: 0 !important;
+	z-index: 500 !important;
+	box-sizing: border-box !important;
+	margin-top: -22px !important;
+	margin-bottom: 16px !important;
+	padding-top: 22px !important;
+	padding-bottom: 12px !important;
+	background: #121212 !important;
+}
+#settings #settingsClose {
+	position: absolute !important;
+	top: 22px !important;
+	right: 0 !important;
+	z-index: 501 !important;
+}
+@media (max-width: 700px) {
+	#settings .settings-content > .head {
+		margin-top: -20px !important;
+		padding-top: 20px !important;
+	}
+	#settings #settingsClose { top: 20px !important; }
+}
