@@ -5,7 +5,8 @@ var aFiles = [
 	"audio_worklet.js", "OpenBarnyard.js", "OpenBarnyard.wasm", "manifest.json", "css/app.css", "assets/images/barnyard-bg.jpeg", "assets/icons/icon.png", "assets/icons/icon512.png", "assets/icons/favicon.png"
 ];
 
-var szCache = "barnyard-" + self.registration.scope;
+var szPreviousCache = "barnyard-" + self.registration.scope;
+var szCache = "barnyard-v2-" + self.registration.scope;
 
 self.addEventListener( "install", function ( a_oEvent ) {
 	self.skipWaiting();
@@ -19,7 +20,7 @@ self.addEventListener( "install", function ( a_oEvent ) {
 } );
 
 self.addEventListener( "activate", function ( a_oEvent ) {
-	a_oEvent.waitUntil( self.clients.claim() );
+	a_oEvent.waitUntil( Promise.all( [ caches.delete( szPreviousCache ), self.clients.claim() ] ) );
 } );
 
 function AddHeaders( a_oResponse )
