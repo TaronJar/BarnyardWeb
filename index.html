@@ -550,6 +550,147 @@
 			#settings select { width: 136px; }
 		}
 
+
+		/* Spotify-inspired settings: restrained dark surfaces and green accents */
+		#settings {
+			width: min(520px, 94vw);
+			max-height: 90vh;
+			padding: 26px 28px 24px;
+			border: 1px solid #303030;
+			border-radius: 12px;
+			background: #181818;
+			box-shadow: 0 0 0 100vmax rgba(0, 0, 0, .72), 0 18px 60px rgba(0, 0, 0, .55);
+			color: #f5f5f5;
+			font: 14px/1.45 Arial, system-ui, sans-serif;
+			backdrop-filter: blur(10px);
+			scrollbar-width: thin;
+			scrollbar-color: #535353 transparent;
+		}
+		#settings::-webkit-scrollbar { width: 7px; }
+		#settings::-webkit-scrollbar-thumb { background: #535353; border-radius: 8px; }
+		#settings .head {
+			margin: 0 0 22px;
+			padding: 0 0 18px;
+			border-bottom: 1px solid #303030;
+		}
+		#settings .head::before {
+			content: "OPENBARNYARD  /  WEB";
+			display: block;
+			margin-bottom: 8px;
+			color: #b3b3b3;
+			font-size: 10px;
+			font-weight: 700;
+			letter-spacing: .13em;
+		}
+		#settings .title {
+			color: #fff;
+			font-size: 26px;
+			font-weight: 750;
+			letter-spacing: -.04em;
+			line-height: 1.15;
+		}
+		#settings .about { margin-top: 6px; color: #a7a7a7; font-size: 12px; }
+		#settings a { color: #1ed760; border-bottom: 0; }
+		#settings a:hover { color: #70ef98; text-decoration: underline; }
+		#settings .section {
+			display: flex;
+			align-items: center;
+			gap: 12px;
+			margin: 23px 0 7px;
+			color: #b3b3b3;
+			font-size: 10px;
+			font-weight: 750;
+			letter-spacing: .14em;
+		}
+		#settings .section::after {
+			content: "";
+			flex: 1;
+			height: 1px;
+			background: #333;
+		}
+		#settings label,
+		#settings .row {
+			min-height: 44px;
+			padding: 7px 0;
+			gap: 16px;
+			border-bottom: 1px solid rgba(255,255,255,.055);
+			color: #e6e6e6;
+			font-size: 13px;
+		}
+		#settings select,
+		#settings input[type=text] {
+			min-height: 37px;
+			padding: 8px 12px;
+			border: 1px solid #444;
+			border-radius: 5px;
+			background: #282828;
+			color: #fff;
+			font: 13px Arial, system-ui, sans-serif;
+			transition: background 140ms ease, border-color 140ms ease;
+		}
+		#settings select { width: 150px; cursor: pointer; }
+		#settings select:hover,
+		#settings input[type=text]:hover { background: #333; border-color: #666; }
+		#settings select:focus,
+		#settings input[type=text]:focus {
+			outline: 2px solid #1ed760;
+			outline-offset: 1px;
+			border-color: transparent;
+		}
+		#settings input[type=checkbox] {
+			width: 42px; height: 24px; border-radius: 20px;
+			background: #535353;
+			transition: background 150ms ease;
+		}
+		#settings input[type=checkbox]::after {
+			left: 3px; top: 3px; width: 18px; height: 18px;
+			background: #fff; transition: left 150ms ease;
+		}
+		#settings input[type=checkbox]:checked { background: #1ed760; }
+		#settings input[type=checkbox]:checked::after { left: 21px; }
+		#settings .hint {
+			margin: 9px 0 0;
+			color: #a7a7a7;
+			font-size: 11px;
+			line-height: 1.55;
+			overflow-wrap: anywhere;
+		}
+		#settings .buttons {
+			justify-content: flex-start;
+			flex-wrap: wrap;
+			gap: 8px;
+			margin-top: 13px;
+		}
+		#settings button {
+			min-height: 36px;
+			padding: 8px 15px;
+			border: 0;
+			border-radius: 999px;
+			background: #333;
+			color: #fff;
+			font: 700 12px Arial, system-ui, sans-serif;
+			transition: background 130ms ease, transform 130ms ease;
+		}
+		#settings button:hover:not(:disabled) { background: #484848; }
+		#settings button:active:not(:disabled) { transform: scale(.98); }
+		#settings button.accent {
+			background: #1ed760;
+			color: #000;
+		}
+		#settings button.accent:hover:not(:disabled) { background: #3be477; }
+		#settings button:disabled { opacity: .4; cursor: not-allowed; }
+		#settings #settingsAbout { color: #777; font-size: 10px; }
+		#settings #settingsRestartHint { color: #b3b3b3; }
+		#settings #settingsRestart,
+		#settings #settingsClose { min-width: 88px; }
+		#settings #settingsClose { margin-left: auto; }
+		#settings #settingsUpdateButtons { justify-content: flex-start; }
+		@media (max-width: 520px) {
+			#settings { width: 94vw; max-height: 90vh; padding: 22px 19px 19px; border-radius: 10px; }
+			#settings .title { font-size: 24px; }
+			#settings select { width: 138px; }
+		}
+
 	</style>
 </head>
 
