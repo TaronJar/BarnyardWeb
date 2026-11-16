@@ -1100,6 +1100,28 @@
 			outline: 0 !important;
 		}
 
+
+		/* Sidebar navigation: no grey hover tile, only the active tab is filled */
+		#settings .settings-nav-item,
+		#settings .settings-nav-item:hover,
+		#settings .settings-nav-item:focus,
+		#settings .settings-nav-item:focus-visible {
+			background: transparent !important;
+			color: #b3b3b3 !important;
+			outline: none !important;
+			box-shadow: none !important;
+		}
+		#settings .settings-nav-item:hover {
+			color: #1ed760 !important;
+		}
+		#settings .settings-nav-item.active,
+		#settings .settings-nav-item.active:hover,
+		#settings .settings-nav-item.active:focus,
+		#settings .settings-nav-item.active:focus-visible {
+			background: #1ed760 !important;
+			color: #071b0d !important;
+		}
+
 	</style>
 </head>
 
