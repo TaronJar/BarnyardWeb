@@ -537,6 +537,15 @@ var oPageSettings = {
 				oData.szBusy   = "";
 				oData.bStored  = true;
 				oData.bChanged = true;
+
+				// On the first-run welcome screen, restart automatically after the pack is safely stored.
+				var oWelcome = document.getElementById( "dataWelcome" );
+				if ( oWelcome && oWelcome.style.display == "flex" )
+				{
+					location.reload();
+					return;
+				}
+
 				UpdatePanel();
 			} ).catch( function ( a_oError ) {
 				oData.szBusy = T( "Couldn't store the data:" ) + " " + a_oError.message;
