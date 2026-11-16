@@ -908,7 +908,7 @@ var oPageSettings = {
 			}
 			function Octal( a_iOffset, a_iLength, a_iValue )
 			{
-				Put( a_iOffset, a_iLength, a_iValue.toString( 8 ).padStart( a_iLength - 1, "0" ) + "\\0" );
+				Put( a_iOffset, a_iLength, a_iValue.toString( 8 ).padStart( a_iLength - 1, "0" ) + "\0" );
 			}
 			Put( 0, 100, a_szName );
 			Octal( 100, 8, 420 ); Octal( 108, 8, 0 ); Octal( 116, 8, 0 ); Octal( 124, 12, a_iSize ); Octal( 136, 12, Math.floor( Date.now() / 1000 ) );
@@ -985,7 +985,7 @@ var oPageSettings = {
 					if ( szType == "5" ) { iOffset += Math.ceil( iSize / 512 ) * 512; continue; }
 					if ( szType && szType != "0" ) { iOffset += Math.ceil( iSize / 512 ) * 512; continue; }
 					if ( iOffset + iSize > a.length ) throw new Error( "Backup archive is incomplete." );
-					var szPath = "/Save/" + szName.replace(/^Save\\//, "");
+					var szPath = "/Save/" + szName.replace(/^Save\//, "");
 					var aPath = szPath.split( "/" ); aPath.pop();
 					var szDir = "";
 					for ( var szPart of aPath ) { szDir += "/" + szPart; if ( !FS.analyzePath( szDir ).exists ) FS.mkdir( szDir ); }
