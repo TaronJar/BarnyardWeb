@@ -503,6 +503,19 @@ var oPageSettings = {
 			document.getElementById( "settingsDataText" ).textContent = szText;
 
 			var bBusy = !!oDataPack.oWorker;
+			var oWelcome = document.getElementById( "dataWelcome" );
+			var oWelcomeStatus = document.getElementById( "welcomeStatus" );
+			var oWelcomeDownload = document.getElementById( "welcomeDownload" );
+			if ( oWelcome && !oDataPack.oPack )
+			{
+				oWelcome.style.display = oData.bStored ? "none" : "flex";
+				if ( oWelcomeStatus ) oWelcomeStatus.textContent = oData.szBusy || ( oData.bStored ? T( "Stored on this device, restart to use it" ) : T( "Game data is not installed" ) );
+				if ( oWelcomeDownload )
+				{
+					oWelcomeDownload.disabled = bBusy;
+					oWelcomeDownload.textContent = bBusy ? ( oData.szBusy || T( "Downloading..." ) ) : T( "Install game data" );
+				}
+			}
 			document.getElementById( "settingsDataDownload" ).style.display = oData.bStored ? "none" : "";
 			document.getElementById( "settingsDataFile" ).style.display     = oData.bStored ? "none" : "";
 			document.getElementById( "settingsDataFolder" ).style.display   = oData.bStored ? "none" : "";
@@ -743,6 +756,16 @@ var oPageSettings = {
 
 		document.getElementById( "settingsDataDownload" ).addEventListener( "click", function () {
 			StoreData( { szUrl : oDataPack.GetPackUrl() }, "Downloading" );
+		} );
+
+		document.getElementById( "welcomeDownload" ).addEventListener( "click", function () {
+			document.getElementById( "settingsDataDownload" ).click();
+		} );
+		document.getElementById( "welcomeFile" ).addEventListener( "click", function () {
+			document.getElementById( "settingsDataFile" ).click();
+		} );
+		document.getElementById( "welcomeFolder" ).addEventListener( "click", function () {
+			document.getElementById( "settingsDataFolder" ).click();
 		} );
 
 		document.getElementById( "settingsDataFile" ).addEventListener( "click", function () {
