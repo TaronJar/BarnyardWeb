@@ -691,6 +691,173 @@
 			#settings select { width: 138px; }
 		}
 
+
+		/* Spotify-like settings workspace */
+		#settings {
+			width: min(900px, 94vw);
+			height: min(760px, 90vh);
+			max-height: 90vh;
+			padding: 0;
+			overflow: hidden;
+			border: 1px solid #292929;
+			border-radius: 12px;
+			background: #121212;
+			color: #f5f5f5;
+			font: 14px/1.5 Arial, system-ui, sans-serif;
+			box-shadow: 0 0 0 100vmax rgba(0,0,0,.76), 0 20px 70px rgba(0,0,0,.6);
+		}
+		#settings .settings-layout {
+			display: grid;
+			grid-template-columns: 190px minmax(0, 1fr);
+			height: 100%;
+			min-height: 0;
+			background: #121212;
+		}
+		#settings .settings-nav {
+			box-sizing: border-box;
+			padding: 26px 12px;
+			background: #000;
+			border-right: 1px solid #242424;
+		}
+		#settings .settings-nav-title {
+			padding: 0 12px 17px;
+			color: #b3b3b3;
+			font-size: 10px;
+			font-weight: 800;
+			letter-spacing: .15em;
+		}
+		#settings .settings-nav-item {
+			display: block;
+			width: 100%;
+			min-height: 42px;
+			margin: 3px 0;
+			padding: 10px 12px;
+			border: 0;
+			border-radius: 5px;
+			background: transparent;
+			color: #b3b3b3;
+			text-align: left;
+			font-size: 13px;
+			font-weight: 650;
+			cursor: pointer;
+		}
+		#settings .settings-nav-item:hover { background: #1a1a1a; color: #fff; }
+		#settings .settings-nav-item.active {
+			background: #242424;
+			color: #fff;
+			box-shadow: inset 3px 0 #1ed760;
+		}
+		#settings .settings-content {
+			box-sizing: border-box;
+			min-width: 0;
+			height: 100%;
+			overflow-y: auto;
+			padding: 28px clamp(22px, 4vw, 42px) 30px;
+			background: linear-gradient(180deg, #202020 0, #121212 230px);
+			scroll-behavior: smooth;
+			scrollbar-width: thin;
+			scrollbar-color: #555 transparent;
+		}
+		#settings .head {
+			margin: 0 0 28px;
+			padding: 0 0 20px;
+			border-bottom: 1px solid #333;
+		}
+		#settings .head::before {
+			content: "OPENBARNYARD  /  WEB EDITION";
+			display: block;
+			margin-bottom: 8px;
+			color: #b3b3b3;
+			font-size: 10px;
+			font-weight: 750;
+			letter-spacing: .15em;
+		}
+		#settings .title {
+			color: #fff;
+			font-size: 30px;
+			font-weight: 800;
+			letter-spacing: -.045em;
+		}
+		#settings .about { color: #b3b3b3; font-size: 12px; margin-top: 5px; }
+		#settings a { color: #1ed760; border: 0; }
+		#settings .settings-group {
+			margin: 0 0 28px;
+			padding: 0 0 22px;
+			border-bottom: 1px solid #292929;
+			scroll-margin-top: 20px;
+		}
+		#settings .section {
+			margin: 0 0 12px;
+			color: #fff;
+			font-size: 18px;
+			font-weight: 750;
+			letter-spacing: -.025em;
+			text-transform: none;
+		}
+		#settings .section::after { display: none; }
+		#settings label,
+		#settings .row {
+			min-height: 48px;
+			padding: 8px 0;
+			border-bottom: 1px solid rgba(255,255,255,.07);
+			color: #e8e8e8;
+			font-size: 13px;
+		}
+		#settings select,
+		#settings input[type=text] {
+			min-height: 38px;
+			padding: 8px 12px;
+			border: 1px solid #454545;
+			border-radius: 5px;
+			background: #2a2a2a;
+			color: #fff;
+			font: 13px Arial, system-ui, sans-serif;
+		}
+		#settings select { width: 155px; }
+		#settings select:hover,
+		#settings input[type=text]:hover { background: #333; border-color: #666; }
+		#settings select:focus,
+		#settings input[type=text]:focus { outline: 2px solid #1ed760; outline-offset: 1px; }
+		#settings input[type=checkbox] { width: 42px; height: 24px; border-radius: 20px; background: #535353; }
+		#settings input[type=checkbox]::after { left: 3px; top: 3px; width: 18px; height: 18px; background: #fff; }
+		#settings input[type=checkbox]:checked { background: #1ed760; }
+		#settings input[type=checkbox]:checked::after { left: 21px; }
+		#settings .hint { color: #a7a7a7; font-size: 11px; line-height: 1.55; overflow-wrap: anywhere; }
+		#settings .buttons { justify-content: flex-start; flex-wrap: wrap; gap: 8px; margin-top: 13px; }
+		#settings button:not(.settings-nav-item) {
+			min-height: 36px;
+			padding: 8px 16px;
+			border: 0;
+			border-radius: 999px;
+			background: #333;
+			color: #fff;
+			font: 700 12px Arial, system-ui, sans-serif;
+		}
+		#settings button:not(.settings-nav-item):hover:not(:disabled) { background: #484848; }
+		#settings button.accent { background: #1ed760 !important; color: #000 !important; }
+		#settings button.accent:hover:not(:disabled) { background: #70ef98 !important; }
+		#settings button:disabled { opacity: .4; cursor: not-allowed; }
+		#settings #settingsAbout { color: #777; font-size: 10px; }
+		#settings #settingsRestartHint { color: #b3b3b3; }
+		#settings #settingsClose { margin-left: auto; }
+		@media (max-width: 620px) {
+			#settings { width: 96vw; height: 92vh; max-height: 92vh; }
+			#settings .settings-layout { grid-template-columns: 118px minmax(0,1fr); }
+			#settings .settings-nav { padding: 18px 7px; }
+			#settings .settings-nav-title { padding: 0 8px 12px; font-size: 8px; }
+			#settings .settings-nav-item { padding: 9px 8px; font-size: 11px; }
+			#settings .settings-content { padding: 20px 15px 24px; }
+			#settings .title { font-size: 24px; }
+			#settings select { width: 125px; }
+		}
+		@media (max-width: 390px) {
+			#settings .settings-layout { grid-template-columns: 94px minmax(0,1fr); }
+			#settings .settings-nav-item { font-size: 10px; }
+			#settings .settings-content { padding-left: 11px; padding-right: 11px; }
+			#settings label { gap: 7px; font-size: 11px; }
+			#settings select { width: 112px; }
+		}
+
 	</style>
 </head>
 
