@@ -430,9 +430,9 @@ var oPageSettings = {
 			var oLabels = { szResolution:"Resolution", szLowLatency:"Low latency", szGrass:"Grass detail", szDrawDistance:"Draw distance", szFrameLimit:"FPS limit", szSound:"Sound", bShowFps:"Show FPS", szLanguage:"Interface language" };
 			for ( var oLabel of oPanel.querySelectorAll( "label" ) )
 			{
-				var oSelect = oLabel.querySelector( "select" );
-				if ( oSelect && oLabels[ oSelect.dataset.key ] && oLabel.firstChild )
-					oLabel.firstChild.nodeValue = T( oLabels[ oSelect.dataset.key ] ) + " ";
+				var oControl = oLabel.querySelector( "select, input[data-key]" );
+				if ( oControl && oLabels[ oControl.dataset.key ] && oLabel.firstChild )
+					oLabel.firstChild.nodeValue = T( oLabels[ oControl.dataset.key ] ) + " ";
 			}
 			for ( var oGroup of oPanel.querySelectorAll( ".settings-group" ) )
 			{
