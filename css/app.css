@@ -168,12 +168,10 @@ html,
 		#settingsButton:hover,
 		#settingsButton:focus-visible {
 			color: #ffffff;
-			filter: drop-shadow(0 0 5px rgba(56, 168, 255, .9));
-			transform: scale(1.12);
 		}
 
 		#settingsButton:active {
-			transform: scale(1.03);
+			color: #ffffff;
 		}
 
 		#settings {
