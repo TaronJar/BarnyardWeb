@@ -1,57 +1,51 @@
 # Barnyard — Browser Port
 
 <p align="center">
-  <strong>An unofficial browser port of Barnyard, powered by OpenBarnyard.</strong>
+  <strong>An unofficial browser port of <em>Barnyard</em>, powered by OpenBarnyard.</strong>
   <br />
-  Bringing the game to modern web browsers with WebAssembly.
+  Play the game in a modern browser with WebAssembly.
   <br /><br />
   <a href="https://openbarnyard-wasm.pages.dev/"><strong>▶ Play Barnyard</strong></a>
   &nbsp;·&nbsp;
-  <a href="https://github.com/InfiniteC0re/OpenBarnyard">OpenBarnyard</a>
+  <a href="https://github.com/InfiniteC0re/OpenBarnyard">Source project: OpenBarnyard</a>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/platform-browser-20252d?style=flat-square" alt="Platform: browser" />
+  <img src="https://img.shields.io/badge/Platform-Browser-20252d?style=flat-square" alt="Platform: browser" />
   <img src="https://img.shields.io/badge/WebAssembly-WASM-654ff0?style=flat-square" alt="WebAssembly" />
-  <img src="https://img.shields.io/badge/build-Emscripten-262626?style=flat-square" alt="Emscripten" />
-  <img src="https://img.shields.io/badge/hosting-Cloudflare%20Pages-f38020?style=flat-square" alt="Cloudflare Pages" />
+  <img src="https://img.shields.io/badge/Build-Emscripten-262626?style=flat-square" alt="Emscripten" />
+  <img src="https://img.shields.io/badge/Hosting-Cloudflare%20Pages-f38020?style=flat-square" alt="Cloudflare Pages" />
 </p>
 
 ---
 
-[English](#english) · [Русский](#русский)
+**[English](#english) · [Русский](#русский)**
 
 ## English
 
-**Barnyard — Browser Port** is an unofficial browser adaptation of [Barnyard](https://en.wikipedia.org/wiki/Barnyard_(video_game)), built on top of [OpenBarnyard](https://github.com/InfiniteC0re/OpenBarnyard).
+**Barnyard — Browser Port** is an unofficial browser adaptation of [Barnyard](https://en.wikipedia.org/wiki/Barnyard_(video_game)), built on [OpenBarnyard](https://github.com/InfiniteC0re/OpenBarnyard).
 
-The project brings the OpenBarnyard game engine to the browser through **WebAssembly**, with a custom web interface and a straightforward way to provide game data.
-
-### Play
-
-<p align="center">
-  <a href="https://openbarnyard-wasm.pages.dev/"><strong>Open the browser version →</strong></a>
-</p>
+It brings the OpenBarnyard game engine to modern browsers through **WebAssembly**, with a custom web interface for managing game data.
 
 ### Features
 
 - Runs in a modern web browser
-- WebAssembly build prepared with Emscripten
+- WebAssembly build compiled with Emscripten
 - Custom browser interface
 - Two ways to provide game data:
   - Download the data pack through the web interface
   - Select an existing local `Data` folder
-- Installed game data is stored locally on the device
-- Game saves are stored separately from the game data
+- Game data is stored locally on the device
+- Save files are stored separately from game data
 
 ### Getting started
 
-1. Open the [Barnyard browser port](https://openbarnyard-wasm.pages.dev/).
-2. Choose how to provide the game data: download it through the page or select your local `Data` folder.
-3. Wait for the data to be prepared.
+1. Open the [browser version](https://openbarnyard-wasm.pages.dev/).
+2. Download the data pack or select your local `Data` folder.
+3. Wait for the data to finish preparing.
 4. Press **Play**.
 
-> **Game data is not included.** You must provide your own copy of the original game data. The repository does not host or distribute proprietary game assets.
+> **Game data is not included.** You must provide your own copy of the original game data. This repository does not host or distribute proprietary game assets.
 
 ### Technology
 
@@ -82,15 +76,9 @@ The original OpenBarnyard license and attribution requirements apply. See [Licen
 
 ## Русский
 
-**Barnyard — Browser Port** — неофициальный браузерный порт игры [Barnyard](https://en.wikipedia.org/wiki/Barnyard_(video_game)), созданный на основе проекта [OpenBarnyard](https://github.com/InfiniteC0re/OpenBarnyard).
+**Barnyard — Browser Port** — неофициальный браузерный порт игры [Barnyard](https://en.wikipedia.org/wiki/Barnyard_(video_game)), созданный на основе [OpenBarnyard](https://github.com/InfiniteC0re/OpenBarnyard).
 
-Проект переносит движок OpenBarnyard в современные браузеры с помощью **WebAssembly** и предоставляет собственный веб-интерфейс для установки игровых данных.
-
-### Играть
-
-<p align="center">
-  <a href="https://openbarnyard-wasm.pages.dev/"><strong>Открыть браузерную версию →</strong></a>
-</p>
+Проект переносит движок OpenBarnyard в современные браузеры с помощью **WebAssembly** и предоставляет веб-интерфейс для установки игровых данных.
 
 ### Возможности
 
@@ -100,14 +88,14 @@ The original OpenBarnyard license and attribution requirements apply. See [Licen
 - Два способа добавить игровые данные:
   - Скачать пакет данных через интерфейс сайта
   - Выбрать существующую локальную папку `Data`
-- Установленные игровые данные сохраняются на устройстве
+- Игровые данные сохраняются на устройстве
 - Игровые сохранения хранятся отдельно от игровых данных
 
 ### Как запустить
 
-1. Открой [браузерную версию Barnyard](https://openbarnyard-wasm.pages.dev/).
-2. Выбери способ добавления игровых данных: скачай их через сайт или укажи локальную папку `Data`.
-3. Дождись подготовки данных.
+1. Открой [браузерную версию](https://openbarnyard-wasm.pages.dev/).
+2. Скачай пакет данных или выбери локальную папку `Data`.
+3. Дождись завершения подготовки данных.
 4. Нажми **Играть**.
 
 > **Игровые данные не входят в проект.** Необходимо самостоятельно предоставить свою копию оригинальных игровых данных. Репозиторий не размещает и не распространяет защищённые авторским правом игровые ресурсы.
