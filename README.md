@@ -1,4 +1,4 @@
-# BarnyardWeb
+# Barnyard — Browser Port
 
 [English](#english) | [Русский](#русский)
 
@@ -6,9 +6,9 @@
 
 ## English
 
-A browser-based version of **Barnyard**, based on [OpenBarnyard](https://github.com/InfiniteC0re/OpenBarnyard).
+An unofficial browser port of **Barnyard**, powered by [OpenBarnyard](https://github.com/InfiniteC0re/OpenBarnyard).
 
-BarnyardWeb brings OpenBarnyard to the browser with a custom web interface and simpler game data installation.
+This project brings Barnyard to modern web browsers using WebAssembly and Emscripten, with a custom web interface and simplified game data installation.
 
 ### Features
 
@@ -44,9 +44,9 @@ The original OpenBarnyard license and attribution requirements apply. See [Licen
 
 ## Русский
 
-**BarnyardWeb** — браузерная версия игры **Barnyard**, основанная на проекте [OpenBarnyard](https://github.com/InfiniteC0re/OpenBarnyard).
+**Barnyard — Browser Port** — неофициальный браузерный порт игры **Barnyard**, работающий на основе [OpenBarnyard](https://github.com/InfiniteC0re/OpenBarnyard).
 
-Цель проекта — перенести OpenBarnyard в браузер, предоставить собственный веб-интерфейс и упростить установку игровых данных.
+Проект переносит Barnyard в современные браузеры с использованием WebAssembly и Emscripten, предоставляет собственный веб-интерфейс и упрощает установку игровых данных.
 
 ### Возможности
 
