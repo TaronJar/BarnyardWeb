@@ -745,7 +745,10 @@ var oPageSettings = {
 			{
 				var oButton = document.getElementById( szId );
 				oButton.disabled = bBusy;
-				oButton.classList.toggle( "is-loading", bBusy && szId != "settingsDataDelete" );
+				var bActiveOperation =
+					( szId == "settingsDataDownload" && oData.szBusyVerb == T( "Downloading" ) ) ||
+					( szId == "settingsDataFolder" && oData.szBusyVerb == T( "Copying" ) );
+				oButton.classList.toggle( "is-loading", bBusy && bActiveOperation );
 			}
 		}
 
