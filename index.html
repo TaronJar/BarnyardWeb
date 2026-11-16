@@ -1846,6 +1846,54 @@
 			#settings, #settings .settings-page-enter { transition: none !important; animation: none !important; }
 		}
 	</style>
+	<style id="bluePaletteAndLoadingPolish">
+		/* Blue sidebar palette */
+		#settings .settings-nav {
+			background: linear-gradient(180deg, #123b61 0%, #142b43 48%, #171d25 100%) !important;
+		}
+		#settings .settings-nav-title { color: #d8eaff !important; }
+		#settings .settings-nav-item { color: #c8dced !important; }
+		/* Make the interface easier to read */
+		#settings {
+			width: min(860px, 95vw) !important;
+			height: min(720px, 90vh) !important;
+			max-height: 90vh !important;
+		}
+		#settings .settings-layout { grid-template-columns: 184px minmax(0,1fr) !important; }
+		#settings .settings-nav { padding: 26px 12px !important; }
+		#settings .settings-nav-title { font-size: 14px !important; }
+		#settings .settings-nav-item { min-height: 46px !important; padding: 11px 13px !important; font-size: 15px !important; }
+		#settings .settings-content { padding: 26px 40px 32px !important; }
+		#settings .title { font-size: 32px !important; }
+		#settings .section { font-size: 21px !important; }
+		#settings label, #settings .row { font-size: 15px !important; min-height: 56px !important; }
+		#settings .custom-select-trigger { font-size: 15px !important; min-height: 44px !important; }
+		#settings .custom-select-option { font-size: 15px !important; min-height: 42px !important; }
+		#settings button:not(.settings-nav-item) { font-size: 14px !important; min-height: 42px; }
+		#dataWelcome .welcome-card { width: min(500px, 100%); padding: 42px 44px 34px; }
+		#dataWelcome h1 { font-size: 25px; }
+		#dataWelcome p { font-size: 14px; }
+		#dataWelcome button { font-size: 14px; }
+		/* Small animated indicators while data is loading or being copied */
+		@keyframes barnyardSpin { to { transform: rotate(360deg); } }
+		#status:not(:empty)::before {
+			content: ""; display: inline-block; width: 11px; height: 11px; margin: 0 8px 0 2px;
+			border: 2px solid rgba(255,255,255,.22); border-top-color: #38a8ff;
+			border-radius: 50%; vertical-align: -2px; animation: barnyardSpin .75s linear infinite;
+		}
+		#dataWelcome #welcomeDownload.is-loading::before,
+		#settings .data-panel-actions button.is-loading::before {
+			content: ""; display: inline-block; width: 12px; height: 12px; margin-right: 9px;
+			border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%;
+			vertical-align: -2px; animation: barnyardSpin .75s linear infinite;
+		}
+		@media(max-width:600px) {
+			#settings .settings-layout { grid-template-columns: 120px minmax(0,1fr) !important; }
+			#settings .settings-nav { padding: 18px 7px !important; }
+			#settings .settings-nav-item { padding: 8px !important; font-size: 12px !important; }
+			#settings .settings-content { padding: 18px 16px !important; }
+		}
+	</style>
 </head>
 
 <body>
