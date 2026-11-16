@@ -355,12 +355,40 @@ var oPageSettings = {
 			oNavButton.addEventListener( "click", function () {
 				var oTarget = oContent.querySelector( '[data-name="' + this.dataset.target + '"]' );
 				if ( oTarget )
-					oTarget.scrollIntoView( { behavior : "smooth", block : "start" } );
-				for ( var oItem of oNav.querySelectorAll( ".settings-nav-item" ) )
-					oItem.classList.toggle( "active", oItem === this );
+					oContent.scrollTo( { top : oTarget.offsetTop - oContent.offsetTop + oContent.scrollTop, behavior : "smooth" } );
 			} );
 		}
 
+		function UpdateActiveSection()
+		{
+			var iActive = 0;
+			var iThreshold = oContent.getBoundingClientRect().top + 90;
+
+			for ( var i = 0; i < oSections.length; i++ )
+			{
+				if ( oSections[ i ].getBoundingClientRect().top <= iThreshold )
+					iActive = i;
+				else
+					break;
+			}
+
+			for ( var i = 0; i < oNav.children.length; i++ )
+				oNav.children[ i ].classList.toggle( "active", i == iActive );
+		}
+
+		var bScrollUpdatePending = false;
+		oContent.addEventListener( "scroll", function () {
+			if ( bScrollUpdatePending )
+				return;
+
+			bScrollUpdatePending = true;
+			requestAnimationFrame( function () {
+				UpdateActiveSection();
+				bScrollUpdatePending = false;
+			} );
+		}, { passive : true } );
+
+		window.addEventListener( "resize", UpdateActiveSection );
 		oNav.querySelector( ".settings-nav-item" ).classList.add( "active" );
 		oLayout.appendChild( oNav );
 		oLayout.appendChild( oContent );
