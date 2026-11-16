@@ -350,6 +350,88 @@ var oPageSettings = {
 			"Status":"ESTADO"
 		} );
 
+		Object.assign( oTranslations.en, {
+			"Game data is not installed":"Game data is not installed",
+			"Downloading...":"Downloading…",
+			"Install game data":"Install game data",
+			"Checking...":"Checking…",
+			"Preparing saves…":"Preparing saves…",
+			"Importing saves…":"Importing saves…",
+			"Could not export saves:":"Could not export saves:",
+			"Could not import saves:":"Could not import saves:",
+			"No save files were found.":"No save files were found.",
+			"Import this backup? Files with matching names in /Save will be replaced.":"Import this backup? Files with matching names in /Save will be replaced.",
+			"Imported save files. Restart the game to load them.":"Imported save files. Restart the game to load them."
+		} );
+
+		Object.assign( oTranslations.ru, {
+			"Game data is not installed":"Игровые данные не установлены",
+			"Downloading...":"Загрузка…",
+			"Install game data":"Установить игровые данные",
+			"Checking...":"Проверка…",
+			"Preparing saves…":"Подготовка сохранений…",
+			"Importing saves…":"Импорт сохранений…",
+			"Could not export saves:":"Не удалось экспортировать сохранения:",
+			"Could not import saves:":"Не удалось импортировать сохранения:",
+			"No save files were found.":"Файлы сохранений не найдены.",
+			"Import this backup? Files with matching names in /Save will be replaced.":"Импортировать эту резервную копию? Файлы с совпадающими именами в /Save будут заменены.",
+			"Imported save files. Restart the game to load them.":"Сохранения импортированы. Перезапустите игру, чтобы загрузить их."
+		} );
+
+		Object.assign( oTranslations.de, {
+			"Game data is not installed":"Spieldaten sind nicht installiert",
+			"Downloading...":"Wird heruntergeladen…",
+			"Install game data":"Spieldaten installieren",
+			"Checking...":"Wird geprüft…",
+			"Preparing saves…":"Spielstände werden vorbereitet…",
+			"Importing saves…":"Spielstände werden importiert…",
+			"Could not export saves:":"Spielstände konnten nicht exportiert werden:",
+			"Could not import saves:":"Spielstände konnten nicht importiert werden:",
+			"No save files were found.":"Keine Spielstände gefunden.",
+			"Import this backup? Files with matching names in /Save will be replaced.":"Dieses Backup importieren? Dateien mit gleichen Namen in /Save werden ersetzt.",
+			"Imported save files. Restart the game to load them.":"Spielstände importiert. Starte das Spiel neu, um sie zu laden."
+		} );
+
+		Object.assign( oTranslations.fr, {
+			"Game data is not installed":"Les données du jeu ne sont pas installées",
+			"Downloading...":"Téléchargement…",
+			"Install game data":"Installer les données du jeu",
+			"Checking...":"Vérification…",
+			"Preparing saves…":"Préparation des sauvegardes…",
+			"Importing saves…":"Importation des sauvegardes…",
+			"Could not export saves:":"Impossible d’exporter les sauvegardes :",
+			"Could not import saves:":"Impossible d’importer les sauvegardes :",
+			"No save files were found.":"Aucun fichier de sauvegarde trouvé.",
+			"Import this backup? Files with matching names in /Save will be replaced.":"Importer cette sauvegarde ? Les fichiers portant le même nom dans /Save seront remplacés.",
+			"Imported save files. Restart the game to load them.":"Sauvegardes importées. Redémarrez le jeu pour les charger."
+		} );
+
+		Object.assign( oTranslations.es, {
+			"Game data is not installed":"Los datos del juego no están instalados",
+			"Downloading...":"Descargando…",
+			"Install game data":"Instalar datos del juego",
+			"Checking...":"Comprobando…",
+			"Preparing saves…":"Preparando partidas guardadas…",
+			"Importing saves…":"Importando partidas guardadas…",
+			"Could not export saves:":"No se pudieron exportar las partidas:",
+			"Could not import saves:":"No se pudieron importar las partidas:",
+			"No save files were found.":"No se encontraron archivos de guardado.",
+			"Import this backup? Files with matching names in /Save will be replaced.":"¿Importar esta copia de seguridad? Los archivos con el mismo nombre en /Save se reemplazarán.",
+			"Imported save files. Restart the game to load them.":"Partidas importadas. Reinicia el juego para cargarlas.",
+			"Page from":"Versión de la página del",
+			"Sound":"Sonido",
+			"in the buffer (worst":"en el búfer (máximo",
+			"target":"objetivo",
+			"output":"salida",
+			"gaps":"interrupciones",
+			"skips":"saltos",
+			"sounds start within":"los sonidos comienzan en menos de",
+			"Files from":"Archivos desde",
+			"this device":"este dispositivo",
+			"the server":"el servidor",
+			"slowest read":"lectura más lenta"
+		} );
+
 
 		Object.assign( oTranslations.en, {
 			"General":"General", "Audio diagnostics":"AUDIO DIAGNOSTICS", "Availability":"AVAILABILITY", "Page":"Page", "Checking...":"Checking...", "Unavailable":"Unavailable", "Page version":"Page version", "Sample rate":"Sample rate", "Audio buffer":"Audio buffer",
@@ -1061,7 +1143,7 @@ var oPageSettings = {
 		{
 			var oButton = document.getElementById( "settingsSaveExport" );
 			oButton.disabled = true;
-			oButton.textContent = "Preparing…";
+			oButton.textContent = T( "Preparing saves…" );
 			try
 			{
 				await new Promise( function ( a_fnResolve, a_fnReject ) {
@@ -1087,7 +1169,7 @@ var oPageSettings = {
 					}
 				}
 				Walk( "/Save" );
-				if ( !iTotal ) throw new Error( "No save files were found." );
+				if ( !iTotal ) throw new Error( T( "No save files were found." ) );
 				aParts.push( new Uint8Array( 1024 ) );
 				var oBlob = new Blob( aParts, { type: "application/x-tar" } );
 				var szUrl = URL.createObjectURL( oBlob );
@@ -1096,15 +1178,15 @@ var oPageSettings = {
 				document.body.appendChild( oLink ); oLink.click(); oLink.remove();
 				setTimeout( function () { URL.revokeObjectURL( szUrl ); }, 30000 );
 			}
-			catch ( a_oError ) { alert( "Could not export saves: " + a_oError.message ); }
-			finally { oButton.disabled = false; oButton.textContent = "Export saves"; }
+			catch ( a_oError ) { alert( T( "Could not export saves:" ) + " " + a_oError.message ); }
+			finally { oButton.disabled = false; oButton.textContent = T( "Export saves" ); }
 		}
 
 		async function ImportSaves( a_oFile )
 		{
-			if ( !confirm( "Import this backup? Files with matching names in /Save will be replaced." ) ) return;
+			if ( !confirm( T( "Import this backup? Files with matching names in /Save will be replaced." ) ) ) return;
 			var oButton = document.getElementById( "settingsSaveImport" );
-			oButton.disabled = true; oButton.textContent = "Importing…";
+			oButton.disabled = true; oButton.textContent = T( "Importing saves…" );
 			try
 			{
 				var a = new Uint8Array( await a_oFile.arrayBuffer() );
@@ -1130,12 +1212,12 @@ var oPageSettings = {
 					FS.writeFile( szPath, a.subarray( iOffset, iOffset + iSize ) );
 					iFiles++; iOffset += Math.ceil( iSize / 512 ) * 512;
 				}
-				if ( !iFiles ) throw new Error( "No save files found in this backup." );
+				if ( !iFiles ) throw new Error( T( "No save files were found." ) );
 				await new Promise( function ( a_fnResolve, a_fnReject ) { FS.syncfs( false, function ( a_oError ) { a_oError ? a_fnReject( a_oError ) : a_fnResolve(); } ); } );
-				alert( "Imported " + iFiles + " save file(s). Restart the game to load them." );
+				alert( iFiles + " — " + T( "Imported save files. Restart the game to load them." ) );
 			}
-			catch ( a_oError ) { alert( "Could not import saves: " + a_oError.message ); }
-			finally { oButton.disabled = false; oButton.textContent = "Import saves"; document.getElementById( "settingsSaveFile" ).value = ""; }
+			catch ( a_oError ) { alert( T( "Could not import saves:" ) + " " + a_oError.message ); }
+			finally { oButton.disabled = false; oButton.textContent = T( "Import saves" ); document.getElementById( "settingsSaveFile" ).value = ""; }
 		}
 
 		document.getElementById( "settingsSaveExport" ).addEventListener( "click", ExportSaves );
