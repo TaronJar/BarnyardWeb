@@ -2385,3 +2385,31 @@ html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background:
 	}
 	#settings #settingsClose { top: 5px !important; }
 }
+
+
+/* Anchor the sticky settings header to the actual top edge of the scroll viewport.
+   Move the original top spacing into the header itself, not the scroll container. */
+#settings .settings-content {
+	padding-top: 0 !important;
+	scroll-padding-top: 0 !important;
+}
+#settings .settings-content > .head {
+	top: 0 !important;
+	margin-top: 0 !important;
+	padding-top: 22px !important;
+	background: #121212 !important;
+}
+#settings .settings-content > .head::after {
+	top: 0 !important;
+	height: 0 !important;
+}
+@media (max-width: 700px) {
+	#settings .settings-content {
+		padding-top: 0 !important;
+	}
+	#settings .settings-content > .head {
+		top: 0 !important;
+		margin-top: 0 !important;
+		padding-top: 20px !important;
+	}
+}
