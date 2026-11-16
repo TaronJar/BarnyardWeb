@@ -2369,7 +2369,7 @@ html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background:
 }
 #settings #settingsClose {
 	position: absolute !important;
-	top: 5px !important;
+	top: 12px !important;
 	right: -76px !important;
 	z-index: 501 !important;
 }
@@ -2386,7 +2386,7 @@ html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background:
 		top: -20px !important;
 		height: 20px !important;
 	}
-	#settings #settingsClose { top: 5px !important; }
+	#settings #settingsClose { top: 12px !important; }
 }
 
 
