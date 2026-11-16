@@ -469,12 +469,12 @@ var oPageSettings = {
 				es : [ "¡Bienvenido!", "Para empezar, instala los datos del juego. Se guardarán en este dispositivo y no tendrás que descargarlos de nuevo.", "Instalar datos del juego", "Ajustes", "Elegir carpeta Data", "Los datos del juego no están instalados" ]
 			};
 			var aWelcomeText = oWelcomeText[ oPageSettings.oValues.szLanguage ] || oWelcomeText.en;
-			var aWelcomeIds = [ "welcomeTitle", "welcomeDescription", "welcomeDownload", "welcomeSettings", "welcomeFolder", "welcomeStatus" ];
+			var aWelcomeIds = [ "welcomeDescription", "welcomeDownload", "welcomeSettings", "welcomeFolder", "welcomeStatus" ];
 			for ( var iWelcome = 0; iWelcome < aWelcomeIds.length; iWelcome++ )
 			{
 				var oWelcomeElement = document.getElementById( aWelcomeIds[ iWelcome ] );
 				if ( oWelcomeElement )
-					oWelcomeElement.textContent = aWelcomeText[ iWelcome ];
+					oWelcomeElement.textContent = aWelcomeText[ iWelcome + 1 ];
 			}
 			var oCheat = document.getElementById( "settingsCheat" );
 			if ( oCheat ) oCheat.placeholder = T( "Cheat code" );
