@@ -526,6 +526,14 @@ var oPageSettings = {
 						oTrigger.setAttribute( "aria-expanded", bOpen ? "true" : "false" );
 					} );
 
+					document.addEventListener( "pointerdown", function ( a_oEvent ) {
+						if ( !oWrap.contains( a_oEvent.target ) )
+						{
+							oWrap.classList.remove( "open" );
+							oTrigger.setAttribute( "aria-expanded", "false" );
+						}
+					} );
+
 					oTrigger.addEventListener( "keydown", function ( a_oEvent ) {
 						if ( a_oEvent.key == "ArrowDown" || a_oEvent.key == "Enter" || a_oEvent.key == " " )
 						{
