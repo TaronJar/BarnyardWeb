@@ -413,13 +413,16 @@ async function LoadGame()
 		return;
 	}
 
-	// Without a connection only a stored data pack can be read
-	if ( !navigator.onLine && !bHasStoredPack && !bAppMode )
+	// Without a stored data pack, keep the source picker visible.
+	// The browser game must not start until the player installs or selects Data.
+	if ( !bHasStoredPack && !bAppMode )
 	{
-		document.getElementById( "status" ).textContent = "No connection. To play offline, store the game data while online: Settings, Game data, Download";
+		if ( !navigator.onLine )
+			document.getElementById( "status" ).textContent = "No connection. Connect to the internet to install game data, or choose a local Data folder.";
 		return;
 	}
 
+	// The Android app can still start through its configured data source.
 	StartGame();
 }
 
