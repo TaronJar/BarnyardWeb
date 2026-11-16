@@ -302,7 +302,7 @@ var oPageSettings = {
 
 
 		Object.assign( oTranslations.en, {
-			"General":"General", "Audio diagnostics":"AUDIO", "Availability":"AVAILABILITY", "General":"General", "Audio diagnostics":"AUDIO", "Availability":"AVAILABILITY", "Page":"Page", "Checking...":"Checking...", "Unavailable":"Unavailable", "Page version":"Page version", "Sample rate":"Sample rate", "Audio buffer":"Audio buffer",
+			"General":"General", "Audio diagnostics":"AUDIO DIAGNOSTICS", "Availability":"AVAILABILITY", "Page":"Page", "Checking...":"Checking...", "Unavailable":"Unavailable", "Page version":"Page version", "Sample rate":"Sample rate", "Audio buffer":"Audio buffer",
 			"Target buffer":"Target buffer", "Output latency":"Output latency", "Audio gaps":"Audio gaps",
 			"Audio skips":"Audio skips", "Sound startup":"Sound startup", "Game data source":"Game data source",
 			"Slowest file read":"Slowest file read", "Offline mode":"Offline mode"
