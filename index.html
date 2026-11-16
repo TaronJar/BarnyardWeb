@@ -1876,11 +1876,6 @@
 		#dataWelcome button { font-size: 14px; }
 		/* Small animated indicators while data is loading or being copied */
 		@keyframes barnyardSpin { to { transform: rotate(360deg); } }
-		#status:not(:empty)::before {
-			content: ""; display: inline-block; width: 11px; height: 11px; margin: 0 8px 0 2px;
-			border: 2px solid rgba(255,255,255,.22); border-top-color: #38a8ff;
-			border-radius: 50%; vertical-align: -2px; animation: barnyardSpin .75s linear infinite;
-		}
 		#dataWelcome #welcomeDownload.is-loading::before,
 		#settings .data-panel-actions button.is-loading::before {
 			content: ""; display: inline-block; width: 12px; height: 12px; margin-right: 9px;
