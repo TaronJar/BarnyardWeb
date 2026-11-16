@@ -2348,14 +2348,24 @@ html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background:
 /* Keep the settings title and close control visible while the content scrolls. */
 #settings .settings-content > .head {
 	position: sticky !important;
-	top: -22px !important;
+	top: 0 !important;
 	z-index: 500 !important;
 	box-sizing: border-box !important;
-	margin-top: 0 !important;
+	margin-top: -22px !important;
 	margin-bottom: 16px !important;
 	padding-top: 5px !important;
 	padding-bottom: 12px !important;
 	background: #121212 !important;
+}
+#settings .settings-content > .head::after {
+	content: "" !important;
+	position: absolute !important;
+	left: 0 !important;
+	right: 0 !important;
+	top: -22px !important;
+	height: 22px !important;
+	background: #121212 !important;
+	pointer-events: none !important;
 }
 #settings #settingsClose {
 	position: absolute !important;
@@ -2365,9 +2375,13 @@ html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background:
 }
 @media (max-width: 700px) {
 	#settings .settings-content > .head {
-		top: -20px !important;
-		margin-top: 0 !important;
+		top: 0 !important;
+		margin-top: -20px !important;
 		padding-top: 5px !important;
+	}
+	#settings .settings-content > .head::after {
+		top: -20px !important;
+		height: 20px !important;
 	}
 	#settings #settingsClose { top: 5px !important; }
 }
