@@ -1928,14 +1928,14 @@
 		#dataWelcome button:disabled { opacity:.55; cursor:wait; }
 		#dataWelcome #welcomeDownload { display:block; width:100%; min-height:54px; font-size:15px; }
 		#dataWelcome .welcome-alt {
-			display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; margin-top:10px;
+			display:grid; grid-template-columns:minmax(0,1fr); gap:9px; margin-top:10px;
 		}
 		#dataWelcome .welcome-alt button {
 			width:100%; min-width:0; min-height:42px; padding:0 12px;
 			background:rgba(8,17,29,.72); color:#fff; border:1px solid rgba(255,255,255,.22);
 			backdrop-filter:blur(8px);
 		}
-		#dataWelcome #welcomeFolder { grid-column:1/-1; }
+		#dataWelcome #welcomeFolder { grid-column:auto; }
 		#dataWelcome .welcome-alt button:hover:not(:disabled) { background:rgba(34,69,99,.92); }
 		#dataWelcome .welcome-status {
 			min-height:20px; margin-top:16px; color:rgba(255,255,255,.7);
