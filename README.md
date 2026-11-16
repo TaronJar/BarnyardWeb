@@ -5,7 +5,7 @@
   <br />
   Play the game in a modern browser with WebAssembly.
   <br /><br />
-  <a href="https://openbarnyard-wasm.pages.dev/"><strong>▶ Play Barnyard</strong></a>
+  <a href="https://barnyardweb.pages.dev/"><strong>▶ Play Barnyard</strong></a>
   &nbsp;·&nbsp;
   <a href="https://github.com/InfiniteC0re/OpenBarnyard">Source project: OpenBarnyard</a>
 </p>
@@ -40,7 +40,7 @@ It brings the OpenBarnyard game engine to modern browsers through **WebAssembly*
 
 ### Getting started
 
-1. Open the [browser version](https://openbarnyard-wasm.pages.dev/).
+1. Open the [browser version](https://barnyardweb.pages.dev/).
 2. Download the data pack or select your local `Data` folder.
 3. Wait for the data to finish preparing.
 4. Press **Play**.
@@ -93,7 +93,7 @@ The original OpenBarnyard license and attribution requirements apply. See [Licen
 
 ### Как запустить
 
-1. Открой [браузерную версию](https://openbarnyard-wasm.pages.dev/).
+1. Открой [браузерную версию](https://barnyardweb.pages.dev/).
 2. Скачай пакет данных или выбери локальную папку `Data`.
 3. Дождись завершения подготовки данных.
 4. Нажми **Играть**.
