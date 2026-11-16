@@ -2188,3 +2188,16 @@ html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background:
 		flex-wrap: wrap !important;
 	}
 }
+
+
+/* Remove the boxed card backgrounds from the Game data settings section. */
+#settings .settings-group[data-name="game data"] .data-panel {
+	background: transparent !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	padding: 0 !important;
+}
+#settings .settings-group[data-name="game data"] .data-panel + .data-panel {
+	margin-top: 22px !important;
+}
