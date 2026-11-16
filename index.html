@@ -1601,6 +1601,23 @@
 		#settings .custom-select-option { font-size:14px !important; min-height:38px !important; }
 		#settings input[type=text] { font-size:14px !important; }
 	</style>
+	<style id="settingsMotion">
+		#settings {
+			opacity: 0;
+			transform: translate(-50%, calc(-50% + 14px)) scale(.985);
+			transition: opacity 220ms ease, transform 220ms cubic-bezier(.2,.75,.25,1);
+			will-change: opacity, transform;
+		}
+		#settings.settings-panel-open { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+		#settings .settings-page-enter { animation: settingsPageEnter 220ms ease both; }
+		@keyframes settingsPageEnter {
+			from { opacity: 0; transform: translateY(8px); }
+			to { opacity: 1; transform: translateY(0); }
+		}
+		@media (prefers-reduced-motion: reduce) {
+			#settings, #settings .settings-page-enter { transition: none !important; animation: none !important; }
+		}
+	</style>
 </head>
 
 <body>
