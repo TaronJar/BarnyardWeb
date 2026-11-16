@@ -644,14 +644,14 @@ var oPageSettings = {
 			if ( oNavTitle ) oNavTitle.textContent = "Barnyard";
 
 			var oWelcomeText = {
-				en : [ "Welcome!", "To start playing, install the game data. It will be saved on this device and won’t need to be downloaded again.", "Install game data", "Settings", "Choose Data folder", "Game data is not installed" ],
-				ru : [ "Добро пожаловать!", "Чтобы начать игру, установите игровые данные. Они сохранятся на этом устройстве и не потребуют повторной загрузки.", "Установить игровые данные", "Настройки", "Выбрать папку Data", "Игровые данные не установлены" ],
-				de : [ "Willkommen!", "Installiere die Spieldaten, um zu beginnen. Sie werden auf diesem Gerät gespeichert und müssen nicht erneut heruntergeladen werden.", "Spieldaten installieren", "Einstellungen", "Data-Ordner auswählen", "Spieldaten sind nicht installiert" ],
-				fr : [ "Bienvenue !", "Pour commencer, installez les données du jeu. Elles seront enregistrées sur cet appareil et n’auront pas besoin d’être téléchargées à nouveau.", "Installer les données du jeu", "Paramètres", "Choisir le dossier Data", "Les données du jeu ne sont pas installées" ],
-				es : [ "¡Bienvenido!", "Para empezar, instala los datos del juego. Se guardarán en este dispositivo y no tendrás que descargarlos de nuevo.", "Instalar datos del juego", "Ajustes", "Elegir carpeta Data", "Los datos del juego no están instalados" ]
+				en : [ "Welcome!", "To start playing, install the game data. It will be saved on this device and won’t need to be downloaded again.", "Install game data", "Settings", "Choose Data folder", "Play", "Game data is not installed" ],
+				ru : [ "Добро пожаловать!", "Чтобы начать игру, установите игровые данные. Они сохранятся на этом устройстве и не потребуют повторной загрузки.", "Установить игровые данные", "Настройки", "Выбрать папку Data", "Играть", "Игровые данные не установлены" ],
+				de : [ "Willkommen!", "Installiere die Spieldaten, um zu beginnen. Sie werden auf diesem Gerät gespeichert und müssen nicht erneut heruntergeladen werden.", "Spieldaten installieren", "Einstellungen", "Data-Ordner auswählen", "Spielen", "Spieldaten sind nicht installiert" ],
+				fr : [ "Bienvenue !", "Pour commencer, installez les données du jeu. Elles seront enregistrées sur cet appareil et n’auront pas besoin d’être téléchargées à nouveau.", "Installer les données du jeu", "Paramètres", "Choisir le dossier Data", "Jouer", "Les données du jeu ne sont pas installées" ],
+				es : [ "¡Bienvenido!", "Para empezar, instala los datos del juego. Se guardarán en este dispositivo y no tendrás que descargarlos de nuevo.", "Instalar datos del juego", "Ajustes", "Elegir carpeta Data", "Jugar", "Los datos del juego no están instalados" ]
 			};
 			var aWelcomeText = oWelcomeText[ oPageSettings.oValues.szLanguage ] || oWelcomeText.en;
-			var aWelcomeIds = [ "welcomeDescription", "welcomeDownload", "welcomeSettings", "welcomeFolder" ];
+			var aWelcomeIds = [ "welcomeDescription", "welcomeDownload", "welcomeSettings", "welcomeFolder", "welcomePlay" ];
 			for ( var iWelcome = 0; iWelcome < aWelcomeIds.length; iWelcome++ )
 			{
 				var oWelcomeElement = document.getElementById( aWelcomeIds[ iWelcome ] );
