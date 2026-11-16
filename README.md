@@ -39,3 +39,20 @@ This is an independent, non-commercial project. It is not affiliated with, endor
 Please support the original developers and respect the original project's licensing terms.
 
 See the [original repository](https://github.com/InfiniteC0re/OpenBarnyard) and the included `License.md` for the applicable license.
+
+
+## Source layout
+
+The browser client is organized as plain JavaScript scripts (not ES modules) to preserve the global `Module` contract used by the Emscripten runtime.
+
+- `js/core/` — page bootstrap, Emscripten Module setup and lifecycle.
+- `js/ui/` — settings interface and controls.
+- `js/input/` — keyboard, pointer and touch input.
+- `js/rendering/` — WebGL command replay.
+- `js/data/` — local game-data pack management.
+- `js/workers/` — background data-pack worker.
+- `js/audio/` — audio worklet processor.
+- `css/` — page styles.
+- `assets/` — images and application icons.
+
+Build/deployment entry points and generated runtime files remain in the repository root. See [the project structure guide](docs/PROJECT_STRUCTURE.md).
