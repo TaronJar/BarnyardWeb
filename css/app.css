@@ -2282,3 +2282,64 @@ html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background:
 	#settings .status-table td { padding: 7px 5px !important; }
 	#settings .status-table td:first-child { width: 44% !important; }
 }
+
+
+/* Make the diagnostics read as a real two-column data table. */
+#settings .data-panel-details {
+	width: 100% !important;
+}
+#settings .data-panel-details #settingsAbout {
+	width: 100% !important;
+	max-width: 100% !important;
+}
+#settings .status-table {
+	display: table !important;
+	width: 100% !important;
+	max-width: 100% !important;
+	border: 1px solid rgba(255,255,255,.11) !important;
+	border-collapse: separate !important;
+	border-spacing: 0 !important;
+	border-radius: 8px !important;
+	overflow: hidden !important;
+	background: #151719 !important;
+	table-layout: fixed !important;
+}
+#settings .status-table td {
+	padding: 9px 12px !important;
+	border-bottom: 1px solid rgba(255,255,255,.075) !important;
+	background: transparent !important;
+	line-height: 1.45 !important;
+}
+#settings .status-table tr:last-child td { border-bottom: 0 !important; }
+#settings .status-table td:first-child {
+	width: 43% !important;
+	border-right: 1px solid rgba(255,255,255,.07) !important;
+	color: #aeb8c1 !important;
+	text-align: left !important;
+}
+#settings .status-table td:last-child {
+	width: 57% !important;
+	color: #f0f3f6 !important;
+	text-align: left !important;
+	font-variant-numeric: tabular-nums !important;
+}
+#settings .status-table tr:nth-child(even):not(.status-table-group) td {
+	background: rgba(255,255,255,.025) !important;
+}
+#settings .status-table .status-table-group td {
+	padding: 8px 12px !important;
+	border-top: 1px solid rgba(56,168,255,.15) !important;
+	border-bottom: 1px solid rgba(56,168,255,.16) !important;
+	border-right: 0 !important;
+	background: rgba(56,168,255,.075) !important;
+	color: #55b7ff !important;
+	font: 800 9px/1.35 Manrope, Arial, sans-serif !important;
+	letter-spacing: .14em !important;
+	text-align: left !important;
+}
+#settings .status-table tr.status-table-group:first-child td { border-top: 0 !important; }
+@media (max-width: 520px) {
+	#settings .status-table td { padding: 8px 9px !important; }
+	#settings .status-table td:first-child { width: 45% !important; }
+	#settings .status-table td:last-child { width: 55% !important; }
+}
