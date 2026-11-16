@@ -1,58 +1,89 @@
-# OpenBarnyard WASM
+# BarnyardWeb
 
-An independent browser-based WebAssembly build of [OpenBarnyard](https://github.com/InfiniteC0re/OpenBarnyard).
+**BarnyardWeb** — мой проект по запуску [OpenBarnyard](https://github.com/InfiniteC0re/OpenBarnyard) непосредственно в браузере. Я развиваю веб-версию: адаптирую runtime для браузерной среды, настраиваю загрузку игровых данных, работу управления, графики и аудио, а также поддерживаю интерфейс и инфраструктуру проекта.
 
-This repository contains the browser runtime and WebAssembly build for running OpenBarnyard in a web browser.
+Проект рассчитан на запуск в современном браузере без отдельной установки десктопной сборки.
 
-**This is an independent browser build, not an official project or release by the original OpenBarnyard developers.**
+## Запуск
 
-## Play
+**[Открыть BarnyardWeb](https://openbarnyard-wasm.pages.dev/)**
 
-**[Launch OpenBarnyard WASM](https://openbarnyard-wasm.pages.dev/)**
+Для запуска необходимо самостоятельно выбрать папку `Data` из легально полученной копии игры *Barnyard*. Игровые данные не входят в репозиторий и не размещаются на стороне проекта.
 
-To play, you must select your own legally obtained Barnyard `Data` folder. Game data is not included in this repository or hosted by this project.
+Рекомендуется использовать обычное окно браузера: приватный режим может ограничивать доступное хранилище.
 
-For best results, use a regular browser window rather than private/incognito mode, which may have limited storage.
+## Что реализуется в BarnyardWeb
 
-## Original project and credits
+В рамках веб-версии я занимаюсь следующими частями проекта:
 
-This project is based on [OpenBarnyard](https://github.com/InfiniteC0re/OpenBarnyard), a decompilation of *Barnyard* and the TOSHI 2.0 engine.
+- интеграцией WebAssembly-сборки с браузерным окружением;
+- запуском и настройкой Emscripten runtime;
+- интерфейсом страницы и панелью настроек;
+- обработкой клавиатурного, мышиного и сенсорного ввода;
+- воспроизведением графических команд через WebGL;
+- загрузкой и подготовкой пользовательских игровых данных;
+- фоновой обработкой данных через Web Worker;
+- аудиосистемой на базе AudioWorklet;
+- кешированием ресурсов и обновлением веб-клиента через Service Worker;
+- структурой исходного кода и публикацией проекта через Cloudflare Pages.
 
-- Original decompilation authors: **AdventureT and InfiniteC0re**
-- Original TOSHI engine: **Blue Tongue Entertainment**
-- TOSHI engine current owner: **THQ Nordic**
+Это самостоятельная работа над браузерной реализацией и её инфраструктурой. Она не означает, что оригинальный игровой движок или исходная декомпиляция были созданы в этом репозитории.
 
-Credit for the original decompilation and engine work belongs to their respective authors.
+## Технологии
 
-## Deployment
+- C / C++ и WebAssembly — игровой runtime и его браузерная сборка;
+- JavaScript — интеграция runtime с браузером;
+- WebGL — графический вывод;
+- Web Workers — фоновые задачи;
+- AudioWorklet — обработка аудио;
+- HTML и CSS — веб-интерфейс;
+- Cloudflare Pages — публикация веб-клиента.
 
-Hosted using Cloudflare Pages.
+Клиентская часть организована как обычные JavaScript-скрипты, а не ES-модули. Это сохраняет совместимость с глобальным объектом `Module`, который использует Emscripten runtime.
 
-- Framework preset: `None`
-- Build command: leave empty
-- Build output directory: `.`
+## Структура проекта
 
-## Disclaimer
+- `js/core/` — запуск страницы, настройка Emscripten Module и жизненный цикл клиента;
+- `js/ui/` — интерфейс настроек;
+- `js/input/` — клавиатурный, мышиный и сенсорный ввод;
+- `js/rendering/` — воспроизведение графических команд через WebGL;
+- `js/data/` — работа с локальными игровыми данными;
+- `js/workers/` — фоновая обработка игровых данных;
+- `js/audio/` — аудиообработка через AudioWorklet;
+- `css/` — стили веб-интерфейса;
+- `assets/` — изображения и иконки;
+- `functions/api/` — серверная часть API для Cloudflare Pages.
 
-This is an independent, non-commercial project. It is not affiliated with, endorsed by, or sponsored by the original developers or the rights holders of *Barnyard* or TOSHI.
+Подробности: [структура проекта](docs/PROJECT_STRUCTURE.md).
 
-Please support the original developers and respect the original project's licensing terms.
+## Разработка и публикация
 
-See the [original repository](https://github.com/InfiniteC0re/OpenBarnyard) and the included `License.md` for the applicable license.
+Проект публикуется через Cloudflare Pages.
 
+Текущая конфигурация:
 
-## Source layout
+- Framework preset: `None`;
+- Build command: не требуется;
+- Build output directory: `.`.
 
-The browser client is organized as plain JavaScript scripts (not ES modules) to preserve the global `Module` contract used by the Emscripten runtime.
+Сборка и runtime-файлы, необходимые для запуска в браузере, находятся в репозитории.
 
-- `js/core/` — page bootstrap, Emscripten Module setup and lifecycle.
-- `js/ui/` — settings interface and controls.
-- `js/input/` — keyboard, pointer and touch input.
-- `js/rendering/` — WebGL command replay.
-- `js/data/` — local game-data pack management.
-- `js/workers/` — background data-pack worker.
-- `js/audio/` — audio worklet processor.
-- `css/` — page styles.
-- `assets/` — images and application icons.
+## Основа проекта и благодарности
 
-Build/deployment entry points and generated runtime files remain in the repository root. See [the project structure guide](docs/PROJECT_STRUCTURE.md).
+BarnyardWeb использует [OpenBarnyard](https://github.com/InfiniteC0re/OpenBarnyard) как основу. OpenBarnyard — проект по декомпиляции игры *Barnyard* и движка TOSHI 2.0.
+
+Отдельная благодарность авторам и участникам исходной работы:
+
+- **AdventureT и InfiniteC0re** — декомпиляция OpenBarnyard;
+- **Blue Tongue Entertainment** — оригинальный движок TOSHI;
+- **THQ Nordic** — текущий правообладатель TOSHI.
+
+Их вклад в оригинальную декомпиляцию и движок остаётся за ними. BarnyardWeb — отдельная браузерная работа поверх этой основы.
+
+## Правовая информация
+
+BarnyardWeb — независимый некоммерческий проект. Он не связан с правообладателями *Barnyard*, не является официальным продуктом и не одобрен оригинальными разработчиками.
+
+Игровые файлы не распространяются вместе с проектом. Пользователь должен самостоятельно получить их законным способом. Пожалуйста, соблюдайте лицензионные условия исходного проекта и права правообладателей.
+
+Подробности лицензии — в файле [License.md](License.md) и в [оригинальном репозитории OpenBarnyard](https://github.com/InfiniteC0re/OpenBarnyard).
