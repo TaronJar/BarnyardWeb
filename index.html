@@ -1418,8 +1418,13 @@
 		#dataWelcome p { max-width: 350px; margin: 0 auto 22px; color: #a7a7a7; font-size: 13px; line-height: 1.65; }
 		#dataWelcome button {
 			min-height: 46px; padding: 0 20px; border: 0; border-radius: 999px;
-			background: #1ed760; color: #000; font: 700 13px Manrope, Arial, sans-serif; cursor: pointer;
+			background: #1ed760; color: #000; font: 700 13px Manrope, Arial, sans-serif;
+			cursor: pointer; transition: background .16s ease, transform .16s ease, color .16s ease;
 		}
+		#dataWelcome button:hover:not(:disabled) { transform: translateY(-1px); }
+		#dataWelcome button:active:not(:disabled) { transform: translateY(0) scale(.98); }
+		#dataWelcome #welcomeDownload:hover:not(:disabled) { background: #36e477; }
+		#dataWelcome .welcome-alt button:hover:not(:disabled) { background: #414141; color: #fff; }
 		#dataWelcome #welcomeDownload { display: block; width: 100%; min-height: 48px; }
 		#dataWelcome .welcome-alt {
 			display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
