@@ -1186,6 +1186,47 @@
 			padding-bottom: 18px;
 		}
 
+
+		/* Make the Game data area read as one deliberate control group */
+		#settings .settings-group[data-name="game data"] {
+			box-sizing: border-box;
+			margin: 8px 0 28px;
+			padding: 20px 22px;
+			border: 0 !important;
+			border-radius: 10px;
+			background: #1b1b1b;
+		}
+		#settings .settings-group[data-name="game data"] > .section {
+			margin: 0 0 8px;
+		}
+		#settings .settings-group[data-name="game data"] > .hint {
+			margin: 0;
+			max-width: 620px;
+			color: #b3b3b3;
+			font-size: 13px;
+			line-height: 1.55;
+		}
+		#settings .settings-group[data-name="game data"] > .buttons {
+			display: flex;
+			align-items: center;
+			justify-content: flex-start;
+			flex-wrap: wrap;
+			gap: 10px;
+			margin: 16px 0 0;
+		}
+		#settings .settings-group[data-name="game data"] > .buttons button {
+			min-width: 88px;
+			min-height: 38px;
+		}
+		#settings .settings-group[data-name="stats"] {
+			margin-top: 28px;
+		}
+		@media (max-width: 620px) {
+			#settings .settings-group[data-name="game data"] {
+				padding: 16px;
+			}
+		}
+
 	</style>
 </head>
 
