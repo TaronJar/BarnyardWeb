@@ -229,7 +229,7 @@ var oPageSettings = {
 			"Stored on this device, restart to use it":"Stored on this device, restart to use it",
 			"Loaded from the server while you play. A copy on this device (about 1.7 GB) loads faster":"Loaded from the server while you play. A copy on this device (about 1.7 GB) loads faster",
 			"game loads from there":"the game loads from there", "Downloading":"Downloading", "Copying":"Copying",
-			"Now":"Now", "auto treats this device as slow":"auto treats this device as slow", "sound is":"sound is"
+			"Now":"Now", "auto treats this device as slow":"auto treats this device as slow", "sound is":"sound is",
 			"Delete the game data stored on this device?":"Delete the game data stored on this device?",
 			"Getting the newest version needs a connection":"An internet connection is required to get the newest version.",
 			"Couldn't store the data:":"Couldn't store the data:",
@@ -244,7 +244,7 @@ var oPageSettings = {
 			"Stored on this device, restart to use it":"Сохранено на устройстве, перезапустите игру",
 			"Loaded from the server while you play. A copy on this device (about 1.7 GB) loads faster":"Загружается с сервера. Локальная копия (около 1,7 ГБ) ускорит загрузку",
 			"game loads from there":"игра загружается оттуда", "Downloading":"Загрузка", "Copying":"Копирование",
-			"Now":"Сейчас", "auto treats this device as slow":"автонастройка считает устройство медленным", "sound is":"звук:"
+			"Now":"Сейчас", "auto treats this device as slow":"автонастройка считает устройство медленным", "sound is":"звук:",
 			"Delete the game data stored on this device?":"Удалить игровые данные, сохранённые на этом устройстве?",
 			"Getting the newest version needs a connection":"Для загрузки последней версии требуется подключение к интернету.",
 			"Couldn't store the data:":"Не удалось сохранить данные:",
@@ -259,7 +259,7 @@ var oPageSettings = {
 			"Stored on this device, restart to use it":"Auf diesem Gerät gespeichert; Neustart erforderlich",
 			"Loaded from the server while you play. A copy on this device (about 1.7 GB) loads faster":"Wird vom Server geladen. Eine lokale Kopie (ca. 1,7 GB) lädt schneller",
 			"game loads from there":"das Spiel lädt von dort", "Downloading":"Wird heruntergeladen", "Copying":"Wird kopiert",
-			"Now":"Aktuell", "auto treats this device as slow":"Auto erkennt dieses Gerät als langsam", "sound is":"Ton ist"
+			"Now":"Aktuell", "auto treats this device as slow":"Auto erkennt dieses Gerät als langsam", "sound is":"Ton ist",
 			"Delete the game data stored on this device?":"Die auf diesem Gerät gespeicherten Spieldaten löschen?",
 			"Getting the newest version needs a connection":"Zum Laden der neuesten Version ist eine Internetverbindung erforderlich.",
 			"Couldn't store the data:":"Die Daten konnten nicht gespeichert werden:",
@@ -274,7 +274,7 @@ var oPageSettings = {
 			"Stored on this device, restart to use it":"Stocké sur cet appareil, redémarrez pour l’utiliser",
 			"Loaded from the server while you play. A copy on this device (about 1.7 GB) loads faster":"Chargé depuis le serveur. Une copie locale (environ 1,7 Go) accélère le chargement",
 			"game loads from there":"le jeu se charge depuis cet emplacement", "Downloading":"Téléchargement", "Copying":"Copie",
-			"Now":"Actuel", "auto treats this device as slow":"le mode auto considère cet appareil comme lent", "sound is":"le son est"
+			"Now":"Actuel", "auto treats this device as slow":"le mode auto considère cet appareil comme lent", "sound is":"le son est",
 			"Delete the game data stored on this device?":"Supprimer les données du jeu enregistrées sur cet appareil ?",
 			"Getting the newest version needs a connection":"Une connexion Internet est nécessaire pour obtenir la dernière version.",
 			"Couldn't store the data:":"Impossible d’enregistrer les données :",
@@ -289,7 +289,7 @@ var oPageSettings = {
 			"Stored on this device, restart to use it":"Guardado en este dispositivo; reinicia para usarlo",
 			"Loaded from the server while you play. A copy on this device (about 1.7 GB) loads faster":"Se carga desde el servidor. Una copia local (unos 1,7 GB) acelera la carga",
 			"game loads from there":"el juego se carga desde allí", "Downloading":"Descargando", "Copying":"Copiando",
-			"Now":"Ahora", "auto treats this device as slow":"el modo automático considera lento este dispositivo", "sound is":"el sonido está"
+			"Now":"Ahora", "auto treats this device as slow":"el modo automático considera lento este dispositivo", "sound is":"el sonido está",
 			"Delete the game data stored on this device?":"¿Eliminar los datos del juego guardados en este dispositivo?",
 			"Getting the newest version needs a connection":"Se necesita conexión a Internet para obtener la última versión.",
 			"Couldn't store the data:":"No se pudieron guardar los datos:",
