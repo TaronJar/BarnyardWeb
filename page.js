@@ -347,6 +347,14 @@ async function LoadGame()
 {
 	await oDataPack.Open();
 
+	// First-time visitors get a centered data setup screen instead of a blank game canvas.
+	var oWelcome = document.getElementById( "dataWelcome" );
+	var oSettingsButton = document.getElementById( "settingsButton" );
+	if ( oWelcome )
+		oWelcome.style.display = oDataPack.oPack ? "none" : "flex";
+	if ( oSettingsButton )
+		oSettingsButton.style.display = oDataPack.oPack ? "" : "none";
+
 	// Without a connection only a stored data pack can be read
 	if ( !navigator.onLine && !oDataPack.oPack && !/[?&]app(&|$)/.test( location.search ) )
 	{
