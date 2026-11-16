@@ -2503,3 +2503,14 @@ html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background:
 	background: #3a3e44 !important;
 	color: #fff !important;
 }
+
+
+/* Remove visible outlines around the welcome screen buttons. */
+#dataWelcome .welcome-actions button {
+	border: 0 !important;
+	outline: none;
+}
+#dataWelcome .welcome-actions button:focus-visible {
+	outline: 2px solid rgba(255,255,255,.75);
+	outline-offset: 3px;
+}
