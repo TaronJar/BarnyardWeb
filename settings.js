@@ -397,13 +397,16 @@ var oPageSettings = {
 				for ( var oItem of oNav.querySelectorAll( ".settings-nav-item" ) )
 					oItem.classList.toggle( "active", oItem == this );
 
-				var oTarget = oContent.querySelector( '[data-name="' + this.dataset.target + '"]' );
-				if ( oTarget )
-					oContent.scrollTo( { top : oContent.scrollTop + oTarget.getBoundingClientRect().top - oContent.getBoundingClientRect().top, behavior : "smooth" } );
+				for ( var oPage of oSections )
+					oPage.style.display = oPage.dataset.name == this.dataset.target ? "block" : "none";
+
+				oContent.scrollTop = 0;
 			} );
 		}
 
 		oNav.querySelector( ".settings-nav-item" ).classList.add( "active" );
+		for ( var iPage = 0; iPage < oSections.length; iPage++ )
+			oSections[ iPage ].style.display = iPage == 0 ? "block" : "none";
 		oLayout.appendChild( oNav );
 		oLayout.appendChild( oContent );
 		oPanel.appendChild( oLayout );
