@@ -360,6 +360,7 @@ async function StartGame()
 	};
 
 	var oParams = new URLSearchParams( location.search );
+	oParams.delete( "setup" );
 
 	if ( oPageSettings.IsLowGrass() )
 		oParams.set( "args", ( ( oParams.get( "args" ) || "" ) + " -lowgrass" ).trim() );
