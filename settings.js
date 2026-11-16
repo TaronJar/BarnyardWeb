@@ -218,11 +218,11 @@ var oPageSettings = {
 		CreatePanel : function ()
 	{
 		var oTranslations = {
-			en : { Settings:"Settings", Display:"Display", Cheats:"Cheats", "Game data":"Game data", Stats:"Stats", Languages:"Languages", Resolution:"Resolution", "Low latency":"Low latency", "Grass detail":"Grass detail", "Draw distance":"Draw distance", "FPS limit":"FPS limit", Sound:"Sound", "Show FPS":"Show FPS", "Interface language":"Interface language", "Cheat code":"Cheat code", Enter:"Enter", Download:"Download", "From file":"From file", "From folder":"From folder", Delete:"Delete", "Get the newest version":"Get the newest version", Restart:"Restart", Close:"Close", "Edit touch buttons":"Edit touch buttons", "Auto":"Auto", "On":"On", "Off":"Off", "High":"High", "Low":"Low", "Full":"Full", "Smoother":"Smoother", "540 lines":"540 lines", "720 lines":"720 lines", "1080 lines":"1080 lines", "Screen":"Screen", "Restart hint":"Restarts the game. Saves are kept, progress since the last save is lost." },
-			ru : { Settings:"Настройки", Display:"Изображение", Cheats:"Читы", "Game data":"Игровые данные", Stats:"Статистика", Languages:"Языки", Resolution:"Разрешение", "Low latency":"Низкая задержка", "Grass detail":"Детализация травы", "Draw distance":"Дальность прорисовки", "FPS limit":"Ограничение FPS", Sound:"Звук", "Show FPS":"Показывать FPS", "Interface language":"Язык интерфейса", "Cheat code":"Чит-код", Enter:"Ввести", Download:"Скачать", "From file":"Из файла", "From folder":"Из папки", Delete:"Удалить", "Get the newest version":"Получить последнюю версию", Restart:"Перезапустить", Close:"Закрыть", "Edit touch buttons":"Настроить сенсорные кнопки", "Auto":"Авто", "On":"Вкл.", "Off":"Выкл.", "High":"Высокая", "Low":"Низкая", "Full":"Полная", "Smoother":"Плавнее", "540 lines":"540 строк", "720 lines":"720 строк", "1080 lines":"1080 строк", "Screen":"На весь экран", "Restart hint":"Игра перезапустится. Сохранения останутся, несохранённый прогресс будет потерян." },
-			de : { Settings:"Einstellungen", Display:"Anzeige", Cheats:"Cheats", "Game data":"Spieldaten", Stats:"Statistik", Languages:"Sprachen", Resolution:"Auflösung", "Low latency":"Geringe Latenz", "Grass detail":"Grasdetails", "Draw distance":"Sichtweite", "FPS limit":"FPS-Limit", Sound:"Ton", "Show FPS":"FPS anzeigen", "Interface language":"Oberflächensprache", "Cheat code":"Cheatcode", Enter:"Eingeben", Download:"Herunterladen", "From file":"Aus Datei", "From folder":"Aus Ordner", Delete:"Löschen", "Get the newest version":"Neueste Version laden", Restart:"Neustart", Close:"Schließen", "Edit touch buttons":"Touch-Steuerung bearbeiten", "Auto":"Auto", "On":"Ein", "Off":"Aus", "High":"Hoch", "Low":"Niedrig", "Full":"Voll", "Smoother":"Flüssiger", "540 lines":"540 Zeilen", "720 lines":"720 Zeilen", "1080 lines":"1080 Zeilen", "Screen":"Bildschirm", "Restart hint":"Das Spiel wird neu gestartet. Spielstände bleiben erhalten, ungespeicherter Fortschritt geht verloren." },
-			fr : { Settings:"Paramètres", Display:"Affichage", Cheats:"Codes", "Game data":"Données du jeu", Stats:"Statistiques", Languages:"Langues", Resolution:"Résolution", "Low latency":"Faible latence", "Grass detail":"Détail de l’herbe", "Draw distance":"Distance d’affichage", "FPS limit":"Limite FPS", Sound:"Son", "Show FPS":"Afficher les FPS", "Interface language":"Langue de l’interface", "Cheat code":"Code de triche", Enter:"Valider", Download:"Télécharger", "From file":"Depuis un fichier", "From folder":"Depuis un dossier", Delete:"Supprimer", "Get the newest version":"Obtenir la dernière version", Restart:"Redémarrer", Close:"Fermer", "Edit touch buttons":"Modifier les commandes tactiles", "Auto":"Auto", "On":"Activé", "Off":"Désactivé", "High":"Élevé", "Low":"Faible", "Full":"Complet", "Smoother":"Plus fluide", "540 lines":"540 lignes", "720 lines":"720 lignes", "1080 lines":"1080 lignes", "Screen":"Écran", "Restart hint":"Le jeu redémarre. Les sauvegardes sont conservées, la progression non sauvegardée sera perdue." },
-			es : { Settings:"Ajustes", Display:"Pantalla", Cheats:"Trucos", "Game data":"Datos del juego", Stats:"Estadísticas", Languages:"Idiomas", Resolution:"Resolución", "Low latency":"Baja latencia", "Grass detail":"Detalle del césped", "Draw distance":"Distancia de dibujado", "FPS limit":"Límite de FPS", Sound:"Sonido", "Show FPS":"Mostrar FPS", "Interface language":"Idioma de la interfaz", "Cheat code":"Código de trucos", Enter:"Aplicar", Download:"Descargar", "From file":"Desde archivo", "From folder":"Desde carpeta", Delete:"Eliminar", "Get the newest version":"Obtener la última versión", Restart:"Reiniciar", Close:"Cerrar", "Edit touch buttons":"Editar controles táctiles", "Auto":"Auto", "On":"Activado", "Off":"Desactivado", "High":"Alto", "Low":"Bajo", "Full":"Completo", "Smoother":"Más fluido", "540 lines":"540 líneas", "720 lines":"720 líneas", "1080 lines":"1080 líneas", "Screen":"Pantalla", "Restart hint":"El juego se reiniciará. Las partidas se conservan, pero se pierde el progreso no guardado." }
+			en : { Settings:"Settings", Display:"Graphics", Cheats:"Cheats", "Game data":"Game data", Stats:"Stats", Languages:"Languages", Resolution:"Resolution", "Low latency":"Low latency", "Grass detail":"Grass detail", "Draw distance":"Draw distance", "FPS limit":"FPS limit", Sound:"Sound", "Show FPS":"Show FPS", "Interface language":"Interface language", "Cheat code":"Cheat code", Enter:"Enter", Download:"Download", "From file":"From file", "From folder":"From folder", Delete:"Delete", "Get the newest version":"Get the newest version", Restart:"Restart", Close:"Close", "Edit touch buttons":"Edit touch buttons", "Auto":"Auto", "On":"On", "Off":"Off", "High":"High", "Low":"Low", "Full":"Full", "Smoother":"Smoother", "540 lines":"540 lines", "720 lines":"720 lines", "1080 lines":"1080 lines", "Screen":"Screen", "Restart hint":"Restarts the game. Saves are kept, progress since the last save is lost." },
+			ru : { Settings:"Настройки", Display:"Графика", Cheats:"Читы", "Game data":"Игровые данные", Stats:"Статистика", Languages:"Языки", Resolution:"Разрешение", "Low latency":"Низкая задержка", "Grass detail":"Детализация травы", "Draw distance":"Дальность прорисовки", "FPS limit":"Ограничение FPS", Sound:"Звук", "Show FPS":"Показывать FPS", "Interface language":"Язык интерфейса", "Cheat code":"Чит-код", Enter:"Ввести", Download:"Скачать", "From file":"Из файла", "From folder":"Из папки", Delete:"Удалить", "Get the newest version":"Получить последнюю версию", Restart:"Перезапустить", Close:"Закрыть", "Edit touch buttons":"Настроить сенсорные кнопки", "Auto":"Авто", "On":"Вкл.", "Off":"Выкл.", "High":"Высокая", "Low":"Низкая", "Full":"Полная", "Smoother":"Плавнее", "540 lines":"540 строк", "720 lines":"720 строк", "1080 lines":"1080 строк", "Screen":"На весь экран", "Restart hint":"Игра перезапустится. Сохранения останутся, несохранённый прогресс будет потерян." },
+			de : { Settings:"Einstellungen", Display:"Grafik", Cheats:"Cheats", "Game data":"Spieldaten", Stats:"Statistik", Languages:"Sprachen", Resolution:"Auflösung", "Low latency":"Geringe Latenz", "Grass detail":"Grasdetails", "Draw distance":"Sichtweite", "FPS limit":"FPS-Limit", Sound:"Ton", "Show FPS":"FPS anzeigen", "Interface language":"Oberflächensprache", "Cheat code":"Cheatcode", Enter:"Eingeben", Download:"Herunterladen", "From file":"Aus Datei", "From folder":"Aus Ordner", Delete:"Löschen", "Get the newest version":"Neueste Version laden", Restart:"Neustart", Close:"Schließen", "Edit touch buttons":"Touch-Steuerung bearbeiten", "Auto":"Auto", "On":"Ein", "Off":"Aus", "High":"Hoch", "Low":"Niedrig", "Full":"Voll", "Smoother":"Flüssiger", "540 lines":"540 Zeilen", "720 lines":"720 Zeilen", "1080 lines":"1080 Zeilen", "Screen":"Bildschirm", "Restart hint":"Das Spiel wird neu gestartet. Spielstände bleiben erhalten, ungespeicherter Fortschritt geht verloren." },
+			fr : { Settings:"Paramètres", Display:"Graphismes", Cheats:"Codes", "Game data":"Données du jeu", Stats:"Statistiques", Languages:"Langues", Resolution:"Résolution", "Low latency":"Faible latence", "Grass detail":"Détail de l’herbe", "Draw distance":"Distance d’affichage", "FPS limit":"Limite FPS", Sound:"Son", "Show FPS":"Afficher les FPS", "Interface language":"Langue de l’interface", "Cheat code":"Code de triche", Enter:"Valider", Download:"Télécharger", "From file":"Depuis un fichier", "From folder":"Depuis un dossier", Delete:"Supprimer", "Get the newest version":"Obtenir la dernière version", Restart:"Redémarrer", Close:"Fermer", "Edit touch buttons":"Modifier les commandes tactiles", "Auto":"Auto", "On":"Activé", "Off":"Désactivé", "High":"Élevé", "Low":"Faible", "Full":"Complet", "Smoother":"Plus fluide", "540 lines":"540 lignes", "720 lines":"720 lignes", "1080 lines":"1080 lignes", "Screen":"Écran", "Restart hint":"Le jeu redémarre. Les sauvegardes sont conservées, la progression non sauvegardée sera perdue." },
+			es : { Settings:"Ajustes", Display:"Gráficos", Cheats:"Trucos", "Game data":"Datos del juego", Stats:"Estadísticas", Languages:"Idiomas", Resolution:"Resolución", "Low latency":"Baja latencia", "Grass detail":"Detalle del césped", "Draw distance":"Distancia de dibujado", "FPS limit":"Límite de FPS", Sound:"Sonido", "Show FPS":"Mostrar FPS", "Interface language":"Idioma de la interfaz", "Cheat code":"Código de trucos", Enter:"Aplicar", Download:"Descargar", "From file":"Desde archivo", "From folder":"Desde carpeta", Delete:"Eliminar", "Get the newest version":"Obtener la última versión", Restart:"Reiniciar", Close:"Cerrar", "Edit touch buttons":"Editar controles táctiles", "Auto":"Auto", "On":"Activado", "Off":"Desactivado", "High":"Alto", "Low":"Bajo", "Full":"Completo", "Smoother":"Más fluido", "540 lines":"540 líneas", "720 lines":"720 líneas", "1080 lines":"1080 líneas", "Screen":"Pantalla", "Restart hint":"El juego se reiniciará. Las partidas se conservan, pero se pierde el progreso no guardado." }
 		};
 		Object.assign( oTranslations.en, {
 			"Based on":"Based on", "Stored on this device":"Stored on this device",
@@ -230,6 +230,14 @@ var oPageSettings = {
 			"Loaded from the server while you play. A copy on this device (about 1.7 GB) loads faster":"Loaded from the server while you play. A copy on this device (about 1.7 GB) loads faster",
 			"game loads from there":"the game loads from there", "Downloading":"Downloading", "Copying":"Copying",
 			"Now":"Now", "auto treats this device as slow":"auto treats this device as slow", "sound is":"sound is"
+			"Delete the game data stored on this device?":"Delete the game data stored on this device?",
+			"Getting the newest version needs a connection":"An internet connection is required to get the newest version.",
+			"Couldn't store the data:":"Couldn't store the data:",
+			"Offline: not ready, open the game again while online":"Offline: not ready. Open the game again while online.",
+			"Offline: not ready, the page files aren't kept yet":"Offline: not ready. The page files haven't been cached yet.",
+			"Offline: ready":"Offline: ready",
+			"Offline: needs the game data (Download above)":"Offline: game data is missing (use Download above)",
+			"Offline: unknown":"Offline: unknown",
 		} );
 		Object.assign( oTranslations.ru, {
 			"Based on":"На основе", "Stored on this device":"Сохранено на этом устройстве",
@@ -237,6 +245,14 @@ var oPageSettings = {
 			"Loaded from the server while you play. A copy on this device (about 1.7 GB) loads faster":"Загружается с сервера. Локальная копия (около 1,7 ГБ) ускорит загрузку",
 			"game loads from there":"игра загружается оттуда", "Downloading":"Загрузка", "Copying":"Копирование",
 			"Now":"Сейчас", "auto treats this device as slow":"автонастройка считает устройство медленным", "sound is":"звук:"
+			"Delete the game data stored on this device?":"Удалить игровые данные, сохранённые на этом устройстве?",
+			"Getting the newest version needs a connection":"Для загрузки последней версии требуется подключение к интернету.",
+			"Couldn't store the data:":"Не удалось сохранить данные:",
+			"Offline: not ready, open the game again while online":"Офлайн-режим не готов. Откройте игру ещё раз при подключении к интернету.",
+			"Offline: not ready, the page files aren't kept yet":"Офлайн-режим не готов: файлы страницы ещё не сохранены.",
+			"Offline: ready":"Офлайн-режим готов",
+			"Offline: needs the game data (Download above)":"Для офлайн-режима нужны игровые данные (скачайте их выше).",
+			"Offline: unknown":"Состояние офлайн-режима неизвестно",
 		} );
 		Object.assign( oTranslations.de, {
 			"Based on":"Basierend auf", "Stored on this device":"Auf diesem Gerät gespeichert",
@@ -244,6 +260,14 @@ var oPageSettings = {
 			"Loaded from the server while you play. A copy on this device (about 1.7 GB) loads faster":"Wird vom Server geladen. Eine lokale Kopie (ca. 1,7 GB) lädt schneller",
 			"game loads from there":"das Spiel lädt von dort", "Downloading":"Wird heruntergeladen", "Copying":"Wird kopiert",
 			"Now":"Aktuell", "auto treats this device as slow":"Auto erkennt dieses Gerät als langsam", "sound is":"Ton ist"
+			"Delete the game data stored on this device?":"Die auf diesem Gerät gespeicherten Spieldaten löschen?",
+			"Getting the newest version needs a connection":"Zum Laden der neuesten Version ist eine Internetverbindung erforderlich.",
+			"Couldn't store the data:":"Die Daten konnten nicht gespeichert werden:",
+			"Offline: not ready, open the game again while online":"Offline-Modus nicht bereit. Öffne das Spiel erneut mit Internetverbindung.",
+			"Offline: not ready, the page files aren't kept yet":"Offline-Modus nicht bereit: Die Seitendateien wurden noch nicht gespeichert.",
+			"Offline: ready":"Offline-Modus bereit",
+			"Offline: needs the game data (Download above)":"Für den Offline-Modus werden Spieldaten benötigt (oben herunterladen).",
+			"Offline: unknown":"Offline-Status unbekannt",
 		} );
 		Object.assign( oTranslations.fr, {
 			"Based on":"Basé sur", "Stored on this device":"Stocké sur cet appareil",
@@ -251,6 +275,14 @@ var oPageSettings = {
 			"Loaded from the server while you play. A copy on this device (about 1.7 GB) loads faster":"Chargé depuis le serveur. Une copie locale (environ 1,7 Go) accélère le chargement",
 			"game loads from there":"le jeu se charge depuis cet emplacement", "Downloading":"Téléchargement", "Copying":"Copie",
 			"Now":"Actuel", "auto treats this device as slow":"le mode auto considère cet appareil comme lent", "sound is":"le son est"
+			"Delete the game data stored on this device?":"Supprimer les données du jeu enregistrées sur cet appareil ?",
+			"Getting the newest version needs a connection":"Une connexion Internet est nécessaire pour obtenir la dernière version.",
+			"Couldn't store the data:":"Impossible d’enregistrer les données :",
+			"Offline: not ready, open the game again while online":"Mode hors ligne non prêt. Rouvrez le jeu avec une connexion Internet.",
+			"Offline: not ready, the page files aren't kept yet":"Mode hors ligne non prêt : les fichiers de la page ne sont pas encore enregistrés.",
+			"Offline: ready":"Mode hors ligne prêt",
+			"Offline: needs the game data (Download above)":"Les données du jeu sont nécessaires pour le mode hors ligne (téléchargez-les ci-dessus).",
+			"Offline: unknown":"État du mode hors ligne inconnu",
 		} );
 		Object.assign( oTranslations.es, {
 			"Based on":"Basado en", "Stored on this device":"Guardado en este dispositivo",
@@ -258,6 +290,14 @@ var oPageSettings = {
 			"Loaded from the server while you play. A copy on this device (about 1.7 GB) loads faster":"Se carga desde el servidor. Una copia local (unos 1,7 GB) acelera la carga",
 			"game loads from there":"el juego se carga desde allí", "Downloading":"Descargando", "Copying":"Copiando",
 			"Now":"Ahora", "auto treats this device as slow":"el modo automático considera lento este dispositivo", "sound is":"el sonido está"
+			"Delete the game data stored on this device?":"¿Eliminar los datos del juego guardados en este dispositivo?",
+			"Getting the newest version needs a connection":"Se necesita conexión a Internet para obtener la última versión.",
+			"Couldn't store the data:":"No se pudieron guardar los datos:",
+			"Offline: not ready, open the game again while online":"El modo sin conexión no está listo. Abre el juego de nuevo con conexión a Internet.",
+			"Offline: not ready, the page files aren't kept yet":"El modo sin conexión no está listo: los archivos de la página aún no se han guardado.",
+			"Offline: ready":"Modo sin conexión listo",
+			"Offline: needs the game data (Download above)":"Se necesitan los datos del juego para el modo sin conexión (descárgalos arriba).",
+			"Offline: unknown":"Estado del modo sin conexión desconocido",
 		} );
 
 		function T( a_szText )
@@ -503,7 +543,7 @@ var oPageSettings = {
 				oData.bChanged = true;
 				UpdatePanel();
 			} ).catch( function ( a_oError ) {
-				oData.szBusy = "Couldn't store the data: " + a_oError.message;
+				oData.szBusy = T( "Couldn't store the data:" ) + " " + a_oError.message;
 				UpdatePanel();
 			} );
 		}
@@ -541,7 +581,7 @@ var oPageSettings = {
 			try
 			{
 				if ( !navigator.serviceWorker.controller )
-					return "Offline: not ready, open the game again while online";
+					return T( "Offline: not ready, open the game again while online" );
 
 				var iKept = 0;
 
@@ -552,13 +592,13 @@ var oPageSettings = {
 				}
 
 				if ( !iKept )
-					return "Offline: not ready, the page files aren't kept yet";
+					return T( "Offline: not ready, the page files aren't kept yet" );
 
-				return oData.bStored ? "Offline: ready" : "Offline: needs the game data (Download above)";
+				return oData.bStored ? T( "Offline: ready" ) : T( "Offline: needs the game data (Download above)" );
 			}
 			catch ( e )
 			{
-				return "Offline: unknown (" + e.message + ")";
+				return T( "Offline: unknown" ) + " (" + e.message + ")";
 			}
 		}
 
