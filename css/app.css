@@ -2348,10 +2348,10 @@ html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background:
 /* Keep the settings title and close control visible while the content scrolls. */
 #settings .settings-content > .head {
 	position: sticky !important;
-	top: 0 !important;
+	top: -22px !important;
 	z-index: 500 !important;
 	box-sizing: border-box !important;
-	margin-top: -22px !important;
+	margin-top: 0 !important;
 	margin-bottom: 16px !important;
 	padding-top: 5px !important;
 	padding-bottom: 12px !important;
@@ -2365,7 +2365,8 @@ html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background:
 }
 @media (max-width: 700px) {
 	#settings .settings-content > .head {
-		margin-top: -20px !important;
+		top: -20px !important;
+		margin-top: 0 !important;
 		padding-top: 5px !important;
 	}
 	#settings #settingsClose { top: 5px !important; }
