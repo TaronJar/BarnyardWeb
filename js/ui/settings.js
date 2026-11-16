@@ -1105,12 +1105,38 @@ var oPageSettings = {
 			if ( !confirm( T( "Delete the game data stored on this device?" ) ) )
 				return;
 
+			var oDeleteButton = document.getElementById( "settingsDataDelete" );
+			oDeleteButton.disabled = true;
 			oDataPack.Store( { bDelete : true }, function () {} ).then( function () {
-				// Keep the current URL options, but return to the data-source selection screen.
-				var oUrl = new URL( location.href );
-				oUrl.searchParams.set( "setup", "1" );
-				location.href = oUrl.href;
+				// Return to the source picker in the current page; no reload or game startup.
+				oDataPack.oPack = null;
+				oData.bStored = false;
+				oData.bChanged = true;
+				oPanel.style.display = "none";
+				oPanel.classList.remove( "settings-panel-open" );
+				document.getElementById( "settingsButton" ).style.display = "none";
+
+				var oWelcome = document.getElementById( "dataWelcome" );
+				var oDescription = document.getElementById( "welcomeDescription" );
+				var oDownloadButton = document.getElementById( "welcomeDownload" );
+				var oFolderButton = document.getElementById( "welcomeFolder" );
+				var oPlayButton = document.getElementById( "welcomePlay" );
+				var szLanguage = oPageSettings.oValues.szLanguage || "en";
+				var oInstallText = {
+					en : "Choose game data from the server or select a local Data folder.",
+					ru : "Выберите игровые данные с сервера или укажите локальную папку Data.",
+					de : "Wähle die Spieldaten vom Server oder einen lokalen Data-Ordner.",
+					fr : "Choisissez les données du serveur ou un dossier Data local.",
+					es : "Elige los datos del servidor o una carpeta Data local."
+				};
+				if ( oDescription ) oDescription.textContent = oInstallText[ szLanguage ] || oInstallText.en;
+				if ( oDownloadButton ) { oDownloadButton.hidden = false; oDownloadButton.disabled = false; }
+				if ( oFolderButton ) { oFolderButton.hidden = false; oFolderButton.disabled = false; }
+				if ( oPlayButton ) oPlayButton.hidden = true;
+				if ( oWelcome ) oWelcome.style.display = "flex";
+				document.getElementById( "status" ).textContent = "";
 			} ).catch( function ( a_oError ) {
+				oDeleteButton.disabled = false;
 				oData.szBusy = "Couldn't delete the data: " + a_oError.message;
 				UpdatePanel();
 			} );
