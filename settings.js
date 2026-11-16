@@ -460,7 +460,6 @@ var oPageSettings = {
 				var oTarget = a_oEvent.target;
 				oPageSettings.oValues[ oTarget.dataset.key ] = oTarget.type == "checkbox" ? oTarget.checked : oTarget.value;
 
-				// Picking auto again measures the device again
 				if ( oTarget.dataset.key == "szResolution" && oTarget.value == "auto" )
 					oPageSettings.oValues.bSlowDevice = false;
 
@@ -469,6 +468,100 @@ var oPageSettings = {
 				oPageSettings.ApplyFrameLimit();
 				UpdatePanel();
 			} );
+
+			if ( oControl.tagName == "SELECT" )
+			{
+				( function ( oSelect ) {
+					var oWrap = document.createElement( "div" );
+					oWrap.className = "custom-select";
+					oSelect.parentNode.insertBefore( oWrap, oSelect );
+					oWrap.appendChild( oSelect );
+					oSelect.classList.add( "native-select-hidden" );
+
+					var oTrigger = document.createElement( "button" );
+					oTrigger.type = "button";
+					oTrigger.className = "custom-select-trigger";
+					oTrigger.setAttribute( "aria-haspopup", "listbox" );
+					oTrigger.setAttribute( "aria-expanded", "false" );
+					oWrap.appendChild( oTrigger );
+
+					var oMenu = document.createElement( "div" );
+					oMenu.className = "custom-select-menu";
+					oMenu.setAttribute( "role", "listbox" );
+					oWrap.appendChild( oMenu );
+
+					function Sync()
+					{
+						var oSelected = oSelect.options[ oSelect.selectedIndex ];
+						oTrigger.textContent = oSelected ? oSelected.textContent : "";
+						for ( var oButton of oMenu.children )
+						{
+							var bSelected = oButton.dataset.value == oSelect.value;
+							oButton.classList.toggle( "selected", bSelected );
+							oButton.setAttribute( "aria-selected", bSelected ? "true" : "false" );
+						}
+					}
+
+					for ( var oOption of oSelect.options )
+					{
+						var oOptionButton = document.createElement( "button" );
+						oOptionButton.type = "button";
+						oOptionButton.className = "custom-select-option";
+						oOptionButton.textContent = oOption.textContent;
+						oOptionButton.dataset.value = oOption.value;
+						oOptionButton.setAttribute( "role", "option" );
+						oOptionButton.disabled = oOption.disabled;
+						oOptionButton.addEventListener( "click", function () {
+							oSelect.value = this.dataset.value;
+							oSelect.dispatchEvent( new Event( "change", { bubbles : true } ) );
+							oWrap.classList.remove( "open" );
+							oTrigger.setAttribute( "aria-expanded", "false" );
+							oTrigger.focus();
+						} );
+						oMenu.appendChild( oOptionButton );
+					}
+
+					oTrigger.addEventListener( "click", function () {
+						var bOpen = oWrap.classList.toggle( "open" );
+						oTrigger.setAttribute( "aria-expanded", bOpen ? "true" : "false" );
+					} );
+
+					oTrigger.addEventListener( "keydown", function ( a_oEvent ) {
+						if ( a_oEvent.key == "ArrowDown" || a_oEvent.key == "Enter" || a_oEvent.key == " " )
+						{
+							a_oEvent.preventDefault();
+							oWrap.classList.add( "open" );
+							oTrigger.setAttribute( "aria-expanded", "true" );
+							var oCurrent = oMenu.querySelector( ".selected" );
+							( oCurrent || oMenu.firstElementChild ).focus();
+						}
+						else if ( a_oEvent.key == "Escape" )
+						{
+							oWrap.classList.remove( "open" );
+							oTrigger.setAttribute( "aria-expanded", "false" );
+						}
+					} );
+
+					oMenu.addEventListener( "keydown", function ( a_oEvent ) {
+						var aItems = Array.from( oMenu.querySelectorAll( "button:not(:disabled)" ) );
+						var iIndex = aItems.indexOf( document.activeElement );
+						if ( a_oEvent.key == "ArrowDown" || a_oEvent.key == "ArrowUp" )
+						{
+							a_oEvent.preventDefault();
+							aItems[ ( iIndex + ( a_oEvent.key == "ArrowDown" ? 1 : -1 ) + aItems.length ) % aItems.length ].focus();
+						}
+						else if ( a_oEvent.key == "Escape" )
+						{
+							oWrap.classList.remove( "open" );
+							oTrigger.setAttribute( "aria-expanded", "false" );
+							oTrigger.focus();
+						}
+					} );
+
+					oSelect.addEventListener( "change", Sync );
+					Sync();
+				} )( oControl );
+			}
 		}
 
 		oButton.addEventListener( "click", function () {
