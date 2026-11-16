@@ -1052,6 +1052,33 @@
 			color: #1ed760;
 		}
 
+
+		/* Refine dropdown item spacing and preserve selected green state on hover */
+		#settings .custom-select-menu {
+			padding: 6px;
+		}
+		#settings .custom-select-option {
+			box-sizing: border-box;
+			width: 100%;
+			margin: 2px 0;
+			border-radius: 5px !important;
+			background: transparent !important;
+			transition: background-color 100ms ease, color 100ms ease;
+		}
+		#settings .custom-select-option:not(.selected):hover,
+		#settings .custom-select-option:not(.selected):focus-visible {
+			background: #383838 !important;
+			color: #fff !important;
+		}
+		#settings .custom-select-option.selected,
+		#settings .custom-select-option.selected:hover,
+		#settings .custom-select-option.selected:focus,
+		#settings .custom-select-option.selected:focus-visible {
+			background: #1ed760 !important;
+			color: #071b0d !important;
+			font-weight: 700 !important;
+		}
+
 	</style>
 </head>
 
