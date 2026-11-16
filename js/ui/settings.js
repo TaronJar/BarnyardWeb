@@ -380,8 +380,7 @@ var oPageSettings = {
 				'<div class="data-maintenance-restart"><div class="data-panel-caption">GAME</div><div class="hint" id="settingsRestartHint">Restarts the game. Saves are kept, progress since the last save is lost.</div>' +
 				'<div class="buttons"><button id="settingsRestart" class="accent">Restart</button></div></div>' +
 			'</div>' +
-			'<div class="data-panel data-panel-details"><div class="data-panel-caption">STATUS</div><div class="hint" id="settingsAbout"></div></div>' +
-			';
+			'<div class="data-panel data-panel-details"><div class="data-panel-caption">STATUS</div><div class="hint" id="settingsAbout"></div></div>';
 		document.body.appendChild( oPanel );
 
 		// Arrange settings like a compact Spotify-style desktop: left navigation, clean content area.
