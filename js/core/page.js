@@ -386,11 +386,34 @@ async function LoadGame()
 
 	var bHasStoredPack = !!oDataPack.oPack;
 	var bAppMode = /[?&]app(&|$)/.test( location.search );
+	var bSetupMode = new URLSearchParams( location.search ).has( "setup" ) && !bAppMode;
 
 	if ( oWelcome )
 		oWelcome.style.display = bHasStoredPack && !bAppMode ? "flex" : ( bHasStoredPack ? "none" : "flex" );
 	if ( oSettingsButton )
 		oSettingsButton.style.display = bHasStoredPack ? "" : "none";
+
+	// After deleting the stored pack, let the player choose server data or a local folder.
+	if ( bSetupMode && !bHasStoredPack )
+	{
+		var oDescription = document.getElementById( "welcomeDescription" );
+		var oDownloadButton = document.getElementById( "welcomeDownload" );
+		var oFolderButton = document.getElementById( "welcomeFolder" );
+		var oPlayButton = document.getElementById( "welcomePlay" );
+		var szLanguage = oPageSettings.oValues.szLanguage || "en";
+		var oInstallText = {
+			en : "Choose game data from the server or select a local Data folder.", 
+			ru : "Выберите игровые данные с сервера или укажите локальную папку Data.",
+			de : "Wähle die Spieldaten vom Server oder einen lokalen Data-Ordner.",
+			fr : "Choisissez les données du serveur ou un dossier Data local.",
+			es : "Elige los datos del servidor o una carpeta Data local."
+		};
+		if ( oDescription ) oDescription.textContent = oInstallText[ szLanguage ] || oInstallText.en;
+		if ( oDownloadButton ) oDownloadButton.hidden = false;
+		if ( oFolderButton ) oFolderButton.hidden = false;
+		if ( oPlayButton ) oPlayButton.hidden = true;
+		return;
+	}
 
 	// A stored data pack is ready: wait for the player's explicit Play action.
 	if ( bHasStoredPack && !bAppMode )
