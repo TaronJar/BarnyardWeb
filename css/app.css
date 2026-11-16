@@ -2370,8 +2370,11 @@ html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background:
 #settings #settingsClose {
 	position: absolute !important;
 	top: 5px !important;
-	right: 0 !important;
+	right: -36px !important;
 	z-index: 501 !important;
+}
+@media (max-width: 700px) {
+	#settings #settingsClose { right: -16px !important; }
 }
 @media (max-width: 700px) {
 	#settings .settings-content > .head {
