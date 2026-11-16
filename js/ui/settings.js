@@ -1020,9 +1020,16 @@ var oPageSettings = {
 		{
 			UpdatePanel();
 			oPanel.style.display = "block";
-			requestAnimationFrame( function () { oPanel.classList.add( "settings-panel-open" ); } );
-			var oFirstPage = oNav.querySelector( ".settings-nav-item" );
-			if ( oFirstPage ) oFirstPage.click();
+			// Always open settings at the top; do not restore a stale scroll position
+			// that can leave the first controls clipped above the sticky title.
+			oContent.scrollTop = 0;
+			requestAnimationFrame( function () {
+				oContent.scrollTop = 0;
+				oPanel.classList.add( "settings-panel-open" );
+				var oFirstPage = oNav.querySelector( ".settings-nav-item" );
+				if ( oFirstPage ) oFirstPage.click();
+				oContent.scrollTop = 0;
+			} );
 		}
 
 		function CloseSettingsPanel()
