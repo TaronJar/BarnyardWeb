@@ -375,7 +375,7 @@ var oPageSettings = {
 		oLayout.className = "settings-layout";
 		var oNav = document.createElement( "nav" );
 		oNav.className = "settings-nav";
-		oNav.innerHTML = '<div class="settings-nav-title">YOUR GAME</div>';
+		oNav.innerHTML = '<div class="settings-nav-title">Barnyard</div>';
 		var oContent = document.createElement( "div" );
 		oContent.className = "settings-content";
 		oContent.appendChild( oHead );
@@ -447,7 +447,7 @@ var oPageSettings = {
 				oClose.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6L18 18M18 6L6 18" /></svg>';
 			}
 			var oNavTitle = oNav.querySelector( ".settings-nav-title" );
-			if ( oNavTitle ) oNavTitle.textContent = oPageSettings.oValues.szLanguage == "ru" ? "ВАША ИГРА" : oPageSettings.oValues.szLanguage == "de" ? "DEIN SPIEL" : oPageSettings.oValues.szLanguage == "fr" ? "VOTRE JEU" : oPageSettings.oValues.szLanguage == "es" ? "TU JUEGO" : "YOUR GAME";
+			if ( oNavTitle ) oNavTitle.textContent = "Barnyard";
 			var oCheat = document.getElementById( "settingsCheat" );
 			if ( oCheat ) oCheat.placeholder = T( "Cheat code" );
 			var aButtons = { settingsDataDownload:"Download", settingsDataFile:"From file", settingsDataFolder:"From folder", settingsDataDelete:"Delete", settingsUpdate:"Get the newest version", settingsRestart:"Restart", settingsTouchLayout:"Edit touch buttons" };
