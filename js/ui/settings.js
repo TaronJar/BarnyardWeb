@@ -302,19 +302,19 @@ var oPageSettings = {
 
 
 		Object.assign( oTranslations.en, {
-			"Page":"Page", "Checking...":"Checking...", "Unavailable":"Unavailable", "Page version":"Page version", "Sample rate":"Sample rate", "Audio buffer":"Audio buffer",
+			"General":"General", "Audio diagnostics":"AUDIO", "Availability":"AVAILABILITY", "General":"General", "Audio diagnostics":"AUDIO", "Availability":"AVAILABILITY", "Page":"Page", "Checking...":"Checking...", "Unavailable":"Unavailable", "Page version":"Page version", "Sample rate":"Sample rate", "Audio buffer":"Audio buffer",
 			"Target buffer":"Target buffer", "Output latency":"Output latency", "Audio gaps":"Audio gaps",
 			"Audio skips":"Audio skips", "Sound startup":"Sound startup", "Game data source":"Game data source",
 			"Slowest file read":"Slowest file read", "Offline mode":"Offline mode"
 		} );
 		Object.assign( oTranslations.ru, {
-			"Page":"Страница", "Checking...":"Проверка…", "Unavailable":"Недоступно", "Page version":"Версия страницы", "Sample rate":"Частота дискретизации", "Audio buffer":"Аудиобуфер",
+			"General":"Общие сведения", "Audio diagnostics":"АУДИО", "Availability":"ДОСТУПНОСТЬ", "Page":"Страница", "Checking...":"Проверка…", "Unavailable":"Недоступно", "Page version":"Версия страницы", "Sample rate":"Частота дискретизации", "Audio buffer":"Аудиобуфер",
 			"Target buffer":"Целевой буфер", "Output latency":"Задержка вывода", "Audio gaps":"Пропуски аудио",
 			"Audio skips":"Сбои аудио", "Sound startup":"Запуск звука", "Game data source":"Источник игровых данных",
 			"Slowest file read":"Самое долгое чтение", "Offline mode":"Офлайн-режим"
 		} );
 		Object.assign( oTranslations.de, {
-			"Page":"Seite", "Checking...":"Wird geprüft…", "Unavailable":"Nicht verfügbar", "Page version":"Seitenversion", "Sample rate":"Abtastrate", "Audio buffer":"Audiopuffer",
+			"General":"Allgemein", "Audio diagnostics":"AUDIO", "Availability":"VERFÜGBARKEIT", "Page":"Seite", "Checking...":"Wird geprüft…", "Unavailable":"Nicht verfügbar", "Page version":"Seitenversion", "Sample rate":"Abtastrate", "Audio buffer":"Audiopuffer",
 			"Target buffer":"Zielpuffer", "Output latency":"Ausgabelatenz", "Audio gaps":"Audiolücken",
 			"Audio skips":"Audioaussetzer", "Sound startup":"Soundstart", "Game data source":"Spieldatenquelle",
 			"Slowest file read":"Langsamster Lesevorgang", "Offline mode":"Offline-Modus"
@@ -326,7 +326,7 @@ var oPageSettings = {
 			"Slowest file read":"Lecture la plus lente", "Offline mode":"Mode hors ligne"
 		} );
 		Object.assign( oTranslations.es, {
-			"Page":"Página", "Checking...":"Comprobando…", "Unavailable":"No disponible", "Page version":"Versión de la página", "Sample rate":"Frecuencia de muestreo", "Audio buffer":"Búfer de audio",
+			"General":"General", "Audio diagnostics":"AUDIO", "Availability":"DISPONIBILIDAD", "Page":"Página", "Checking...":"Comprobando…", "Unavailable":"No disponible", "Page version":"Versión de la página", "Sample rate":"Frecuencia de muestreo", "Audio buffer":"Búfer de audio",
 			"Target buffer":"Búfer objetivo", "Output latency":"Latencia de salida", "Audio gaps":"Cortes de audio",
 			"Audio skips":"Saltos de audio", "Sound startup":"Inicio del sonido", "Game data source":"Origen de los datos",
 			"Slowest file read":"Lectura más lenta", "Offline mode":"Modo sin conexión"
@@ -658,13 +658,13 @@ var oPageSettings = {
 				return oRow;
 			}
 
-			AddGroup( T( "Page" ) );
+			AddGroup( T( "General" ) );
 			AddRow( T( "Page version" ), document.lastModified );
 
 			var oContext = Module.oAudioContext;
 			if ( oContext )
 			{
-				AddGroup( T( "Sound" ) );
+				AddGroup( T( "Audio diagnostics" ) );
 				AddRow( T( "Sample rate" ), oContext.sampleRate + " Hz" );
 				AddRow( T( "Audio buffer" ), Math.round( ( Module.iAudioLag || 0 ) * 1000 / 44100 ) + " ms (max. " +
 					Math.round( ( Module.iAudioWorst || 0 ) * 1000 / 44100 ) + " ms)" );
@@ -678,12 +678,12 @@ var oPageSettings = {
 
 			if ( Module._WASM_GetFileWorstReadMs )
 			{
-				AddGroup( T( "Game data source" ) );
+				AddGroup( T( "Game data" ) );
 				AddRow( T( "Game data source" ), T( oDataPack.oPack ? "this device" : "the server" ) );
 				AddRow( T( "Slowest file read" ), Math.round( Module._WASM_GetFileWorstReadMs() ) + " ms" );
 			}
 
-			AddGroup( T( "Offline mode" ) );
+			AddGroup( T( "Availability" ) );
 			var oOfflineRow = AddRow( T( "Offline mode" ), T( "Checking..." ) );
 			oAbout.replaceChildren( oTable );
 
