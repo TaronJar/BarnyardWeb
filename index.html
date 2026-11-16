@@ -1265,7 +1265,7 @@
 		#settings #settingsClose:hover { background: rgba(30,215,96,.16); border-color: rgba(30,215,96,.38); color: #fff; transform: rotate(90deg); }
 		#settings #settingsClose:focus-visible { outline: 2px solid #1ed760; outline-offset: 3px; }
 
-		/* Isolate the close icon from the panel's generic button styles */
+		/* Minimal close icon: no button frame, only red on hover */
 		#settings button#settingsClose {
 			box-sizing: border-box !important;
 			position: absolute !important;
@@ -1275,44 +1275,44 @@
 			display: flex !important;
 			align-items: center !important;
 			justify-content: center !important;
-			width: 38px !important;
-			min-width: 38px !important;
-			max-width: 38px !important;
-			height: 38px !important;
-			min-height: 38px !important;
-			max-height: 38px !important;
+			width: 30px !important;
+			min-width: 30px !important;
+			max-width: 30px !important;
+			height: 30px !important;
+			min-height: 30px !important;
+			max-height: 30px !important;
 			margin: 0 !important;
-			padding: 9px !important;
-			border: 1px solid rgba(255,255,255,.14) !important;
-			border-radius: 10px !important;
-			background: rgba(255,255,255,.06) !important;
-			color: #d5e2da !important;
+			padding: 4px !important;
+			border: 0 !important;
+			border-radius: 0 !important;
+			background: transparent !important;
+			color: #a0a0a0 !important;
 			font-size: 0 !important;
 			line-height: 0 !important;
 			box-shadow: none !important;
-			transform: none;
+			transform: none !important;
+			transition: color .15s ease !important;
 		}
 		#settings button#settingsClose svg {
 			display: block !important;
-			width: 20px !important;
-			height: 20px !important;
+			width: 22px !important;
+			height: 22px !important;
 			fill: none !important;
 			stroke: currentColor !important;
-			stroke-width: 1.8 !important;
+			stroke-width: 2 !important;
 			stroke-linecap: round !important;
 			pointer-events: none;
 		}
 		#settings button#settingsClose:hover {
-			background: rgba(30,215,96,.16) !important;
-			border-color: rgba(30,215,96,.42) !important;
-			color: #fff !important;
-			transform: rotate(90deg) !important;
+			background: transparent !important;
+			border: 0 !important;
+			color: #ff4545 !important;
+			transform: none !important;
 		}
 		#settings button#settingsClose:focus-visible {
-			outline: 2px solid #1ed760 !important;
-			outline-offset: 3px;
+			outline: 1px solid #ff4545 !important;
+			outline-offset: 2px;
 		}
-
 	</style>
 </head>
 
