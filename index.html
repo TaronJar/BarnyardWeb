@@ -858,6 +858,25 @@
 			#settings select { width: 112px; }
 		}
 
+
+		/* Dark native select menus where Chromium allows page styling */
+		#settings select {
+			color-scheme: dark;
+			accent-color: #1ed760;
+		}
+		#settings select option,
+		#settings select optgroup {
+			background: #242424;
+			color: #f5f5f5;
+		}
+		#settings select option:checked {
+			background: #1ed760;
+			color: #071b0d;
+		}
+		#settings select option:disabled {
+			color: #777;
+		}
+
 	</style>
 </head>
 
