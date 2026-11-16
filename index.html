@@ -392,6 +392,164 @@
 				display: flex;
 			}
 		}
+
+		/* Refined settings panel */
+		#settings {
+			width: min(500px, 94vw);
+			max-height: min(88vh, 820px);
+			padding: 25px 28px 22px;
+			border: 1px solid rgba(211, 185, 119, 0.22);
+			border-radius: 18px;
+			background: linear-gradient(155deg, rgba(31, 31, 25, 0.985), rgba(20, 21, 18, 0.985));
+			box-shadow: 0 0 0 100vmax rgba(5, 6, 4, 0.68), 0 24px 70px rgba(0, 0, 0, 0.58);
+			color: #e8e5dc;
+			font: 14px/1.45 system-ui, sans-serif;
+			backdrop-filter: blur(14px);
+			scrollbar-width: thin;
+			scrollbar-color: #61583f transparent;
+		}
+		#settings::-webkit-scrollbar { width: 6px; }
+		#settings::-webkit-scrollbar-thumb { background: #61583f; border-radius: 8px; }
+		#settings .head {
+			margin: 0 0 20px;
+			padding: 0 0 17px;
+			border-bottom: 1px solid rgba(220, 202, 158, 0.13);
+		}
+		#settings .head::before {
+			content: "BARNYARD  /  WEB EDITION";
+			display: block;
+			margin-bottom: 7px;
+			color: #9b906e;
+			font-size: 9px;
+			font-weight: 700;
+			letter-spacing: 0.19em;
+		}
+		#settings .title {
+			color: #e7c77e;
+			font-size: 25px;
+			font-weight: 650;
+			letter-spacing: -0.035em;
+			line-height: 1.15;
+		}
+		#settings .about {
+			margin-top: 6px;
+			color: #99978b;
+			font-size: 12px;
+		}
+		#settings a {
+			color: #d9b96f;
+			border-bottom-color: rgba(217, 185, 111, 0.35);
+		}
+		#settings .section {
+			display: flex;
+			align-items: center;
+			gap: 12px;
+			margin-top: 21px;
+			margin-bottom: 5px;
+			color: #c4ad75;
+			font-size: 10px;
+			font-weight: 750;
+			letter-spacing: 0.16em;
+		}
+		#settings .section::after {
+			content: "";
+			flex: 1;
+			height: 1px;
+			background: linear-gradient(90deg, rgba(196, 173, 117, 0.25), transparent);
+		}
+		#settings label,
+		#settings .row {
+			min-height: 43px;
+			padding: 7px 0;
+			gap: 16px;
+			border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+			color: #dedbd1;
+			font-size: 13px;
+		}
+		#settings select,
+		#settings input[type=text] {
+			min-height: 36px;
+			padding: 7px 11px;
+			border: 1px solid #454438;
+			border-radius: 8px;
+			background: #25261f;
+			color: #ece9df;
+			font: 13px system-ui, sans-serif;
+			transition: border-color 140ms ease, background 140ms ease;
+		}
+		#settings select { width: 148px; cursor: pointer; }
+		#settings select:hover,
+		#settings input[type=text]:hover { background: #2c2d24; border-color: #686044; }
+		#settings select:focus,
+		#settings input[type=text]:focus {
+			border-color: #c5a45e;
+			box-shadow: 0 0 0 2px rgba(197, 164, 94, 0.12);
+		}
+		#settings input[type=checkbox] {
+			width: 40px;
+			height: 23px;
+			border-radius: 20px;
+			background: #48483e;
+		}
+		#settings input[type=checkbox]::after {
+			left: 3px; top: 3px; width: 17px; height: 17px;
+			background: #d9d8cf;
+		}
+		#settings input[type=checkbox]:checked { background: #b9944e; }
+		#settings input[type=checkbox]:checked::after { left: 20px; background: #fff8e8; }
+		#settings .hint {
+			margin: 9px 0 0;
+			color: #929184;
+			font-size: 11px;
+			line-height: 1.55;
+			overflow-wrap: anywhere;
+		}
+		#settings .buttons {
+			justify-content: flex-start;
+			flex-wrap: wrap;
+			gap: 7px;
+			margin-top: 12px;
+		}
+		#settings button {
+			min-height: 36px;
+			padding: 8px 13px;
+			border: 1px solid rgba(255, 255, 255, 0.075);
+			border-radius: 8px;
+			background: #303128;
+			color: #e5e2d8;
+			font: 600 12px system-ui, sans-serif;
+			transition: background 140ms ease, border-color 140ms ease, transform 140ms ease;
+		}
+		#settings button:hover:not(:disabled) {
+			background: #3a3b30;
+			border-color: rgba(217, 185, 111, 0.35);
+		}
+		#settings button:active:not(:disabled) { transform: translateY(1px); }
+		#settings button.accent {
+			border-color: #d2b36f;
+			background: #c3a15d;
+			color: #211d14;
+		}
+		#settings button.accent:hover:not(:disabled) { background: #d3b574; }
+		#settings button:disabled { opacity: 0.42; cursor: not-allowed; }
+		#settings #settingsAbout { font-size: 10px; color: #77796f; }
+		#settings #settingsRestartHint { color: #c5a76b; }
+		#settings #settingsRestart,
+		#settings #settingsClose { min-width: 88px; }
+		#settings #settingsClose { margin-left: auto; }
+		#settings #settingsUpdateButtons { justify-content: flex-start; }
+		#settings #settingsDataButtons button { flex: 0 0 auto; }
+		@media (max-width: 520px) {
+			#settings {
+				width: min(480px, 94vw);
+				max-height: 90vh;
+				padding: 21px 19px 18px;
+				border-radius: 15px;
+			}
+			#settings .title { font-size: 23px; }
+			#settings select { width: 136px; }
+		}
+
 	</style>
 </head>
 
