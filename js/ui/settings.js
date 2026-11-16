@@ -1324,3 +1324,28 @@ var oPageSettings = {
 
 oPageSettings.Load();
 oPageSettings.CreatePanel();
+
+
+// Subtle mouse parallax for the welcome background (desktop pointers only).
+( function ()
+{
+	var oWelcome = document.getElementById( "dataWelcome" );
+
+	if ( !oWelcome || !window.matchMedia || !window.matchMedia( "(hover: hover) and (pointer: fine)" ).matches )
+		return;
+
+	if ( window.matchMedia( "(prefers-reduced-motion: reduce)" ).matches )
+		return;
+
+	window.addEventListener( "pointermove", function ( a_oEvent ) {
+		var fX = ( a_oEvent.clientX / window.innerWidth - 0.5 ) * -18;
+		var fY = ( a_oEvent.clientY / window.innerHeight - 0.5 ) * -18;
+		oWelcome.style.setProperty( "--welcome-shift-x", fX.toFixed( 1 ) + "px" );
+		oWelcome.style.setProperty( "--welcome-shift-y", fY.toFixed( 1 ) + "px" );
+	}, { passive : true } );
+
+	window.addEventListener( "pointerleave", function () {
+		oWelcome.style.setProperty( "--welcome-shift-x", "0px" );
+		oWelcome.style.setProperty( "--welcome-shift-y", "0px" );
+	} );
+} )();
