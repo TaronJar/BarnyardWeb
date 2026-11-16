@@ -339,7 +339,7 @@ var oPageSettings = {
 			'<div class="section" id="settingsDataSection">Game data</div>' +
 			'<div class="data-panel">' +
 				'<div class="data-panel-status hint" id="settingsDataText"></div>' +
-				'<div class="buttons data-panel-actions" id="settingsDataButtons"><button id="settingsDataDownload" class="accent">Download</button><button id="settingsDataFile">From file</button><button id="settingsDataFolder">From folder</button>' +
+				'<div class="buttons data-panel-actions" id="settingsDataButtons"><button id="settingsDataDownload" class="accent">Download</button><button id="settingsDataFolder">From folder</button>' +
 				'<button id="settingsDataDelete">Delete</button><input type="file" id="settingsDataInput" hidden><input type="file" id="settingsDataFolderInput" webkitdirectory multiple hidden></div>' +
 			'</div>' +
 			'<div class="data-panel data-panel-details"><div class="data-panel-caption">STATUS</div><div class="hint" id="settingsAbout"></div></div>' +
@@ -478,7 +478,7 @@ var oPageSettings = {
 			}
 			var oCheat = document.getElementById( "settingsCheat" );
 			if ( oCheat ) oCheat.placeholder = T( "Cheat code" );
-			var aButtons = { settingsDataDownload:"Download", settingsDataFile:"From file", settingsDataFolder:"From folder", settingsDataDelete:"Delete", settingsUpdate:"Get the newest version", settingsRestart:"Restart", settingsTouchLayout:"Edit touch buttons" };
+			var aButtons = { settingsDataDownload:"Download", settingsDataFolder:"From folder", settingsDataDelete:"Delete", settingsUpdate:"Get the newest version", settingsRestart:"Restart", settingsTouchLayout:"Edit touch buttons" };
 			for ( var szId in aButtons )
 			{
 				var oButtonText = document.getElementById( szId );
@@ -542,11 +542,10 @@ var oPageSettings = {
 				}
 			}
 			document.getElementById( "settingsDataDownload" ).style.display = oData.bStored ? "none" : "";
-			document.getElementById( "settingsDataFile" ).style.display     = oData.bStored ? "none" : "";
 			document.getElementById( "settingsDataFolder" ).style.display   = oData.bStored ? "none" : "";
 			document.getElementById( "settingsDataDelete" ).style.display   = oData.bStored ? "" : "none";
 
-			for ( var szId of [ "settingsDataDownload", "settingsDataFile", "settingsDataFolder", "settingsDataDelete" ] )
+			for ( var szId of [ "settingsDataDownload", "settingsDataFolder", "settingsDataDelete" ] )
 				document.getElementById( szId ).disabled = bBusy;
 		}
 
@@ -820,14 +819,10 @@ var oPageSettings = {
 			document.getElementById( "settingsDataDownload" ).click();
 		} );
 		document.getElementById( "welcomeFile" ).addEventListener( "click", function () {
-			document.getElementById( "settingsDataFile" ).click();
+			document.getElementById( "settingsDataInput" ).click();
 		} );
 		document.getElementById( "welcomeFolder" ).addEventListener( "click", function () {
 			document.getElementById( "settingsDataFolder" ).click();
-		} );
-
-		document.getElementById( "settingsDataFile" ).addEventListener( "click", function () {
-			document.getElementById( "settingsDataInput" ).click();
 		} );
 
 		document.getElementById( "settingsDataFolder" ).addEventListener( "click", function () {
