@@ -67,7 +67,7 @@ var oDataPack = {
 
 	GetPackUrl : function ()
 	{
-		return ( new URLSearchParams( location.search ).get( "data" ) || "game/" ) + "Data.tar.gz";
+		return new URLSearchParams( location.search ).get( "data" ) || "/api/data";
 	}
 };
 
