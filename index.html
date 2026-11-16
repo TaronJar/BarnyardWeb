@@ -1601,6 +1601,34 @@
 		#settings .custom-select-option { font-size:14px !important; min-height:38px !important; }
 		#settings input[type=text] { font-size:14px !important; }
 	</style>
+	<style id="settingsBorderlessControls">
+		/* Remove remaining outlines from settings buttons and dropdown/list surfaces. */
+		#settings button,
+		#settings button:hover,
+		#settings button:focus,
+		#settings button:focus-visible,
+		#settings .custom-select-trigger,
+		#settings .custom-select-trigger:hover,
+		#settings .custom-select-menu,
+		#settings .custom-select-option,
+		#settings .custom-select-option:hover,
+		#settings .custom-select-option:focus,
+		#settings .custom-select-option:focus-visible {
+			border: 0 !important;
+			box-shadow: none !important;
+		}
+		#settings button:focus-visible,
+		#settings .custom-select-trigger:focus-visible,
+		#settings .custom-select-option:focus-visible {
+			outline: 0 !important;
+		}
+		#settings .settings-nav-item { border: 0 !important; }
+		#settings .settings-group,
+		#settings label,
+		#settings .row,
+		#settings .head { border-bottom: 0 !important; }
+	</style>
+
 	<style id="settingsMotion">
 		#settings {
 			opacity: 0;
