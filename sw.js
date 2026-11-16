@@ -2,7 +2,7 @@
 // The game data (game/) isn't kept here, a stored data pack (datapack.js) is used offline.
 var aFiles = [
 	"./", "index.html", "page.js", "gl_replay.js", "input.js", "settings.js", "datapack.js", "datapack_worker.js",
-	"audio_worklet.js", "OpenBarnyard.js", "OpenBarnyard.wasm", "manifest.json", "icon.png", "icon512.png", "favicon.png"
+	"audio_worklet.js", "OpenBarnyard.js", "OpenBarnyard.wasm", "manifest.json", "css/app.css", "assets/images/barnyard-bg.jpeg", "assets/icons/icon.png", "assets/icons/icon512.png", "assets/icons/favicon.png"
 ];
 
 var szCache = "barnyard-" + self.registration.scope;
