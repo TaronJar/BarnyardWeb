@@ -995,6 +995,34 @@
 			color: #fff;
 		}
 
+
+		/* More comfortable scrollbar size and subtle dropdown hover */
+		#settings .settings-content {
+			scrollbar-width: auto;
+			scrollbar-color: #5a5a5a #181818;
+		}
+		#settings .settings-content::-webkit-scrollbar { width: 12px; }
+		#settings .settings-content::-webkit-scrollbar-track { background: #181818; }
+		#settings .settings-content::-webkit-scrollbar-thumb {
+			min-height: 44px;
+			border: 3px solid #181818;
+			border-radius: 10px;
+			background: #555;
+		}
+		#settings .settings-content::-webkit-scrollbar-thumb:hover { background: #666; }
+		#settings .custom-select-menu { scrollbar-width: auto; scrollbar-color: #555 #242424; }
+		#settings .custom-select-menu::-webkit-scrollbar { width: 10px; }
+		#settings .custom-select-menu::-webkit-scrollbar-thumb {
+			border: 2px solid #242424;
+			border-radius: 8px;
+			background: #555;
+		}
+		#settings .custom-select-option:hover,
+		#settings .custom-select-option:focus-visible {
+			background: #2d2d2d !important;
+			color: #f5f5f5 !important;
+		}
+
 	</style>
 </head>
 
