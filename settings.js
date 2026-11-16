@@ -403,11 +403,11 @@ var oPageSettings = {
 			if ( oData.szBusy )
 				szText = oData.szBusy;
 			else if ( oData.bStored && oDataPack.oPack )
-				szText = "Stored on this device (" + ( oDataPack.oPack.oFile.size / 1073741824 ).toFixed( 1 ) + " GB), the game loads from there";
+				szText = T( "Stored on this device" ) + " (" + ( oDataPack.oPack.oFile.size / 1073741824 ).toFixed( 1 ) + " GB), " + T( "game loads from there" );
 			else if ( oData.bStored )
-				szText = "Stored on this device, restart to use it";
+				szText = T( "Stored on this device, restart to use it" );
 			else
-				szText = "Loaded from the server while you play. A copy on this device (about 1.7 GB) loads faster";
+				szText = T( "Loaded from the server while you play. A copy on this device (about 1.7 GB) loads faster" );
 
 			document.getElementById( "settingsDataText" ).textContent = szText;
 
@@ -423,11 +423,11 @@ var oPageSettings = {
 
 		function StoreData( a_oMessage, a_szVerb )
 		{
-			oData.szBusy = a_szVerb + "...";
+			oData.szBusy = T( a_szVerb ) + "...";
 			UpdatePanel();
 
 			oDataPack.Store( a_oMessage, function ( a_fProgress, a_iWritten ) {
-				oData.szBusy = a_fProgress >= 0 ? a_szVerb + " " + Math.floor( a_fProgress * 100 ) + "%" : a_szVerb + ", " + Math.round( a_iWritten / 1048576 ) + " MB";
+				oData.szBusy = a_fProgress >= 0 ? T( a_szVerb ) + " " + Math.floor( a_fProgress * 100 ) + "%" : T( a_szVerb ) + ", " + Math.round( a_iWritten / 1048576 ) + " MB";
 				UpdatePanel();
 			} ).then( function () {
 				oData.szBusy   = "";
