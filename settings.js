@@ -451,6 +451,22 @@ var oPageSettings = {
 			}
 			var oNavTitle = oNav.querySelector( ".settings-nav-title" );
 			if ( oNavTitle ) oNavTitle.textContent = "Barnyard";
+
+			var oWelcomeText = {
+				en : [ "Welcome!", "To start playing, install the game data. It will be saved on this device and won’t need to be downloaded again.", "Install game data", "Settings", "Choose archive", "Choose folder", "Game data is not installed" ],
+				ru : [ "Добро пожаловать!", "Чтобы начать игру, установите игровые данные. Они сохранятся на этом устройстве и не потребуют повторной загрузки.", "Установить игровые данные", "Настройки", "Выбрать архив", "Выбрать папку", "Игровые данные не установлены" ],
+				de : [ "Willkommen!", "Installiere die Spieldaten, um zu beginnen. Sie werden auf diesem Gerät gespeichert und müssen nicht erneut heruntergeladen werden.", "Spieldaten installieren", "Einstellungen", "Archiv auswählen", "Ordner auswählen", "Spieldaten sind nicht installiert" ],
+				fr : [ "Bienvenue !", "Pour commencer, installez les données du jeu. Elles seront enregistrées sur cet appareil et n’auront pas besoin d’être téléchargées à nouveau.", "Installer les données du jeu", "Paramètres", "Choisir une archive", "Choisir un dossier", "Les données du jeu ne sont pas installées" ],
+				es : [ "¡Bienvenido!", "Para empezar, instala los datos del juego. Se guardarán en este dispositivo y no tendrás que descargarlos de nuevo.", "Instalar datos del juego", "Ajustes", "Elegir archivo", "Elegir carpeta", "Los datos del juego no están instalados" ]
+			};
+			var aWelcomeText = oWelcomeText[ oPageSettings.oValues.szLanguage ] || oWelcomeText.en;
+			var aWelcomeIds = [ "welcomeTitle", "welcomeDescription", "welcomeDownload", "welcomeSettings", "welcomeFile", "welcomeFolder", "welcomeStatus" ];
+			for ( var iWelcome = 0; iWelcome < aWelcomeIds.length; iWelcome++ )
+			{
+				var oWelcomeElement = document.getElementById( aWelcomeIds[ iWelcome ] );
+				if ( oWelcomeElement )
+					oWelcomeElement.textContent = aWelcomeText[ iWelcome ];
+			}
 			var oCheat = document.getElementById( "settingsCheat" );
 			if ( oCheat ) oCheat.placeholder = T( "Cheat code" );
 			var aButtons = { settingsDataDownload:"Download", settingsDataFile:"From file", settingsDataFolder:"From folder", settingsDataDelete:"Delete", settingsUpdate:"Get the newest version", settingsRestart:"Restart", settingsTouchLayout:"Edit touch buttons" };
@@ -885,6 +901,7 @@ var oPageSettings = {
 
 				a_oEvent.stopImmediatePropagation();
 			}, true );
+			ApplyLanguage();
 		}
 	}
 };
