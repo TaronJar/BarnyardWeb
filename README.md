@@ -12,8 +12,8 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/platform-browser-20252d?style=flat-square" alt="Platform: browser" />
-  <img src="https://img.shields.io/badge/ WebAssembly-WASM-654ff0?style=flat-square" alt="WebAssembly" />
-  <img src="https://img.shields.io/badge/build-Emscripten- black?style=flat-square" alt="Emscripten" />
+  <img src="https://img.shields.io/badge/WebAssembly-WASM-654ff0?style=flat-square" alt="WebAssembly" />
+  <img src="https://img.shields.io/badge/build-Emscripten-262626?style=flat-square" alt="Emscripten" />
   <img src="https://img.shields.io/badge/hosting-Cloudflare%20Pages-f38020?style=flat-square" alt="Cloudflare Pages" />
 </p>
 
