@@ -1,0 +1,450 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="apple-mobile-web-app-title" content="Barnyard">
+	<link rel="manifest" href="manifest.json">
+	<link rel="apple-touch-icon" href="icon.png">
+	<link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
+	<link rel="icon" type="image/png" sizes="192x192" href="icon.png">
+	<title>Barnyard</title>
+	<meta name="description" content="A web version of Barnyard the video game.">
+	<meta property="og:type" content="website">
+	<meta property="og:site_name" content="OpenBarnyard">
+	<meta property="og:title" content="OpenBarnyard">
+	<meta property="og:description" content="A web version of Barnyard the video game.">
+	<meta property="og:url" content="https://opentoshi.net/barnyard/">
+	<meta property="og:image" content="https://opentoshi.net/barnyard/icon512.png">
+	<meta property="og:image:width" content="512">
+	<meta property="og:image:height" content="512">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="OpenBarnyard">
+	<meta name="twitter:description" content="A web version of Barnyard the video game.">
+	<meta name="twitter:image" content="https://opentoshi.net/barnyard/icon512.png">
+	<style>
+		html,
+		body {
+			margin: 0;
+			height: 100%;
+			background: #000;
+			overflow: hidden;
+			touch-action: none;
+			user-select: none;
+			-webkit-user-select: none;
+		}
+
+		#game {
+			position: absolute;
+			inset: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: contain;
+		}
+
+		#status {
+			position: absolute;
+			left: 8px;
+			bottom: 8px;
+			color: #ccc;
+			font: 13px monospace;
+			pointer-events: none;
+		}
+
+		#log {
+			position: absolute;
+			left: 0;
+			top: 0;
+			right: 0;
+			max-height: 60%;
+			overflow: hidden;
+			z-index: 10;
+			padding: 4px;
+			background: rgba(0, 0, 0, 0.6);
+			color: #cfc;
+			font: 9px monospace;
+			pointer-events: none;
+			word-break: break-all;
+		}
+
+		#fps {
+			position: absolute;
+			top: 6px;
+			left: 50%;
+			transform: translateX(-50%);
+			z-index: 5;
+			padding: 1px 6px;
+			border-radius: 4px;
+			background: rgba(0, 0, 0, 0.45);
+			color: #fff;
+			font: bold 13px monospace;
+			pointer-events: none;
+		}
+
+		#touch {
+			position: absolute;
+			inset: 0;
+		}
+
+		#touch .button {
+			position: absolute;
+			border-radius: 50%;
+			background: rgba(255, 255, 255, 0.18);
+			border: 2px solid rgba(255, 255, 255, 0.45);
+			color: rgba(255, 255, 255, 0.8);
+			text-align: center;
+			font-family: sans-serif;
+			font-weight: bold;
+			box-sizing: border-box;
+		}
+
+		#touch .button.down {
+			background: rgba(255, 255, 255, 0.45);
+		}
+
+		#touch.editing {
+			background: rgba(0, 0, 0, 0.35);
+		}
+
+		#touch.editing .button {
+			border-style: dashed;
+		}
+
+		#touch.editing .button.selected {
+			border: 2px solid #f2c14e;
+			background: rgba(242, 193, 78, 0.35);
+		}
+
+		#layoutBar {
+			position: absolute;
+			left: 50%;
+			top: 12px;
+			transform: translateX(-50%);
+			z-index: 25;
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			padding: 8px 10px;
+			border-radius: 12px;
+			background: rgba(28, 24, 19, 0.94);
+			color: #eee;
+			font: 14px system-ui, sans-serif;
+			white-space: nowrap;
+		}
+
+		#layoutBar button {
+			font: 600 15px system-ui, sans-serif;
+			color: #eee;
+			background: #3e372d;
+			border: none;
+			border-radius: 8px;
+			padding: 6px 12px;
+			min-width: 36px;
+		}
+
+		#layoutBar button.accent {
+			background: #f2c14e;
+			color: #241d12;
+		}
+
+		#touch .stick {
+			position: absolute;
+			left: 0;
+			top: 0;
+			opacity: 0;
+			will-change: transform, opacity;
+			width: 30vmin;
+			height: 30vmin;
+			margin: -15vmin 0 0 -15vmin;
+			border-radius: 50%;
+			border: 2px solid rgba(255, 255, 255, 0.35);
+			box-sizing: border-box;
+			pointer-events: none;
+		}
+
+		#touch .knob {
+			position: absolute;
+			left: 25%;
+			top: 25%;
+			width: 50%;
+			height: 50%;
+			border-radius: 50%;
+			background: rgba(255, 255, 255, 0.35);
+			will-change: transform;
+		}
+
+		#settingsButton {
+			position: absolute;
+			left: 1.5vmin;
+			top: 1.5vmin;
+			width: 7vmin;
+			height: 7vmin;
+			max-width: 40px;
+			max-height: 40px;
+			z-index: 20;
+			color: rgba(255, 255, 255, 0.7);
+			cursor: pointer;
+		}
+
+		#settings {
+			display: none;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			z-index: 21;
+			box-sizing: border-box;
+			width: min(440px, 92vw);
+			max-height: 92%;
+			overflow-y: auto;
+			padding: 18px 20px 16px;
+			border-radius: 16px;
+			border: 1px solid rgba(255, 255, 255, 0.08);
+			background: rgba(28, 24, 19, 0.96);
+			box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.5), 0 12px 40px rgba(0, 0, 0, 0.6);
+			color: #eee;
+			font: 15px system-ui, sans-serif;
+			user-select: auto;
+			-webkit-user-select: auto;
+		}
+
+		#settings .head {
+			margin-bottom: 6px;
+		}
+
+		#settings .title {
+			font-weight: 700;
+			font-size: 21px;
+			color: #f2c14e;
+		}
+
+		#settings .about {
+			color: #a99f90;
+			font-size: 13px;
+			margin-top: 2px;
+		}
+
+		#settings a {
+			color: #f2c14e;
+			text-decoration: none;
+			border-bottom: 1px solid rgba(242, 193, 78, 0.4);
+		}
+
+		#settings .section {
+			margin-top: 14px;
+			color: #8f8574;
+			font-size: 11px;
+			font-weight: 700;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+		}
+
+		#settings label,
+		#settings .row {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap: 12px;
+			padding: 9px 0;
+			border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+		}
+
+		#settings select,
+		#settings input[type=text] {
+			font: 15px system-ui, sans-serif;
+			color: #eee;
+			background: #342e26;
+			border: 1px solid #4d4538;
+			border-radius: 9px;
+			padding: 6px 10px;
+			outline: none;
+		}
+
+		#settings select:focus,
+		#settings input[type=text]:focus {
+			border-color: #f2c14e;
+		}
+
+		#settings input[type=text] {
+			width: 0;
+			flex: 1;
+			text-transform: uppercase;
+		}
+
+		#settings input[type=text]::placeholder {
+			text-transform: none;
+		}
+
+		#settings select {
+			width: 130px;
+		}
+
+		#settings input[type=checkbox] {
+			appearance: none;
+			-webkit-appearance: none;
+			position: relative;
+			width: 44px;
+			height: 26px;
+			margin: 0;
+			border-radius: 13px;
+			background: #4d4538;
+			cursor: pointer;
+			transition: background 0.15s;
+		}
+
+		#settings input[type=checkbox]::after {
+			content: "";
+			position: absolute;
+			left: 3px;
+			top: 3px;
+			width: 20px;
+			height: 20px;
+			border-radius: 50%;
+			background: #eee;
+			transition: left 0.15s;
+		}
+
+		#settings input[type=checkbox]:checked {
+			background: #e0a82e;
+		}
+
+		#settings input[type=checkbox]:checked::after {
+			left: 21px;
+		}
+
+		#settings .hint {
+			color: #8f8574;
+			font-size: 12px;
+			margin: 8px 0 0;
+		}
+
+		#settings .buttons {
+			display: flex;
+			justify-content: flex-end;
+			gap: 8px;
+			margin-top: 14px;
+		}
+
+		#settings button {
+			font: 600 15px system-ui, sans-serif;
+			color: #eee;
+			background: #3e372d;
+			border: none;
+			border-radius: 9px;
+			padding: 8px 16px;
+			cursor: pointer;
+		}
+
+		#settings button.accent {
+			color: #2a2112;
+			background: #f2c14e;
+		}
+
+		#homeHint {
+			position: absolute;
+			left: 50%;
+			top: 12px;
+			transform: translateX(-50%);
+			z-index: 15;
+			display: flex;
+			align-items: center;
+			gap: 12px;
+			max-width: 90vw;
+			padding: 10px 14px;
+			border-radius: 12px;
+			background: rgba(28, 24, 19, 0.92);
+			color: #eee;
+			font: 14px system-ui, sans-serif;
+		}
+
+		#homeHint button {
+			font: 600 14px system-ui, sans-serif;
+			color: #241d12;
+			background: #f2c14e;
+			border: none;
+			border-radius: 8px;
+			padding: 6px 12px;
+		}
+
+		#settings button:disabled {
+			opacity: 0.5;
+		}
+
+		#rotate {
+			display: none;
+			position: absolute;
+			inset: 0;
+			background: #000;
+			color: #fff;
+			font: 20px sans-serif;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+		}
+
+		@media (orientation: portrait) and (pointer: coarse) {
+			#rotate {
+				display: flex;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<canvas id="game"></canvas>
+	<div id="status">Loading...</div>
+	<div id="rotate">Please turn your device sideways</div>
+	<script>
+		var bCanShareMemory = (function () {
+			try {
+				var oWorker = new Worker(URL.createObjectURL(new Blob([""])));
+				oWorker.postMessage(new SharedArrayBuffer(4));
+				oWorker.terminate();
+				return true;
+			}
+			catch (e) {
+				return false;
+			}
+		})();
+
+		// Shared memory only exists on https (or localhost) pages
+		if (!window.isSecureContext) {
+			document.getElementById("status").textContent = "The game needs the https:// address of this page";
+		}
+		// Without the headers threads need, get them from the service worker and load again
+		else if (!window.crossOriginIsolated && navigator.serviceWorker && location.search.indexOf("nosw") < 0) {
+			navigator.serviceWorker.register("sw.js").then(function () {
+				return navigator.serviceWorker.ready;
+			}).then(function () {
+				if (!sessionStorage.getItem("bReloaded")) {
+					sessionStorage.setItem("bReloaded", "1");
+					location.reload();
+				}
+				else {
+					document.getElementById("status").textContent = "This browser can't isolate the page, the game can't run here";
+				}
+			});
+		}
+		else if (!bCanShareMemory) {
+			var szEngine = (navigator.userAgent.match(/Chrome\/[\d.]+/) || [navigator.userAgent])[0];
+			document.getElementById("status").textContent = "This web engine can't share memory with the game's threads, the game can't run here (" + szEngine + ")";
+		}
+
+		// The service worker also keeps the page for offline starts
+		if (window.isSecureContext && window.crossOriginIsolated && navigator.serviceWorker && location.search.indexOf("nosw") < 0 && !/[?&]app(&|$)/.test(location.search)) {
+			navigator.serviceWorker.register("sw.js").catch(function () {});
+		}
+	</script>
+	<script src="gl_replay.js"></script>
+	<script src="input.js"></script>
+	<script src="datapack.js"></script>
+	<script src="settings.js"></script>
+	<script src="page.js"></script>
+</body>
+
+</html>
