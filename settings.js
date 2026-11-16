@@ -752,7 +752,13 @@ var oPageSettings = {
 				document.exitPointerLock();
 
 			UpdatePanel();
-			oPanel.style.display = oPanel.style.display == "block" ? "none" : "block";
+			var bOpening = oPanel.style.display != "block";
+			oPanel.style.display = bOpening ? "block" : "none";
+			if ( bOpening )
+			{
+				var oFirstPage = oNav.querySelector( ".settings-nav-item" );
+				if ( oFirstPage ) oFirstPage.click();
+			}
 		} );
 
 		document.getElementById( "settingsClose" ).addEventListener( "click", function () {
@@ -773,6 +779,8 @@ var oPageSettings = {
 
 			UpdatePanel();
 			oPanel.style.display = "block";
+			var oFirstPage = oNav.querySelector( ".settings-nav-item" );
+			if ( oFirstPage ) oFirstPage.click();
 		} );
 
 		document.getElementById( "welcomeDownload" ).addEventListener( "click", function () {
