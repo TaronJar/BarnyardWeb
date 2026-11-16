@@ -2491,3 +2491,15 @@ html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background:
 #dataWelcome button[hidden] {
 	display: none !important;
 }
+
+
+/* Neutral graphite hover states for the welcome screen actions. */
+#dataWelcome #welcomeDownload:hover:not(:disabled) {
+	background: #30343a !important;
+	color: #fff !important;
+	filter: none !important;
+}
+#dataWelcome .welcome-alt button:hover:not(:disabled) {
+	background: #3a3e44 !important;
+	color: #fff !important;
+}
