@@ -396,8 +396,16 @@ var oPageSettings = {
 					oItem.classList.toggle( "active", oItem == this );
 
 				for ( var oPage of oSections )
-					oPage.style.display = oPage.dataset.name == this.dataset.target ? "block" : "none";
-
+				{
+					var bSelected = oPage.dataset.name == this.dataset.target;
+					oPage.style.display = bSelected ? "block" : "none";
+					if ( bSelected )
+					{
+						oPage.classList.remove( "settings-page-enter" );
+						void oPage.offsetWidth;
+						oPage.classList.add( "settings-page-enter" );
+					}
+				}
 				oContent.scrollTop = 0;
 			} );
 		}
@@ -760,23 +768,35 @@ var oPageSettings = {
 			}
 		}
 
+		function OpenSettingsPanel()
+		{
+			UpdatePanel();
+			oPanel.style.display = "block";
+			requestAnimationFrame( function () { oPanel.classList.add( "settings-panel-open" ); } );
+			var oFirstPage = oNav.querySelector( ".settings-nav-item" );
+			if ( oFirstPage ) oFirstPage.click();
+		}
+
+		function CloseSettingsPanel()
+		{
+			oPanel.classList.remove( "settings-panel-open" );
+		}
+
 		oButton.addEventListener( "click", function () {
 			if ( document.pointerLockElement )
 				document.exitPointerLock();
-
-			UpdatePanel();
-			var bOpening = oPanel.style.display != "block";
-			oPanel.style.display = bOpening ? "block" : "none";
-			if ( bOpening )
-			{
-				var oFirstPage = oNav.querySelector( ".settings-nav-item" );
-				if ( oFirstPage ) oFirstPage.click();
-			}
+			if ( oPanel.style.display == "block" )
+				CloseSettingsPanel();
+			else
+				OpenSettingsPanel();
 		} );
 
-		document.getElementById( "settingsClose" ).addEventListener( "click", function () {
-			oPanel.style.display = "none";
+		oPanel.addEventListener( "transitionend", function ( a_oEvent ) {
+			if ( a_oEvent.target == oPanel && a_oEvent.propertyName == "opacity" && !oPanel.classList.contains( "settings-panel-open" ) )
+				oPanel.style.display = "none";
 		} );
+
+		document.getElementById( "settingsClose" ).addEventListener( "click", CloseSettingsPanel );
 
 		document.getElementById( "settingsRestart" ).addEventListener( "click", function () {
 			location.reload();
@@ -789,11 +809,7 @@ var oPageSettings = {
 		document.getElementById( "welcomeSettings" ).addEventListener( "click", function () {
 			if ( document.pointerLockElement )
 				document.exitPointerLock();
-
-			UpdatePanel();
-			oPanel.style.display = "block";
-			var oFirstPage = oNav.querySelector( ".settings-nav-item" );
-			if ( oFirstPage ) oFirstPage.click();
+			OpenSettingsPanel();
 		} );
 
 		document.getElementById( "welcomeDownload" ).addEventListener( "click", function () {
