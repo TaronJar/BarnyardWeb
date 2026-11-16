@@ -1106,7 +1106,10 @@ var oPageSettings = {
 				return;
 
 			oDataPack.Store( { bDelete : true }, function () {} ).then( function () {
-				location.reload();
+				// Keep the current URL options, but return to the data-source selection screen.
+				var oUrl = new URL( location.href );
+				oUrl.searchParams.set( "setup", "1" );
+				location.href = oUrl.href;
 			} ).catch( function ( a_oError ) {
 				oData.szBusy = "Couldn't delete the data: " + a_oError.message;
 				UpdatePanel();
