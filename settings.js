@@ -335,7 +335,7 @@ var oPageSettings = {
 			'<div class="hint" id="settingsAuto"></div>' +
 			'<div class="buttons" id="settingsTouchRow"><button id="settingsTouchLayout">Edit touch buttons</button></div>' +
 			'<div class="section">Cheats</div>' +
-			'<div class="row"><input type="text" id="settingsCheat" placeholder="Cheat code" autocomplete="off" autocapitalize="characters" spellcheck="false"><button id="settingsSendCheat">Enter</button></div>' +
+			'<div class="row"><input type="text" id="settingsCheat" placeholder="Cheat code" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>' +
 			'<div class="section" id="settingsDataSection">Game data</div>' +
 			'<div class="hint" id="settingsDataText"></div>' +
 			'<div class="buttons" id="settingsDataButtons"><button id="settingsDataDownload">Download</button><button id="settingsDataFile">From file</button><button id="settingsDataFolder">From folder</button>' +
@@ -440,7 +440,7 @@ var oPageSettings = {
 			if ( oNavTitle ) oNavTitle.textContent = oPageSettings.oValues.szLanguage == "ru" ? "ВАША ИГРА" : oPageSettings.oValues.szLanguage == "de" ? "DEIN SPIEL" : oPageSettings.oValues.szLanguage == "fr" ? "VOTRE JEU" : oPageSettings.oValues.szLanguage == "es" ? "TU JUEGO" : "YOUR GAME";
 			var oCheat = document.getElementById( "settingsCheat" );
 			if ( oCheat ) oCheat.placeholder = T( "Cheat code" );
-			var aButtons = { settingsSendCheat:"Enter", settingsDataDownload:"Download", settingsDataFile:"From file", settingsDataFolder:"From folder", settingsDataDelete:"Delete", settingsUpdate:"Get the newest version", settingsRestart:"Restart", settingsClose:"Close", settingsTouchLayout:"Edit touch buttons" };
+			var aButtons = { settingsDataDownload:"Download", settingsDataFile:"From file", settingsDataFolder:"From folder", settingsDataDelete:"Delete", settingsUpdate:"Get the newest version", settingsRestart:"Restart", settingsClose:"Close", settingsTouchLayout:"Edit touch buttons" };
 			for ( var szId in aButtons )
 			{
 				var oButtonText = document.getElementById( szId );
@@ -803,21 +803,26 @@ var oPageSettings = {
 			oGameInput.EditTouchLayout();
 		} );
 
-		document.getElementById( "settingsSendCheat" ).addEventListener( "click", function () {
-			var oInput = document.getElementById( "settingsCheat" );
-
-			oInput.blur();
-			oPanel.style.display = "none";
-			oPageSettings.EnterCheatCode( oInput.value );
-			oInput.value = "";
-		} );
+		// Enter submits the cheat code directly from the input field
+		var oCheatInput = document.getElementById( "settingsCheat" );
 
 		// The game listens on the window in the capture phase, typing in the panel isn't game input
 		for ( var szEvent of [ "keydown", "keyup", "keypress" ] )
 		{
 			window.addEventListener( szEvent, function ( a_oEvent ) {
-				if ( a_oEvent.isTrusted && oPanel.contains( a_oEvent.target ) )
-					a_oEvent.stopImmediatePropagation();
+				if ( !a_oEvent.isTrusted || !oPanel.contains( a_oEvent.target ) )
+					return;
+
+				if ( a_oEvent.type == "keydown" && a_oEvent.key == "Enter" && a_oEvent.target == oCheatInput )
+				{
+					a_oEvent.preventDefault();
+					oCheatInput.blur();
+					oPanel.style.display = "none";
+					oPageSettings.EnterCheatCode( oCheatInput.value );
+					oCheatInput.value = "";
+				}
+
+				a_oEvent.stopImmediatePropagation();
 			}, true );
 		}
 	}
