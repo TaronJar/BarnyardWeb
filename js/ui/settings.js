@@ -374,13 +374,14 @@ var oPageSettings = {
 				'<div class="buttons data-panel-actions" id="settingsDataButtons"><button id="settingsDataDownload" class="accent">Download</button><button id="settingsDataFolder">From folder</button>' +
 				'<button id="settingsDataDelete">Delete</button><input type="file" id="settingsDataInput" hidden><input type="file" id="settingsDataFolderInput" webkitdirectory multiple hidden></div>' +
 			'</div>' +
-			'<div class="data-panel data-panel-details"><div class="data-panel-caption">STATUS</div><div class="hint" id="settingsAbout"></div></div>' +
 			'<div class="data-panel data-panel-saves"><div class="data-panel-caption">SAVEGAMES</div><div class="hint">Export a backup of your saves or restore one from a backup file.</div><div class="buttons data-panel-actions"><button id="settingsSaveExport" class="accent">Export saves</button><button id="settingsSaveImport">Import saves</button><input type="file" id="settingsSaveFile" accept=".tar,application/x-tar" hidden></div></div>' +
 			'<div class="data-panel data-panel-maintenance">' +
 				'<div class="data-maintenance-update"><div class="data-panel-caption">CLIENT</div><div class="buttons" id="settingsUpdateButtons"><button id="settingsUpdate">Update client</button></div><div class="hint" id="settingsUpdateHint">Clear cached site files and reload the latest version.</div></div>' +
 				'<div class="data-maintenance-restart"><div class="data-panel-caption">GAME</div><div class="hint" id="settingsRestartHint">Restarts the game. Saves are kept, progress since the last save is lost.</div>' +
 				'<div class="buttons"><button id="settingsRestart" class="accent">Restart</button></div></div>' +
-			'</div>';
+			'</div>' +
+			'<div class="data-panel data-panel-details"><div class="data-panel-caption">STATUS</div><div class="hint" id="settingsAbout"></div></div>' +
+			';
 		document.body.appendChild( oPanel );
 
 		// Arrange settings like a compact Spotify-style desktop: left navigation, clean content area.
