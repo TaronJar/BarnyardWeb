@@ -345,6 +345,8 @@ var oPageSettings = {
 		{
 			var oTitle = oPanel.querySelector( ".head .title" );
 			if ( oTitle ) oTitle.textContent = T( "Settings" );
+			var oAbout = oPanel.querySelector( ".head .about" );
+			if ( oAbout ) oAbout.innerHTML = T( "Based on" ) + ' <a href="https://github.com/InfiniteC0re/OpenBarnyard" target="_blank" rel="noopener">OpenBarnyard decompilation</a>';
 			var oLabels = { szResolution:"Resolution", szLowLatency:"Low latency", szGrass:"Grass detail", szDrawDistance:"Draw distance", szFrameLimit:"FPS limit", szSound:"Sound", bShowFps:"Show FPS", szLanguage:"Interface language" };
 			for ( var oLabel of oPanel.querySelectorAll( "label" ) )
 			{
@@ -356,10 +358,12 @@ var oPageSettings = {
 			{
 				var oHeading = oGroup.querySelector( ".section" );
 				if ( oHeading )
-					oHeading.textContent = T( oGroup.dataset.name.replace(/\b\w/g, function ( a_szLetter ) { return a_szLetter.toUpperCase(); } ) );
+					oHeading.textContent = T( oGroup.dataset.name.charAt( 0 ).toUpperCase() + oGroup.dataset.name.slice( 1 ) );
 			}
 			for ( var oNavItem of oNav.querySelectorAll( ".settings-nav-item" ) )
-				oNavItem.textContent = T( oNavItem.dataset.target.replace(/\b\w/g, function ( a_szLetter ) { return a_szLetter.toUpperCase(); } ) );
+				oNavItem.textContent = T( oNavItem.dataset.target.charAt( 0 ).toUpperCase() + oNavItem.dataset.target.slice( 1 ) );
+			var oNavTitle = oNav.querySelector( ".settings-nav-title" );
+			if ( oNavTitle ) oNavTitle.textContent = oPageSettings.oValues.szLanguage == "ru" ? "ВАША ИГРА" : oPageSettings.oValues.szLanguage == "de" ? "DEIN SPIEL" : oPageSettings.oValues.szLanguage == "fr" ? "VOTRE JEU" : oPageSettings.oValues.szLanguage == "es" ? "TU JUEGO" : "YOUR GAME";
 			var oCheat = document.getElementById( "settingsCheat" );
 			if ( oCheat ) oCheat.placeholder = T( "Cheat code" );
 			var aButtons = { settingsSendCheat:"Enter", settingsDataDownload:"Download", settingsDataFile:"From file", settingsDataFolder:"From folder", settingsDataDelete:"Delete", settingsUpdate:"Get the newest version", settingsRestart:"Restart", settingsClose:"Close", settingsTouchLayout:"Edit touch buttons" };
@@ -505,8 +509,8 @@ var oPageSettings = {
 
 			document.getElementById( "settingsRestart" ).style.display     = bRestart ? "" : "none";
 			document.getElementById( "settingsRestartHint" ).style.display = bRestart ? "" : "none";
-			document.getElementById( "settingsAuto" ).textContent = "Now " + Module.oCanvas.width + "x" + Module.oCanvas.height + ( oPageSettings.IsSlowDevice() ? ", auto treats this device as slow" : "" ) +
-				( Module.oAudioContext && Module.oAudioContext.state != "running" ? ", sound is " + Module.oAudioContext.state : "" );
+			document.getElementById( "settingsAuto" ).textContent = T( "Now" ) + " " + Module.oCanvas.width + "x" + Module.oCanvas.height + ( oPageSettings.IsSlowDevice() ? ", " + T( "auto treats this device as slow" ) : "" ) +
+				( Module.oAudioContext && Module.oAudioContext.state != "running" ? ", " + T( "sound is" ) + " " + Module.oAudioContext.state : "" );
 		}
 
 		for ( var oControl of oPanel.querySelectorAll( "[data-key]" ) )
