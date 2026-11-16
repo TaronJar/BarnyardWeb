@@ -341,7 +341,6 @@ var oPageSettings = {
 			'<div class="hint" id="settingsDataText"></div>' +
 			'<div class="buttons" id="settingsDataButtons"><button id="settingsDataDownload">Download</button><button id="settingsDataFile">From file</button><button id="settingsDataFolder">From folder</button>' +
 			'<button id="settingsDataDelete">Delete</button><input type="file" id="settingsDataInput" hidden><input type="file" id="settingsDataFolderInput" webkitdirectory multiple hidden></div>' +
-			'<div class="section">Stats</div>' +
 			'<div class="hint" id="settingsAbout"></div>' +
 			'<div class="buttons" id="settingsUpdateButtons"><button id="settingsUpdate">Get the newest version</button></div>' +
 			'<div class="hint" id="settingsRestartHint">Restarts the game. Saves are kept, progress since the last save is lost.</div>' +
