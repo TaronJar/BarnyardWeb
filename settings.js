@@ -314,8 +314,7 @@ var oPageSettings = {
 		oPanel.id  = "settings";
 		oPanel.innerHTML =
 			'<div class="head"><div class="title">Settings</div>' +
-			'<button type="button" id="settingsClose" aria-label="Close" title="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6L18 18M18 6L6 18" /></svg></button>' +
-			'<div class="about">Based on <a href="https://github.com/InfiniteC0re/OpenBarnyard" target="_blank" rel="noopener">OpenBarnyard decompilation</a></div></div>' +
+			'<button type="button" id="settingsClose" aria-label="Close" title="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6L18 18M18 6L6 18" /></svg></button></div>' +
 			'<div class="section">Display</div>' +
 			'<label>Resolution <select data-key="szResolution">' +
 			'<option value="auto">Auto</option><option value="540">540p</option><option value="720">720p</option>' +
@@ -425,8 +424,6 @@ var oPageSettings = {
 		{
 			var oTitle = oPanel.querySelector( ".head .title" );
 			if ( oTitle ) oTitle.textContent = T( "Settings" );
-			var oAbout = oPanel.querySelector( ".head .about" );
-			if ( oAbout ) oAbout.innerHTML = T( "Based on" ) + ' <a href="https://github.com/InfiniteC0re/OpenBarnyard" target="_blank" rel="noopener">OpenBarnyard decompilation</a>';
 			var oLabels = { szResolution:"Resolution", szLowLatency:"Low latency", szGrass:"Grass detail", szDrawDistance:"Draw distance", szFrameLimit:"FPS limit", szSound:"Sound", bShowFps:"Show FPS", szLanguage:"Interface language" };
 			for ( var oLabel of oPanel.querySelectorAll( "label" ) )
 			{
