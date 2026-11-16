@@ -399,36 +399,6 @@ var oPageSettings = {
 			} );
 		}
 
-		function UpdateActiveSection()
-		{
-			var iActive = 0;
-			var iThreshold = oContent.getBoundingClientRect().top + 90;
-
-			for ( var i = 0; i < oSections.length; i++ )
-			{
-				if ( oSections[ i ].getBoundingClientRect().top <= iThreshold )
-					iActive = i;
-				else
-					break;
-			}
-
-			for ( var i = 0; i < oNav.children.length; i++ )
-				oNav.children[ i ].classList.toggle( "active", i == iActive );
-		}
-
-		var bScrollUpdatePending = false;
-		oContent.addEventListener( "scroll", function () {
-			if ( bScrollUpdatePending )
-				return;
-
-			bScrollUpdatePending = true;
-			requestAnimationFrame( function () {
-				UpdateActiveSection();
-				bScrollUpdatePending = false;
-			} );
-		}, { passive : true } );
-
-		window.addEventListener( "resize", UpdateActiveSection );
 		oNav.querySelector( ".settings-nav-item" ).classList.add( "active" );
 		oLayout.appendChild( oNav );
 		oLayout.appendChild( oContent );
