@@ -64,7 +64,16 @@
 
 	navigator.serviceWorker.register("sw.js", { updateViaCache: "none" }).then(function (oRegistration) {
 		WatchRegistration(oRegistration);
-		return oRegistration.update();
+		oRegistration.update();
+		// Recheck periodically while the game is open; also check when the tab becomes visible again.
+		setInterval(function () {
+			if (document.visibilityState == "visible")
+				oRegistration.update().catch(function () {});
+		}, 5 * 60 * 1000);
+		document.addEventListener("visibilitychange", function () {
+			if (document.visibilityState == "visible")
+				oRegistration.update().catch(function () {});
+		});
 	}).catch(function (oError) {
 		console.warn("BarnyardWeb update check failed:", oError);
 	});
