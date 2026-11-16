@@ -768,7 +768,11 @@ var oPageSettings = {
 		} );
 
 		document.getElementById( "welcomeSettings" ).addEventListener( "click", function () {
-			oButton.click();
+			if ( document.pointerLockElement )
+				document.exitPointerLock();
+
+			UpdatePanel();
+			oPanel.style.display = "block";
 		} );
 
 		document.getElementById( "welcomeDownload" ).addEventListener( "click", function () {
