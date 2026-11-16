@@ -1,15 +1,14 @@
 // Keeps the page's own files for offline starts, and adds the headers threads need when the server can't send them.
 // The game data (game/) isn't kept here, a stored data pack (js/data/datapack.js) is used offline.
 var aFiles = [
-	"./", "index.html", "js/core/page.js", "js/rendering/gl_replay.js", "js/input/input.js", "js/ui/settings.js", "js/data/datapack.js", "js/workers/datapack_worker.js",
+	"./", "index.html", "js/core/page.js", "js/core/update.js", "js/rendering/gl_replay.js", "js/input/input.js", "js/ui/settings.js", "js/data/datapack.js", "js/workers/datapack_worker.js",
 	"js/audio/audio_worklet.js", "OpenBarnyard.js", "OpenBarnyard.wasm", "manifest.json", "css/app.css", "assets/images/barnyard-bg.jpeg", "assets/icons/icon.png", "assets/icons/icon512.png", "assets/icons/favicon.png"
 ];
 
-var aPreviousCaches = [ "barnyard-" + self.registration.scope, "barnyard-v2-" + self.registration.scope, "barnyard-v3-" + self.registration.scope ];
-var szCache = "barnyard-v4-" + self.registration.scope;
+var aPreviousCaches = [ "barnyard-" + self.registration.scope, "barnyard-v2-" + self.registration.scope, "barnyard-v3-" + self.registration.scope, "barnyard-v4-" + self.registration.scope ];
+var szCache = "barnyard-v5-" + self.registration.scope;
 
 self.addEventListener( "install", function ( a_oEvent ) {
-	self.skipWaiting();
 
 	// Some files may be missing on older builds, each one is fetched on its own
 	a_oEvent.waitUntil( caches.open( szCache ).then( function ( a_oCache ) {
@@ -17,6 +16,11 @@ self.addEventListener( "install", function ( a_oEvent ) {
 			return a_oCache.add( a_szFile ).catch( function () {} );
 		} ) );
 	} ) );
+} );
+
+self.addEventListener( "message", function ( a_oEvent ) {
+	if ( a_oEvent.data && a_oEvent.data.type == "SKIP_WAITING" )
+		self.skipWaiting();
 } );
 
 self.addEventListener( "activate", function ( a_oEvent ) {
