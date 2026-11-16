@@ -980,6 +980,21 @@
 			#settings .custom-select { flex-basis: 112px; width: 112px; }
 		}
 
+
+		/* Keep controls visually steady on press; no green category indicator */
+		#settings button:not(.settings-nav-item):active,
+		#settings .custom-select-trigger:active,
+		#settings .custom-select-option:active {
+			transform: none !important;
+			filter: none !important;
+			box-shadow: none !important;
+		}
+		#settings .settings-nav-item.active {
+			box-shadow: none !important;
+			background: #242424;
+			color: #fff;
+		}
+
 	</style>
 </head>
 
