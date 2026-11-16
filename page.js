@@ -22,11 +22,14 @@ function OnGameQuit()
 
 function PageLog( a_szText, a_bError )
 {
-	// The runtime reports the exit, the page already shows it
-	if ( bGameQuit )
+	// Technical errors belong in DevTools, not on the player's screen.
+	if ( a_bError )
+	{
+		console.error( a_szText );
 		return;
+	}
 
-	if ( !bPageLog && !a_bError )
+	if ( bGameQuit || !bPageLog )
 		return;
 
 	var oLog = document.getElementById( "log" );
