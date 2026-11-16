@@ -399,7 +399,7 @@ var oPageSettings = {
 
 				var oTarget = oContent.querySelector( '[data-name="' + this.dataset.target + '"]' );
 				if ( oTarget )
-					oContent.scrollTo( { top : oTarget.offsetTop - oContent.offsetTop + oContent.scrollTop, behavior : "smooth" } );
+					oContent.scrollTo( { top : oContent.scrollTop + oTarget.getBoundingClientRect().top - oContent.getBoundingClientRect().top, behavior : "smooth" } );
 			} );
 		}
 
