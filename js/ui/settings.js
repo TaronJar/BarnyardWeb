@@ -531,15 +531,27 @@ var oPageSettings = {
 			var oWelcome = document.getElementById( "dataWelcome" );
 			var oWelcomeStatus = document.getElementById( "welcomeStatus" );
 			var oWelcomeDownload = document.getElementById( "welcomeDownload" );
+			var oWelcomeProgress = document.getElementById( "welcomeProgress" );
+			var oWelcomeProgressBar = document.getElementById( "welcomeProgressBar" );
 			if ( oWelcome && !oDataPack.oPack )
 			{
 				oWelcome.style.display = oData.bStored ? "none" : "flex";
-				if ( oWelcomeStatus ) oWelcomeStatus.textContent = oData.szBusy || ( oData.bStored ? T( "Stored on this device, restart to use it" ) : T( "Game data is not installed" ) );
+				if ( oWelcomeStatus )
+					oWelcomeStatus.textContent = oData.szBusy || ( oData.bStored ? T( "Stored on this device, restart to use it" ) : T( "Game data is not installed" ) );
+				if ( oWelcomeProgress )
+				{
+					oWelcomeProgress.hidden = !bBusy;
+					oWelcomeProgress.classList.toggle( "is-indeterminate", bBusy && oData.fProgress < 0 );
+				}
+				if ( oWelcomeProgressBar && bBusy && oData.fProgress >= 0 )
+					oWelcomeProgressBar.style.width = Math.floor( oData.fProgress * 100 ) + "%";
+				if ( oWelcomeStatus && bBusy && oData.fProgress >= 0 )
+					oWelcomeStatus.textContent = ( oData.szBusyVerb || T( "Downloading" ) ) + " — " + Math.floor( oData.fProgress * 100 ) + "%";
 				if ( oWelcomeDownload )
 				{
 					oWelcomeDownload.disabled = bBusy;
 					oWelcomeDownload.classList.toggle( "is-loading", bBusy );
-					oWelcomeDownload.textContent = bBusy ? ( oData.szBusy || T( "Downloading..." ) ) : T( "Install game data" );
+					oWelcomeDownload.textContent = bBusy ? ( oData.fProgress >= 0 ? Math.floor( oData.fProgress * 100 ) + "%" : ( oData.szBusy || T( "Downloading..." ) ) ) : T( "Install game data" );
 				}
 			}
 			document.getElementById( "settingsDataDownload" ).style.display = oData.bStored ? "none" : "";
@@ -557,13 +569,17 @@ var oPageSettings = {
 		function StoreData( a_oMessage, a_szVerb )
 		{
 			oData.szBusy = T( a_szVerb ) + "...";
+			oData.szBusyVerb = T( a_szVerb );
+			oData.fProgress = -1;
 			UpdatePanel();
 
 			oDataPack.Store( a_oMessage, function ( a_fProgress, a_iWritten ) {
+				oData.fProgress = a_fProgress;
 				oData.szBusy = a_fProgress >= 0 ? T( a_szVerb ) + " " + Math.floor( a_fProgress * 100 ) + "%" : T( a_szVerb ) + ", " + Math.round( a_iWritten / 1048576 ) + " MB";
 				UpdatePanel();
 			} ).then( function () {
 				oData.szBusy   = "";
+				oData.fProgress = 1;
 				oData.bStored  = true;
 				oData.bChanged = true;
 
