@@ -393,6 +393,9 @@ var oPageSettings = {
 			oContent.appendChild( oGroup );
 
 			oNavButton.addEventListener( "click", function () {
+				for ( var oItem of oNav.querySelectorAll( ".settings-nav-item" ) )
+					oItem.classList.toggle( "active", oItem == this );
+
 				var oTarget = oContent.querySelector( '[data-name="' + this.dataset.target + '"]' );
 				if ( oTarget )
 					oContent.scrollTo( { top : oTarget.offsetTop - oContent.offsetTop + oContent.scrollTop, behavior : "smooth" } );
