@@ -538,6 +538,7 @@ var oPageSettings = {
 				if ( oWelcomeDownload )
 				{
 					oWelcomeDownload.disabled = bBusy;
+					oWelcomeDownload.classList.toggle( "is-loading", bBusy );
 					oWelcomeDownload.textContent = bBusy ? ( oData.szBusy || T( "Downloading..." ) ) : T( "Install game data" );
 				}
 			}
@@ -546,7 +547,11 @@ var oPageSettings = {
 			document.getElementById( "settingsDataDelete" ).style.display   = oData.bStored ? "" : "none";
 
 			for ( var szId of [ "settingsDataDownload", "settingsDataFolder", "settingsDataDelete" ] )
-				document.getElementById( szId ).disabled = bBusy;
+			{
+				var oButton = document.getElementById( szId );
+				oButton.disabled = bBusy;
+				oButton.classList.toggle( "is-loading", bBusy && szId != "settingsDataDelete" );
+			}
 		}
 
 		function StoreData( a_oMessage, a_szVerb )
