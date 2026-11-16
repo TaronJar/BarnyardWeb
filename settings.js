@@ -224,6 +224,42 @@ var oPageSettings = {
 			fr : { Settings:"Paramètres", Display:"Affichage", Cheats:"Codes", "Game data":"Données du jeu", Stats:"Statistiques", Languages:"Langues", Resolution:"Résolution", "Low latency":"Faible latence", "Grass detail":"Détail de l’herbe", "Draw distance":"Distance d’affichage", "FPS limit":"Limite FPS", Sound:"Son", "Show FPS":"Afficher les FPS", "Interface language":"Langue de l’interface", "Cheat code":"Code de triche", Enter:"Valider", Download:"Télécharger", "From file":"Depuis un fichier", "From folder":"Depuis un dossier", Delete:"Supprimer", "Get the newest version":"Obtenir la dernière version", Restart:"Redémarrer", Close:"Fermer", "Edit touch buttons":"Modifier les commandes tactiles", "Auto":"Auto", "On":"Activé", "Off":"Désactivé", "High":"Élevé", "Low":"Faible", "Full":"Complet", "Smoother":"Plus fluide", "540 lines":"540 lignes", "720 lines":"720 lignes", "1080 lines":"1080 lignes", "Screen":"Écran", "Restart hint":"Le jeu redémarre. Les sauvegardes sont conservées, la progression non sauvegardée sera perdue." },
 			es : { Settings:"Ajustes", Display:"Pantalla", Cheats:"Trucos", "Game data":"Datos del juego", Stats:"Estadísticas", Languages:"Idiomas", Resolution:"Resolución", "Low latency":"Baja latencia", "Grass detail":"Detalle del césped", "Draw distance":"Distancia de dibujado", "FPS limit":"Límite de FPS", Sound:"Sonido", "Show FPS":"Mostrar FPS", "Interface language":"Idioma de la interfaz", "Cheat code":"Código de trucos", Enter:"Aplicar", Download:"Descargar", "From file":"Desde archivo", "From folder":"Desde carpeta", Delete:"Eliminar", "Get the newest version":"Obtener la última versión", Restart:"Reiniciar", Close:"Cerrar", "Edit touch buttons":"Editar controles táctiles", "Auto":"Auto", "On":"Activado", "Off":"Desactivado", "High":"Alto", "Low":"Bajo", "Full":"Completo", "Smoother":"Más fluido", "540 lines":"540 líneas", "720 lines":"720 líneas", "1080 lines":"1080 líneas", "Screen":"Pantalla", "Restart hint":"El juego se reiniciará. Las partidas se conservan, pero se pierde el progreso no guardado." }
 		};
+		Object.assign( oTranslations.en, {
+			"Based on":"Based on", "Stored on this device":"Stored on this device",
+			"Stored on this device, restart to use it":"Stored on this device, restart to use it",
+			"Loaded from the server while you play. A copy on this device (about 1.7 GB) loads faster":"Loaded from the server while you play. A copy on this device (about 1.7 GB) loads faster",
+			"game loads from there":"the game loads from there", "Downloading":"Downloading", "Copying":"Copying",
+			"Now":"Now", "auto treats this device as slow":"auto treats this device as slow", "sound is":"sound is"
+		} );
+		Object.assign( oTranslations.ru, {
+			"Based on":"На основе", "Stored on this device":"Сохранено на этом устройстве",
+			"Stored on this device, restart to use it":"Сохранено на устройстве, перезапустите игру",
+			"Loaded from the server while you play. A copy on this device (about 1.7 GB) loads faster":"Загружается с сервера. Локальная копия (около 1,7 ГБ) ускорит загрузку",
+			"game loads from there":"игра загружается оттуда", "Downloading":"Загрузка", "Copying":"Копирование",
+			"Now":"Сейчас", "auto treats this device as slow":"автонастройка считает устройство медленным", "sound is":"звук:"
+		} );
+		Object.assign( oTranslations.de, {
+			"Based on":"Basierend auf", "Stored on this device":"Auf diesem Gerät gespeichert",
+			"Stored on this device, restart to use it":"Auf diesem Gerät gespeichert; Neustart erforderlich",
+			"Loaded from the server while you play. A copy on this device (about 1.7 GB) loads faster":"Wird vom Server geladen. Eine lokale Kopie (ca. 1,7 GB) lädt schneller",
+			"game loads from there":"das Spiel lädt von dort", "Downloading":"Wird heruntergeladen", "Copying":"Wird kopiert",
+			"Now":"Aktuell", "auto treats this device as slow":"Auto erkennt dieses Gerät als langsam", "sound is":"Ton ist"
+		} );
+		Object.assign( oTranslations.fr, {
+			"Based on":"Basé sur", "Stored on this device":"Stocké sur cet appareil",
+			"Stored on this device, restart to use it":"Stocké sur cet appareil, redémarrez pour l’utiliser",
+			"Loaded from the server while you play. A copy on this device (about 1.7 GB) loads faster":"Chargé depuis le serveur. Une copie locale (environ 1,7 Go) accélère le chargement",
+			"game loads from there":"le jeu se charge depuis cet emplacement", "Downloading":"Téléchargement", "Copying":"Copie",
+			"Now":"Actuel", "auto treats this device as slow":"le mode auto considère cet appareil comme lent", "sound is":"le son est"
+		} );
+		Object.assign( oTranslations.es, {
+			"Based on":"Basado en", "Stored on this device":"Guardado en este dispositivo",
+			"Stored on this device, restart to use it":"Guardado en este dispositivo; reinicia para usarlo",
+			"Loaded from the server while you play. A copy on this device (about 1.7 GB) loads faster":"Se carga desde el servidor. Una copia local (unos 1,7 GB) acelera la carga",
+			"game loads from there":"el juego se carga desde allí", "Downloading":"Descargando", "Copying":"Copiando",
+			"Now":"Ahora", "auto treats this device as slow":"el modo automático considera lento este dispositivo", "sound is":"el sonido está"
+		} );
+
 		function T( a_szText )
 		{
 			var oLanguage = oTranslations[ oPageSettings.oValues.szLanguage ] || oTranslations.en;
