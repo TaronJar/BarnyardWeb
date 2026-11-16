@@ -314,6 +314,7 @@ var oPageSettings = {
 		oPanel.id  = "settings";
 		oPanel.innerHTML =
 			'<div class="head"><div class="title">Settings</div>' +
+			'<button type="button" id="settingsClose" aria-label="Close" title="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6L18 18M18 6L6 18" /></svg></button>' +
 			'<div class="about">Based on <a href="https://github.com/InfiniteC0re/OpenBarnyard" target="_blank" rel="noopener">OpenBarnyard decompilation</a></div></div>' +
 			'<div class="section">Display</div>' +
 			'<label>Resolution <select data-key="szResolution">' +
@@ -344,7 +345,7 @@ var oPageSettings = {
 			'<div class="hint" id="settingsAbout"></div>' +
 			'<div class="buttons" id="settingsUpdateButtons"><button id="settingsUpdate">Get the newest version</button></div>' +
 			'<div class="hint" id="settingsRestartHint">Restarts the game. Saves are kept, progress since the last save is lost.</div>' +
-			'<div class="buttons"><button id="settingsRestart" class="accent">Restart</button><button id="settingsClose">Close</button></div>';
+			'<div class="buttons"><button id="settingsRestart" class="accent">Restart</button></div>';
 		document.body.appendChild( oPanel );
 
 		// Arrange settings like a compact Spotify-style desktop: left navigation, clean content area.
@@ -439,11 +440,13 @@ var oPageSettings = {
 			}
 			for ( var oNavItem of oNav.querySelectorAll( ".settings-nav-item" ) )
 				oNavItem.textContent = T( oNavItem.dataset.target.charAt( 0 ).toUpperCase() + oNavItem.dataset.target.slice( 1 ) );
+			var oClose = document.getElementById( "settingsClose" );
+			if ( oClose ) { oClose.setAttribute( "aria-label", T( "Close" ) ); oClose.title = T( "Close" ); }
 			var oNavTitle = oNav.querySelector( ".settings-nav-title" );
 			if ( oNavTitle ) oNavTitle.textContent = oPageSettings.oValues.szLanguage == "ru" ? "ВАША ИГРА" : oPageSettings.oValues.szLanguage == "de" ? "DEIN SPIEL" : oPageSettings.oValues.szLanguage == "fr" ? "VOTRE JEU" : oPageSettings.oValues.szLanguage == "es" ? "TU JUEGO" : "YOUR GAME";
 			var oCheat = document.getElementById( "settingsCheat" );
 			if ( oCheat ) oCheat.placeholder = T( "Cheat code" );
-			var aButtons = { settingsDataDownload:"Download", settingsDataFile:"From file", settingsDataFolder:"From folder", settingsDataDelete:"Delete", settingsUpdate:"Get the newest version", settingsRestart:"Restart", settingsClose:"Close", settingsTouchLayout:"Edit touch buttons" };
+			var aButtons = { settingsDataDownload:"Download", settingsDataFile:"From file", settingsDataFolder:"From folder", settingsDataDelete:"Delete", settingsUpdate:"Get the newest version", settingsRestart:"Restart", settingsTouchLayout:"Edit touch buttons" };
 			for ( var szId in aButtons )
 			{
 				var oButtonText = document.getElementById( szId );
