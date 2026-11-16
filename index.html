@@ -1424,6 +1424,32 @@
 		#dataWelcome .welcome-alt button { min-height: 40px; padding: 0 18px; background: #282828; color: #fff; }
 		#dataWelcome .welcome-status { min-height: 20px; margin-top: 18px; color: #777; font-size: 11px; }
 	</style>
+	<style id="settingsControlFix">
+		#settings select.native-select-hidden {
+			position: absolute !important; width: 1px !important; height: 1px !important;
+			padding: 0 !important; margin: -1px !important; overflow: hidden !important;
+			clip: rect(0, 0, 0, 0) !important; clip-path: inset(50%) !important;
+			white-space: nowrap !important; border: 0 !important;
+		}
+		#settings .custom-select-menu { display: none !important; }
+		#settings .custom-select.open .custom-select-menu { display: block !important; }
+		#settings .head { position: relative; }
+		#settings #settingsClose {
+			position: absolute !important; top: 0 !important; right: 0 !important;
+			width: 34px !important; min-width: 34px !important; height: 34px !important;
+			min-height: 34px !important; margin: 0 !important; padding: 7px !important;
+			border: 0 !important; border-radius: 50% !important;
+			background: transparent !important; color: #b3b3b3 !important;
+			box-shadow: none !important;
+		}
+		#settings #settingsClose:hover { background: #292929 !important; color: #fff !important; }
+		#settings #settingsClose svg { display: block !important; width: 20px !important; height: 20px !important; }
+		#settings #settingsClose svg path {
+			fill: none !important; stroke: currentColor !important; stroke-width: 2 !important;
+			stroke-linecap: round !important;
+		}
+		#settings .settings-nav-title { display: none !important; }
+	</style>
 </head>
 
 <body>
