@@ -343,28 +343,15 @@ async function MakeScriptBlob( a_szFile, a_szPrefix )
 }
 
 // A stored data pack has to be found before the game's threads start
-async function LoadGame()
+async function StartGame()
 {
-	// Show setup immediately; OPFS discovery can take time or fail.
-	var oWelcome = document.getElementById( "dataWelcome" );
-	var oSettingsButton = document.getElementById( "settingsButton" );
-	if ( oWelcome )
-		oWelcome.style.display = "flex";
-
-	await oDataPack.Open();
-
-	// Hide setup only when a usable local data pack was found.
-	if ( oWelcome )
-		oWelcome.style.display = oDataPack.oPack ? "none" : "flex";
-	if ( oSettingsButton )
-		oSettingsButton.style.display = oDataPack.oPack ? "" : "none";
-
-	// Without a connection only a stored data pack can be read
-	if ( !navigator.onLine && !oDataPack.oPack && !/[?&]app(&|$)/.test( location.search ) )
-	{
-		document.getElementById( "status" ).textContent = "No connection. To play offline, store the game data while online: Settings, Game data, Download";
+	if ( window.bGameStarted )
 		return;
-	}
+	window.bGameStarted = true;
+
+	var oWelcome = document.getElementById( "dataWelcome" );
+	if ( oWelcome )
+		oWelcome.style.display = "none";
 
 	var szDataUrl = new URL( new URLSearchParams( location.search ).get( "data" ) || "game/", location.href ).href;
 
@@ -372,7 +359,6 @@ async function LoadGame()
 		return new URL( a_szPath, location.href ).href;
 	};
 
-	// A blob has no query of its own: the threads get the page's, with the game arguments of the settings
 	var oParams = new URLSearchParams( location.search );
 
 	if ( oPageSettings.IsLowGrass() )
@@ -386,6 +372,45 @@ async function LoadGame()
 	var oGameScript = document.createElement( "script" );
 	oGameScript.src = await MakeScriptBlob( "OpenBarnyard.js", "var g_szDataUrl = " + JSON.stringify( szDataUrl ) + ", g_szPageSearch = " + JSON.stringify( szSearch ) + ";\n" );
 	document.body.appendChild( oGameScript );
+}
+
+async function LoadGame()
+{
+	var oWelcome = document.getElementById( "dataWelcome" );
+	var oSettingsButton = document.getElementById( "settingsButton" );
+	var oPlayButton = document.getElementById( "welcomePlay" );
+	if ( oWelcome )
+		oWelcome.style.display = "flex";
+
+	await oDataPack.Open();
+
+	var bHasStoredPack = !!oDataPack.oPack;
+	var bAppMode = /[?&]app(&|$)/.test( location.search );
+
+	if ( oWelcome )
+		oWelcome.style.display = bHasStoredPack && !bAppMode ? "flex" : ( bHasStoredPack ? "none" : "flex" );
+	if ( oSettingsButton )
+		oSettingsButton.style.display = bHasStoredPack ? "" : "none";
+
+	// A stored data pack is ready: wait for the player's explicit Play action.
+	if ( bHasStoredPack && !bAppMode )
+	{
+		if ( oPlayButton )
+		{
+			oPlayButton.hidden = false;
+			oPlayButton.addEventListener( "click", StartGame, { once : true } );
+		}
+		return;
+	}
+
+	// Without a connection only a stored data pack can be read
+	if ( !navigator.onLine && !bHasStoredPack && !bAppMode )
+	{
+		document.getElementById( "status" ).textContent = "No connection. To play offline, store the game data while online: Settings, Game data, Download";
+		return;
+	}
+
+	StartGame();
 }
 
 if ( window.isSecureContext && bCanShareMemory )
