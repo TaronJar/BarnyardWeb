@@ -300,6 +300,56 @@ var oPageSettings = {
 			"Offline: unknown":"Estado del modo sin conexión desconocido",
 		} );
 
+		Object.assign( oTranslations.en, {
+			"Savegames":"SAVEGAMES",
+			"Save backup hint":"Export a backup of your saves or restore one from a backup file.",
+			"Export saves":"Export saves",
+			"Import saves":"Import saves",
+			"Client":"CLIENT",
+			"Game":"GAME",
+			"Status":"STATUS"
+		} );
+
+		Object.assign( oTranslations.ru, {
+			"Savegames":"СОХРАНЕНИЯ",
+			"Save backup hint":"Создайте резервную копию сохранений или восстановите их из файла.",
+			"Export saves":"Экспорт сохранений",
+			"Import saves":"Импорт сохранений",
+			"Client":"КЛИЕНТ",
+			"Game":"ИГРА",
+			"Status":"СТАТУС"
+		} );
+
+		Object.assign( oTranslations.de, {
+			"Savegames":"SPIELSTÄNDE",
+			"Save backup hint":"Sichere deine Spielstände oder stelle sie aus einer Sicherungsdatei wieder her.",
+			"Export saves":"Spielstände exportieren",
+			"Import saves":"Spielstände importieren",
+			"Client":"CLIENT",
+			"Game":"SPIEL",
+			"Status":"STATUS"
+		} );
+
+		Object.assign( oTranslations.fr, {
+			"Savegames":"SAUVEGARDES",
+			"Save backup hint":"Exportez une copie de vos sauvegardes ou restaurez-les depuis un fichier.",
+			"Export saves":"Exporter les sauvegardes",
+			"Import saves":"Importer les sauvegardes",
+			"Client":"CLIENT",
+			"Game":"JEU",
+			"Status":"ÉTAT"
+		} );
+
+		Object.assign( oTranslations.es, {
+			"Savegames":"PARTIDAS GUARDADAS",
+			"Save backup hint":"Exporta una copia de tus partidas o restáuralas desde un archivo de respaldo.",
+			"Export saves":"Exportar partidas",
+			"Import saves":"Importar partidas",
+			"Client":"CLIENTE",
+			"Game":"JUEGO",
+			"Status":"ESTADO"
+		} );
+
 
 		Object.assign( oTranslations.en, {
 			"General":"General", "Audio diagnostics":"AUDIO DIAGNOSTICS", "Availability":"AVAILABILITY", "Page":"Page", "Checking...":"Checking...", "Unavailable":"Unavailable", "Page version":"Page version", "Sample rate":"Sample rate", "Audio buffer":"Audio buffer",
@@ -491,6 +541,23 @@ var oPageSettings = {
 				oClose.title = T( "Close" );
 				oClose.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6L18 18M18 6L6 18" /></svg>';
 			}
+
+			// Translate the additional Game data maintenance and save-backup controls.
+			var oSaveCaption = oPanel.querySelector( ".data-panel-saves .data-panel-caption" );
+			if ( oSaveCaption ) oSaveCaption.textContent = T( "Savegames" );
+			var oSaveHint = oPanel.querySelector( ".data-panel-saves .hint" );
+			if ( oSaveHint ) oSaveHint.textContent = T( "Save backup hint" );
+			var oSaveExport = document.getElementById( "settingsSaveExport" );
+			var oSaveImport = document.getElementById( "settingsSaveImport" );
+			if ( oSaveExport ) oSaveExport.textContent = T( "Export saves" );
+			if ( oSaveImport ) oSaveImport.textContent = T( "Import saves" );
+			var oClientCaption = oPanel.querySelector( ".data-maintenance-update .data-panel-caption" );
+			var oGameCaption = oPanel.querySelector( ".data-maintenance-restart .data-panel-caption" );
+			if ( oClientCaption ) oClientCaption.textContent = T( "Client" );
+			if ( oGameCaption ) oGameCaption.textContent = T( "Game" );
+			var oStatusCaption = oPanel.querySelector( ".data-panel-details .data-panel-caption" );
+			if ( oStatusCaption ) oStatusCaption.textContent = T( "Status" );
+
 			var oNavTitle = oNav.querySelector( ".settings-nav-title" );
 			if ( oNavTitle ) oNavTitle.textContent = "Barnyard";
 
