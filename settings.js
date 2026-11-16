@@ -257,6 +257,65 @@ var oPageSettings = {
 			'<div class="buttons"><button id="settingsRestart" class="accent">Restart</button><button id="settingsClose">Close</button></div>';
 		document.body.appendChild( oPanel );
 
+		// Arrange settings like a compact Spotify-style desktop: left navigation, clean content area.
+		var oHead = oPanel.querySelector( ".head" );
+		var oSections = [];
+		var oCurrent = null;
+		var oNode = oHead.nextElementSibling;
+
+		while ( oNode )
+		{
+			var oNext = oNode.nextElementSibling;
+
+			if ( oNode.classList.contains( "section" ) )
+			{
+				oCurrent = document.createElement( "section" );
+				oCurrent.className = "settings-group";
+				oCurrent.dataset.name = oNode.textContent.trim().toLowerCase();
+				oSections.push( oCurrent );
+			}
+
+			if ( oCurrent )
+				oCurrent.appendChild( oNode );
+
+			oNode = oNext;
+		}
+
+		var oLayout = document.createElement( "div" );
+		oLayout.className = "settings-layout";
+		var oNav = document.createElement( "nav" );
+		oNav.className = "settings-nav";
+		oNav.innerHTML = '<div class="settings-nav-title">YOUR GAME</div>';
+		var oContent = document.createElement( "div" );
+		oContent.className = "settings-content";
+		oContent.appendChild( oHead );
+
+		for ( var iSection = 0; iSection < oSections.length; iSection++ )
+		{
+			var oGroup = oSections[ iSection ];
+			var szGroup = oGroup.dataset.name;
+			var oNavButton = document.createElement( "button" );
+			oNavButton.type = "button";
+			oNavButton.className = "settings-nav-item";
+			oNavButton.textContent = oGroup.querySelector( ".section" ).textContent.trim();
+			oNavButton.dataset.target = szGroup;
+			oNav.appendChild( oNavButton );
+			oContent.appendChild( oGroup );
+
+			oNavButton.addEventListener( "click", function () {
+				var oTarget = oContent.querySelector( '[data-name="' + this.dataset.target + '"]' );
+				if ( oTarget )
+					oTarget.scrollIntoView( { behavior : "smooth", block : "start" } );
+				for ( var oItem of oNav.querySelectorAll( ".settings-nav-item" ) )
+					oItem.classList.toggle( "active", oItem === this );
+			} );
+		}
+
+		oNav.querySelector( ".settings-nav-item" ).classList.add( "active" );
+		oLayout.appendChild( oNav );
+		oLayout.appendChild( oContent );
+		oPanel.appendChild( oLayout );
+
 		var oStarted = {
 			szResolution : oPageSettings.oValues.szResolution,
 			szLowLatency : oPageSettings.oValues.szLowLatency,
