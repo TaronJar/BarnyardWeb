@@ -441,7 +441,12 @@ var oPageSettings = {
 			for ( var oNavItem of oNav.querySelectorAll( ".settings-nav-item" ) )
 				oNavItem.textContent = T( oNavItem.dataset.target.charAt( 0 ).toUpperCase() + oNavItem.dataset.target.slice( 1 ) );
 			var oClose = document.getElementById( "settingsClose" );
-			if ( oClose ) { oClose.setAttribute( "aria-label", T( "Close" ) ); oClose.title = T( "Close" ); }
+			if ( oClose )
+			{
+				oClose.setAttribute( "aria-label", T( "Close" ) );
+				oClose.title = T( "Close" );
+				oClose.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6L18 18M18 6L6 18" /></svg>';
+			}
 			var oNavTitle = oNav.querySelector( ".settings-nav-title" );
 			if ( oNavTitle ) oNavTitle.textContent = oPageSettings.oValues.szLanguage == "ru" ? "ВАША ИГРА" : oPageSettings.oValues.szLanguage == "de" ? "DEIN SPIEL" : oPageSettings.oValues.szLanguage == "fr" ? "VOTRE JEU" : oPageSettings.oValues.szLanguage == "es" ? "TU JUEGO" : "YOUR GAME";
 			var oCheat = document.getElementById( "settingsCheat" );
