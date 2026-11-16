@@ -1915,3 +1915,54 @@ html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background:
 			#dataWelcome h1 { font-size:clamp(38px,10vw,58px); }
 			#dataWelcome p { font-size:14px; }
 		}
+
+
+/* Welcome screen: improve action readability and provide a direct repository link. */
+#dataWelcome #welcomeDownload {
+	font-size: 17px !important;
+	font-weight: 800 !important;
+	min-height: 58px !important;
+	letter-spacing: .005em;
+}
+#dataWelcome .welcome-alt button {
+	font-size: 15px !important;
+	font-weight: 700 !important;
+	min-height: 48px !important;
+}
+#dataWelcome .github-link {
+	position: absolute;
+	top: max(24px, env(safe-area-inset-top));
+	right: max(26px, env(safe-area-inset-right));
+	z-index: 2;
+	display: grid;
+	place-items: center;
+	width: 48px;
+	height: 48px;
+	border: 1px solid rgba(255,255,255,.28);
+	border-radius: 50%;
+	background: rgba(5,13,23,.58);
+	color: #fff;
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	transition: background .18s ease, border-color .18s ease, transform .18s ease;
+}
+#dataWelcome .github-link:hover {
+	background: #24292f;
+	border-color: rgba(255,255,255,.55);
+	transform: translateY(-2px);
+}
+#dataWelcome .github-link:focus-visible {
+	outline: 3px solid #38a8ff;
+	outline-offset: 3px;
+}
+#dataWelcome .github-link svg { width: 25px; height: 25px; display: block; }
+@media(max-width:700px) {
+	#dataWelcome .github-link {
+		top: max(16px, env(safe-area-inset-top));
+		right: max(16px, env(safe-area-inset-right));
+		width: 44px;
+		height: 44px;
+	}
+	#dataWelcome #welcomeDownload { font-size: 16px !important; }
+	#dataWelcome .welcome-alt button { font-size: 14px !important; }
+}
