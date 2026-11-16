@@ -1889,23 +1889,87 @@
 			#settings .settings-content { padding: 18px 16px !important; }
 		}
 	</style>
+
+	<style id="barnyardLauncherScreen">
+		#dataWelcome {
+			position:fixed; inset:0; z-index:18; display:none; align-items:stretch; justify-content:flex-start;
+			padding:0; overflow:hidden; text-align:left; color:#fff;
+			background-color:#050a12;
+			background-image:linear-gradient(90deg,rgba(3,8,15,.88) 0%,rgba(3,8,15,.62) 31%,rgba(3,8,15,.10) 67%,rgba(3,8,15,.08) 100%),linear-gradient(0deg,rgba(2,7,14,.58),transparent 48%),url('/barnyard-bg.jpg');
+			background-position:center; background-size:cover; background-repeat:no-repeat;
+			font-family:Manrope,Arial,sans-serif;
+		}
+		#dataWelcome .welcome-card {
+			align-self:stretch; display:flex; flex-direction:column; justify-content:flex-end;
+			width:min(540px,48vw); min-height:100%; padding:clamp(34px,5vw,76px);
+			box-sizing:border-box; border:0; border-radius:0; background:transparent; box-shadow:none;
+			text-align:left;
+		}
+		#dataWelcome .welcome-edition {
+			margin:0 0 12px; color:#8dcfff; font:800 12px 'Space Grotesk',Manrope,sans-serif;
+			letter-spacing:.22em;
+		}
+		#dataWelcome h1 {
+			margin:0 0 14px; color:#fff; font:800 clamp(42px,5.4vw,70px)/.98 'Space Grotesk',Manrope,sans-serif;
+			letter-spacing:-.045em; text-shadow:0 3px 24px rgba(0,0,0,.3);
+		}
+		#dataWelcome p {
+			max-width:390px; margin:0 0 26px; color:rgba(255,255,255,.82);
+			font-size:15px; line-height:1.65; text-align:left;
+		}
+		#dataWelcome .welcome-actions { width:min(390px,100%); }
+		#dataWelcome button {
+			min-height:48px; padding:0 22px; border:0; border-radius:8px;
+			background:#38a8ff; color:#061421; font:750 14px Manrope,Arial,sans-serif;
+			cursor:pointer; transition:background .16s ease,transform .16s ease,filter .16s ease;
+		}
+		#dataWelcome button:hover:not(:disabled) { transform:translateY(-2px); filter:brightness(1.12); }
+		#dataWelcome button:active:not(:disabled) { transform:translateY(0) scale(.985); }
+		#dataWelcome button:disabled { opacity:.55; cursor:wait; }
+		#dataWelcome #welcomeDownload { display:block; width:100%; min-height:54px; font-size:15px; }
+		#dataWelcome .welcome-alt {
+			display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; margin-top:10px;
+		}
+		#dataWelcome .welcome-alt button {
+			width:100%; min-width:0; min-height:42px; padding:0 12px;
+			background:rgba(8,17,29,.72); color:#fff; border:1px solid rgba(255,255,255,.22);
+			backdrop-filter:blur(8px);
+		}
+		#dataWelcome #welcomeFolder { grid-column:1/-1; }
+		#dataWelcome .welcome-alt button:hover:not(:disabled) { background:rgba(34,69,99,.92); }
+		#dataWelcome .welcome-status {
+			min-height:20px; margin-top:16px; color:rgba(255,255,255,.7);
+			font-size:12px; text-align:left;
+		}
+		#dataWelcome .welcome-status::before {
+			content:""; display:inline-block; width:7px; height:7px; margin:0 9px 1px 1px;
+			border-radius:50%; background:#38a8ff; box-shadow:0 0 10px rgba(56,168,255,.7);
+		}
+		@media(max-width:700px) {
+			#dataWelcome { background-image:linear-gradient(0deg,rgba(3,8,15,.94) 0%,rgba(3,8,15,.72) 42%,rgba(3,8,15,.08) 100%),url('/barnyard-bg.jpg'); background-position:58% center; }
+			#dataWelcome .welcome-card { width:100%; min-height:100%; padding:28px 24px 34px; justify-content:flex-end; }
+			#dataWelcome h1 { font-size:clamp(38px,10vw,58px); }
+			#dataWelcome p { font-size:14px; }
+		}
+	</style>
 </head>
 
 <body>
 	<canvas id="game"></canvas>
 	<div id="dataWelcome" aria-live="polite">
 		<div class="welcome-card">
-			
-			
-			<h1 id="welcomeTitle">Welcome!</h1>
+			<div class="welcome-edition">WEB EDITION</div>
+			<h1 id="welcomeTitle">BARNYARD</h1>
 			<p id="welcomeDescription">To start playing, install the game data. It will be saved on this device and won’t need to be downloaded again.</p>
-			<button type="button" id="welcomeDownload">Install game data</button>
-			<div class="welcome-alt">
-				<button type="button" id="welcomeSettings">Settings</button>
-				<button type="button" id="welcomeFile">Choose archive</button>
-				<button type="button" id="welcomeFolder">Choose folder</button>
+			<div class="welcome-actions">
+				<button type="button" id="welcomeDownload">Install game data</button>
+				<div class="welcome-alt">
+					<button type="button" id="welcomeSettings">Settings</button>
+					<button type="button" id="welcomeFile">Choose archive</button>
+					<button type="button" id="welcomeFolder">Choose folder</button>
+				</div>
+				<div class="welcome-status" id="welcomeStatus">Game data is not installed</div>
 			</div>
-			<div class="welcome-status" id="welcomeStatus">Game data is not installed</div>
 		</div>
 	</div>
 	<div id="status">Loading...</div>
