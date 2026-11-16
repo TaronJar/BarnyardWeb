@@ -337,13 +337,17 @@ var oPageSettings = {
 			'<div class="section">Cheats</div>' +
 			'<div class="row"><input type="text" id="settingsCheat" placeholder="Cheat code" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>' +
 			'<div class="section" id="settingsDataSection">Game data</div>' +
-			'<div class="hint" id="settingsDataText"></div>' +
-			'<div class="buttons" id="settingsDataButtons"><button id="settingsDataDownload">Download</button><button id="settingsDataFile">From file</button><button id="settingsDataFolder">From folder</button>' +
-			'<button id="settingsDataDelete">Delete</button><input type="file" id="settingsDataInput" hidden><input type="file" id="settingsDataFolderInput" webkitdirectory multiple hidden></div>' +
-			'<div class="hint" id="settingsAbout"></div>' +
-			'<div class="buttons" id="settingsUpdateButtons"><button id="settingsUpdate">Get the newest version</button></div>' +
-			'<div class="hint" id="settingsRestartHint">Restarts the game. Saves are kept, progress since the last save is lost.</div>' +
-			'<div class="buttons"><button id="settingsRestart" class="accent">Restart</button></div>';
+			'<div class="data-panel">' +
+				'<div class="data-panel-status hint" id="settingsDataText"></div>' +
+				'<div class="buttons data-panel-actions" id="settingsDataButtons"><button id="settingsDataDownload" class="accent">Download</button><button id="settingsDataFile">From file</button><button id="settingsDataFolder">From folder</button>' +
+				'<button id="settingsDataDelete">Delete</button><input type="file" id="settingsDataInput" hidden><input type="file" id="settingsDataFolderInput" webkitdirectory multiple hidden></div>' +
+			'</div>' +
+			'<div class="data-panel data-panel-details"><div class="data-panel-caption">STATUS</div><div class="hint" id="settingsAbout"></div></div>' +
+			'<div class="data-panel data-panel-maintenance">' +
+				'<div class="data-maintenance-update"><div class="data-panel-caption">WEBSITE</div><div class="buttons" id="settingsUpdateButtons"><button id="settingsUpdate">Get the newest version</button></div></div>' +
+				'<div class="data-maintenance-restart"><div class="data-panel-caption">GAME</div><div class="hint" id="settingsRestartHint">Restarts the game. Saves are kept, progress since the last save is lost.</div>' +
+				'<div class="buttons"><button id="settingsRestart" class="accent">Restart</button></div></div>' +
+			'</div>';
 		document.body.appendChild( oPanel );
 
 		// Arrange settings like a compact Spotify-style desktop: left navigation, clean content area.
