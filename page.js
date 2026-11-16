@@ -345,11 +345,15 @@ async function MakeScriptBlob( a_szFile, a_szPrefix )
 // A stored data pack has to be found before the game's threads start
 async function LoadGame()
 {
-	await oDataPack.Open();
-
-	// First-time visitors get a centered data setup screen instead of a blank game canvas.
+	// Show setup immediately; OPFS discovery can take time or fail.
 	var oWelcome = document.getElementById( "dataWelcome" );
 	var oSettingsButton = document.getElementById( "settingsButton" );
+	if ( oWelcome )
+		oWelcome.style.display = "flex";
+
+	await oDataPack.Open();
+
+	// Hide setup only when a usable local data pack was found.
 	if ( oWelcome )
 		oWelcome.style.display = oDataPack.oPack ? "none" : "flex";
 	if ( oSettingsButton )
