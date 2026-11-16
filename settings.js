@@ -767,6 +767,10 @@ var oPageSettings = {
 			StoreData( { szUrl : oDataPack.GetPackUrl() }, "Downloading" );
 		} );
 
+		document.getElementById( "welcomeSettings" ).addEventListener( "click", function () {
+			oButton.click();
+		} );
+
 		document.getElementById( "welcomeDownload" ).addEventListener( "click", function () {
 			document.getElementById( "settingsDataDownload" ).click();
 		} );
