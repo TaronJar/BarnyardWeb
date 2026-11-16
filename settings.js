@@ -469,7 +469,7 @@ var oPageSettings = {
 				es : [ "¡Bienvenido!", "Para empezar, instala los datos del juego. Se guardarán en este dispositivo y no tendrás que descargarlos de nuevo.", "Instalar datos del juego", "Ajustes", "Elegir carpeta Data", "Los datos del juego no están instalados" ]
 			};
 			var aWelcomeText = oWelcomeText[ oPageSettings.oValues.szLanguage ] || oWelcomeText.en;
-			var aWelcomeIds = [ "welcomeDescription", "welcomeDownload", "welcomeSettings", "welcomeFolder", "welcomeStatus" ];
+			var aWelcomeIds = [ "welcomeDescription", "welcomeDownload", "welcomeSettings", "welcomeFolder" ];
 			for ( var iWelcome = 0; iWelcome < aWelcomeIds.length; iWelcome++ )
 			{
 				var oWelcomeElement = document.getElementById( aWelcomeIds[ iWelcome ] );
