@@ -2031,3 +2031,42 @@ html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background:
 	}
 	#settings .custom-select-menu { max-width: 70vw !important; }
 }
+
+
+/* Live installation progress on the welcome screen. */
+#dataWelcome .welcome-progress {
+	width: min(390px, 100%);
+	margin: 0 0 18px;
+}
+#dataWelcome .welcome-progress[hidden] { display: none !important; }
+#dataWelcome .welcome-progress-track {
+	height: 9px;
+	overflow: hidden;
+	border-radius: 99px;
+	background: rgba(255,255,255,.22);
+	box-shadow: inset 0 1px 3px rgba(0,0,0,.35);
+}
+#dataWelcome .welcome-progress-bar {
+	width: 0;
+	height: 100%;
+	border-radius: inherit;
+	background: linear-gradient(90deg,#168de0,#58c1ff);
+	box-shadow: 0 0 12px rgba(56,168,255,.5);
+	transition: width .18s ease;
+}
+#dataWelcome .welcome-progress.is-indeterminate .welcome-progress-bar {
+	width: 35% !important;
+	animation: welcomeProgressIndeterminate 1.25s ease-in-out infinite alternate;
+}
+#dataWelcome .welcome-status {
+	margin-top: 8px;
+	color: rgba(255,255,255,.9);
+	font-size: 13px;
+	font-weight: 750;
+	font-variant-numeric: tabular-nums;
+	text-shadow: 0 1px 5px rgba(0,0,0,.8);
+}
+@keyframes welcomeProgressIndeterminate {
+	from { transform: translateX(0); }
+	to { transform: translateX(185%); }
+}
