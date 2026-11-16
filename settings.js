@@ -1,7 +1,7 @@
 // The page's own settings (gear button in the top left corner), kept in localStorage.
 // The game picks its resolution and canvas once, so changing those restarts it
 var oPageSettings = {
-	oValues : { szResolution : "auto", szLowLatency : "auto", szGrass : "auto", szDrawDistance : "auto", szSound : "auto", szFrameLimit : "0", bShowFps : false, bSlowDevice : false },
+	oValues : { szResolution : "auto", szLowLatency : "auto", szGrass : "auto", szDrawDistance : "auto", szSound : "auto", szFrameLimit : "0", szLanguage : "en", bShowFps : false, bSlowDevice : false },
 
 	Load : function ()
 	{
@@ -215,8 +215,20 @@ var oPageSettings = {
 		}, 500 );
 	},
 
-	CreatePanel : function ()
+		CreatePanel : function ()
 	{
+		var oTranslations = {
+			en : { Settings:"Settings", Display:"Display", Cheats:"Cheats", "Game data":"Game data", Stats:"Stats", Languages:"Languages", Resolution:"Resolution", "Low latency":"Low latency", "Grass detail":"Grass detail", "Draw distance":"Draw distance", "FPS limit":"FPS limit", Sound:"Sound", "Show FPS":"Show FPS", "Interface language":"Interface language", "Cheat code":"Cheat code", Enter:"Enter", Download:"Download", "From file":"From file", "From folder":"From folder", Delete:"Delete", "Get the newest version":"Get the newest version", Restart:"Restart", Close:"Close", "Edit touch buttons":"Edit touch buttons", "Auto":"Auto", "On":"On", "Off":"Off", "High":"High", "Low":"Low", "Full":"Full", "Smoother":"Smoother", "540 lines":"540 lines", "720 lines":"720 lines", "1080 lines":"1080 lines", "Screen":"Screen", "Restart hint":"Restarts the game. Saves are kept, progress since the last save is lost." },
+			ru : { Settings:"Настройки", Display:"Изображение", Cheats:"Читы", "Game data":"Игровые данные", Stats:"Статистика", Languages:"Языки", Resolution:"Разрешение", "Low latency":"Низкая задержка", "Grass detail":"Детализация травы", "Draw distance":"Дальность прорисовки", "FPS limit":"Ограничение FPS", Sound:"Звук", "Show FPS":"Показывать FPS", "Interface language":"Язык интерфейса", "Cheat code":"Чит-код", Enter:"Ввести", Download:"Скачать", "From file":"Из файла", "From folder":"Из папки", Delete:"Удалить", "Get the newest version":"Получить последнюю версию", Restart:"Перезапустить", Close:"Закрыть", "Edit touch buttons":"Настроить сенсорные кнопки", "Auto":"Авто", "On":"Вкл.", "Off":"Выкл.", "High":"Высокая", "Low":"Низкая", "Full":"Полная", "Smoother":"Плавнее", "540 lines":"540 строк", "720 lines":"720 строк", "1080 lines":"1080 строк", "Screen":"На весь экран", "Restart hint":"Игра перезапустится. Сохранения останутся, несохранённый прогресс будет потерян." },
+			de : { Settings:"Einstellungen", Display:"Anzeige", Cheats:"Cheats", "Game data":"Spieldaten", Stats:"Statistik", Languages:"Sprachen", Resolution:"Auflösung", "Low latency":"Geringe Latenz", "Grass detail":"Grasdetails", "Draw distance":"Sichtweite", "FPS limit":"FPS-Limit", Sound:"Ton", "Show FPS":"FPS anzeigen", "Interface language":"Oberflächensprache", "Cheat code":"Cheatcode", Enter:"Eingeben", Download:"Herunterladen", "From file":"Aus Datei", "From folder":"Aus Ordner", Delete:"Löschen", "Get the newest version":"Neueste Version laden", Restart:"Neustart", Close:"Schließen", "Edit touch buttons":"Touch-Steuerung bearbeiten", "Auto":"Auto", "On":"Ein", "Off":"Aus", "High":"Hoch", "Low":"Niedrig", "Full":"Voll", "Smoother":"Flüssiger", "540 lines":"540 Zeilen", "720 lines":"720 Zeilen", "1080 lines":"1080 Zeilen", "Screen":"Bildschirm", "Restart hint":"Das Spiel wird neu gestartet. Spielstände bleiben erhalten, ungespeicherter Fortschritt geht verloren." },
+			fr : { Settings:"Paramètres", Display:"Affichage", Cheats:"Codes", "Game data":"Données du jeu", Stats:"Statistiques", Languages:"Langues", Resolution:"Résolution", "Low latency":"Faible latence", "Grass detail":"Détail de l’herbe", "Draw distance":"Distance d’affichage", "FPS limit":"Limite FPS", Sound:"Son", "Show FPS":"Afficher les FPS", "Interface language":"Langue de l’interface", "Cheat code":"Code de triche", Enter:"Valider", Download:"Télécharger", "From file":"Depuis un fichier", "From folder":"Depuis un dossier", Delete:"Supprimer", "Get the newest version":"Obtenir la dernière version", Restart:"Redémarrer", Close:"Fermer", "Edit touch buttons":"Modifier les commandes tactiles", "Auto":"Auto", "On":"Activé", "Off":"Désactivé", "High":"Élevé", "Low":"Faible", "Full":"Complet", "Smoother":"Plus fluide", "540 lines":"540 lignes", "720 lines":"720 lignes", "1080 lines":"1080 lignes", "Screen":"Écran", "Restart hint":"Le jeu redémarre. Les sauvegardes sont conservées, la progression non sauvegardée sera perdue." },
+			es : { Settings:"Ajustes", Display:"Pantalla", Cheats:"Trucos", "Game data":"Datos del juego", Stats:"Estadísticas", Languages:"Idiomas", Resolution:"Resolución", "Low latency":"Baja latencia", "Grass detail":"Detalle del césped", "Draw distance":"Distancia de dibujado", "FPS limit":"Límite de FPS", Sound:"Sonido", "Show FPS":"Mostrar FPS", "Interface language":"Idioma de la interfaz", "Cheat code":"Código de trucos", Enter:"Aplicar", Download:"Descargar", "From file":"Desde archivo", "From folder":"Desde carpeta", Delete:"Eliminar", "Get the newest version":"Obtener la última versión", Restart:"Reiniciar", Close:"Cerrar", "Edit touch buttons":"Editar controles táctiles", "Auto":"Auto", "On":"Activado", "Off":"Desactivado", "High":"Alto", "Low":"Bajo", "Full":"Completo", "Smoother":"Más fluido", "540 lines":"540 líneas", "720 lines":"720 líneas", "1080 lines":"1080 líneas", "Screen":"Pantalla", "Restart hint":"El juego se reiniciará. Las partidas se conservan, pero se pierde el progreso no guardado." }
+		};
+		function T( a_szText )
+		{
+			var oLanguage = oTranslations[ oPageSettings.oValues.szLanguage ] || oTranslations.en;
+			return oLanguage[ a_szText ] || a_szText;
+		}
 		var oButton = document.createElement( "div" );
 		oButton.id  = "settingsButton";
 		oButton.innerHTML = '<svg viewBox="0 0 24 24" width="100%" height="100%"><path fill="currentColor" d="M19.4 13a7.5 7.5 0 0 0 0-2l2.1-1.6-2-3.5-2.5 1a7.4 7.4 0 0 0-1.7-1L15 3h-4l-.3 2.9a7.4 7.4 0 0 0-1.7 1l-2.5-1-2 3.5L6.6 11a7.5 7.5 0 0 0 0 2l-2.1 1.6 2 3.5 2.5-1a7.4 7.4 0 0 0 1.7 1L11 21h4l.3-2.9a7.4 7.4 0 0 0 1.7-1l2.5 1 2-3.5zM13 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7z" transform="translate(-1 0)"/></svg>';
@@ -242,6 +254,8 @@ var oPageSettings = {
 			'<label>Sound <select data-key="szSound">' +
 			'<option value="auto">Auto</option><option value="smooth">Smoother</option></select></label>' +
 			'<label>Show FPS <input type="checkbox" data-key="bShowFps"></label>' +
+			'<div class="section">Languages</div>' +
+			'<label>Interface language <select data-key="szLanguage"><option value="en">English</option><option value="ru">Русский</option><option value="de">Deutsch</option><option value="fr">Français</option><option value="es">Español</option></select></label>' +
 			'<div class="hint" id="settingsAuto"></div>' +
 			'<div class="buttons" id="settingsTouchRow"><button id="settingsTouchLayout">Edit touch buttons</button></div>' +
 			'<div class="section">Cheats</div>' +
@@ -326,6 +340,53 @@ var oPageSettings = {
 
 		// The stored data pack: bStored is what's in storage now, the game uses what was there at the start
 		var oData = { bStored : false, bChanged : false, szBusy : "" };
+
+		function ApplyLanguage()
+		{
+			var oTitle = oPanel.querySelector( ".head .title" );
+			if ( oTitle ) oTitle.textContent = T( "Settings" );
+			var oLabels = { szResolution:"Resolution", szLowLatency:"Low latency", szGrass:"Grass detail", szDrawDistance:"Draw distance", szFrameLimit:"FPS limit", szSound:"Sound", bShowFps:"Show FPS", szLanguage:"Interface language" };
+			for ( var oLabel of oPanel.querySelectorAll( "label" ) )
+			{
+				var oSelect = oLabel.querySelector( "select" );
+				if ( oSelect && oLabels[ oSelect.dataset.key ] && oLabel.firstChild )
+					oLabel.firstChild.nodeValue = T( oLabels[ oSelect.dataset.key ] ) + " ";
+			}
+			for ( var oGroup of oPanel.querySelectorAll( ".settings-group" ) )
+			{
+				var oHeading = oGroup.querySelector( ".section" );
+				if ( oHeading )
+					oHeading.textContent = T( oGroup.dataset.name.replace(/\b\w/g, function ( a_szLetter ) { return a_szLetter.toUpperCase(); } ) );
+			}
+			for ( var oNavItem of oNav.querySelectorAll( ".settings-nav-item" ) )
+				oNavItem.textContent = T( oNavItem.dataset.target.replace(/\b\w/g, function ( a_szLetter ) { return a_szLetter.toUpperCase(); } ) );
+			var oCheat = document.getElementById( "settingsCheat" );
+			if ( oCheat ) oCheat.placeholder = T( "Cheat code" );
+			var aButtons = { settingsSendCheat:"Enter", settingsDataDownload:"Download", settingsDataFile:"From file", settingsDataFolder:"From folder", settingsDataDelete:"Delete", settingsUpdate:"Get the newest version", settingsRestart:"Restart", settingsClose:"Close", settingsTouchLayout:"Edit touch buttons" };
+			for ( var szId in aButtons )
+			{
+				var oButtonText = document.getElementById( szId );
+				if ( oButtonText ) oButtonText.textContent = T( aButtons[ szId ] );
+			}
+			document.getElementById( "settingsRestartHint" ).textContent = T( "Restart hint" );
+			for ( var oSelect of oPanel.querySelectorAll( "select" ) )
+			{
+				if ( oSelect.dataset.key == "szLanguage" ) continue;
+				for ( var oOption of oSelect.options )
+				{
+					if ( !oOption.dataset.original ) oOption.dataset.original = oOption.textContent;
+					oOption.textContent = T( oOption.dataset.original );
+				}
+				var oWrap = oSelect.parentNode;
+				if ( oWrap.classList.contains( "custom-select" ) )
+				{
+					var aOptionButtons = oWrap.querySelectorAll( ".custom-select-option" );
+					for ( var i = 0; i < aOptionButtons.length; i++ ) aOptionButtons[ i ].textContent = oSelect.options[ i ].textContent;
+					var oTrigger = oWrap.querySelector( ".custom-select-trigger" );
+					if ( oTrigger ) oTrigger.textContent = oSelect.options[ oSelect.selectedIndex ].textContent;
+				}
+			}
+		}
 
 		function UpdateData()
 		{
@@ -438,6 +499,7 @@ var oPageSettings = {
 			document.getElementById( "settingsTouchRow" ).style.display = document.getElementById( "touch" ) ? "" : "none";
 			UpdateData();
 			UpdateAbout();
+			ApplyLanguage();
 
 			var bRestart = oStarted.szResolution != oPageSettings.oValues.szResolution || oStarted.szLowLatency != oPageSettings.oValues.szLowLatency || oStarted.szGrass != oPageSettings.oValues.szGrass || oStarted.szDrawDistance != oPageSettings.oValues.szDrawDistance || oStarted.szSound != oPageSettings.oValues.szSound || oData.bChanged;
 
@@ -621,7 +683,7 @@ var oPageSettings = {
 
 		// The running game reads the stored copy, so it restarts right away
 		document.getElementById( "settingsDataDelete" ).addEventListener( "click", function () {
-			if ( !confirm( "Delete the game data stored on this device?" ) )
+			if ( !confirm( T( "Delete the game data stored on this device?" ) ) )
 				return;
 
 			oDataPack.Store( { bDelete : true }, function () {} ).then( function () {
@@ -636,7 +698,7 @@ var oPageSettings = {
 		document.getElementById( "settingsUpdate" ).addEventListener( "click", async function () {
 			if ( !navigator.onLine )
 			{
-				document.getElementById( "settingsAbout" ).textContent = "Getting the newest version needs a connection";
+				document.getElementById( "settingsAbout" ).textContent = T( "Getting the newest version needs a connection" );
 				return;
 			}
 
