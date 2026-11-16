@@ -343,6 +343,7 @@ var oPageSettings = {
 				'<button id="settingsDataDelete">Delete</button><input type="file" id="settingsDataInput" hidden><input type="file" id="settingsDataFolderInput" webkitdirectory multiple hidden></div>' +
 			'</div>' +
 			'<div class="data-panel data-panel-details"><div class="data-panel-caption">STATUS</div><div class="hint" id="settingsAbout"></div></div>' +
+			'<div class="data-panel data-panel-saves"><div class="data-panel-caption">SAVEGAMES</div><div class="hint">Export a backup of your saves or restore one from a backup file.</div><div class="buttons data-panel-actions"><button id="settingsSaveExport" class="accent">Export saves</button><button id="settingsSaveImport">Import saves</button><input type="file" id="settingsSaveFile" accept=".tar,application/x-tar" hidden></div></div>' +
 			'<div class="data-panel data-panel-maintenance">' +
 				'<div class="data-maintenance-update"><div class="data-panel-caption">CLIENT</div><div class="buttons" id="settingsUpdateButtons"><button id="settingsUpdate">Update client</button></div><div class="hint" id="settingsUpdateHint">Clear cached site files and reload the latest version.</div></div>' +
 				'<div class="data-maintenance-restart"><div class="data-panel-caption">GAME</div><div class="hint" id="settingsRestartHint">Restarts the game. Saves are kept, progress since the last save is lost.</div>' +
@@ -880,6 +881,129 @@ var oPageSettings = {
 				oData.szBusy = "Couldn't delete the data: " + a_oError.message;
 				UpdatePanel();
 			} );
+		} );
+
+
+		// Save backups use a standard uncompressed TAR archive of /Save.
+		function SaveTarString( a_oBytes, a_iOffset, a_iLength )
+		{
+			var a = a_oBytes.subarray( a_iOffset, a_iOffset + a_iLength );
+			var iEnd = a.indexOf( 0 );
+			return new TextDecoder().decode( iEnd < 0 ? a : a.subarray( 0, iEnd ) );
+		}
+
+		function SaveTarOctal( a_oBytes, a_iOffset, a_iLength )
+		{
+			return parseInt( SaveTarString( a_oBytes, a_iOffset, a_iLength ).trim() || "0", 8 ) || 0;
+		}
+
+		function SaveTarHeader( a_szName, a_iSize )
+		{
+			var a = new Uint8Array( 512 );
+			var oView = new DataView( a.buffer );
+			function Put( a_iOffset, a_iLength, a_szValue )
+			{
+				var b = new TextEncoder().encode( a_szValue );
+				a.set( b.subarray( 0, a_iLength ), a_iOffset );
+			}
+			function Octal( a_iOffset, a_iLength, a_iValue )
+			{
+				Put( a_iOffset, a_iLength, a_iValue.toString( 8 ).padStart( a_iLength - 1, "0" ) + "\\0" );
+			}
+			Put( 0, 100, a_szName );
+			Octal( 100, 8, 420 ); Octal( 108, 8, 0 ); Octal( 116, 8, 0 ); Octal( 124, 12, a_iSize ); Octal( 136, 12, Math.floor( Date.now() / 1000 ) );
+			for ( var i = 148; i < 156; i++ ) a[ i ] = 32;
+			Put( 156, 1, "0" ); Put( 257, 6, "ustar\\0" ); Put( 263, 2, "00" );
+			var iSum = a.reduce( function ( a_iSum, a_iByte ) { return a_iSum + a_iByte; }, 0 );
+			Put( 148, 8, iSum.toString( 8 ).padStart( 6, "0" ) + "\\0 " );
+			return a;
+		}
+
+		async function ExportSaves()
+		{
+			var oButton = document.getElementById( "settingsSaveExport" );
+			oButton.disabled = true;
+			oButton.textContent = "Preparing…";
+			try
+			{
+				await new Promise( function ( a_fnResolve, a_fnReject ) {
+					FS.syncfs( false, function ( a_oError ) { a_oError ? a_fnReject( a_oError ) : a_fnResolve(); } );
+				} );
+				var aParts = [];
+				var iTotal = 0;
+				function Walk( a_szDir )
+				{
+					for ( var szName of FS.readdir( a_szDir ) )
+					{
+						if ( szName == "." || szName == ".." ) continue;
+						var szPath = a_szDir + "/" + szName;
+						var oStat = FS.stat( szPath );
+						if ( FS.isDir( oStat.mode ) ) Walk( szPath );
+						else if ( FS.isFile( oStat.mode ) )
+						{
+							var aData = FS.readFile( szPath );
+							var szNameInTar = szPath.slice( 1 );
+							aParts.push( SaveTarHeader( szNameInTar, aData.length ), aData, new Uint8Array( ( 512 - aData.length % 512 ) % 512 ) );
+							iTotal += aData.length;
+						}
+					}
+				}
+				Walk( "/Save" );
+				if ( !iTotal ) throw new Error( "No save files were found." );
+				aParts.push( new Uint8Array( 1024 ) );
+				var oBlob = new Blob( aParts, { type: "application/x-tar" } );
+				var szUrl = URL.createObjectURL( oBlob );
+				var oLink = document.createElement( "a" );
+				oLink.href = szUrl; oLink.download = "barnyard-saves-" + new Date().toISOString().slice( 0, 10 ) + ".tar";
+				document.body.appendChild( oLink ); oLink.click(); oLink.remove();
+				setTimeout( function () { URL.revokeObjectURL( szUrl ); }, 30000 );
+			}
+			catch ( a_oError ) { alert( "Could not export saves: " + a_oError.message ); }
+			finally { oButton.disabled = false; oButton.textContent = "Export saves"; }
+		}
+
+		async function ImportSaves( a_oFile )
+		{
+			if ( !confirm( "Import this backup? Files with matching names in /Save will be replaced." ) ) return;
+			var oButton = document.getElementById( "settingsSaveImport" );
+			oButton.disabled = true; oButton.textContent = "Importing…";
+			try
+			{
+				var a = new Uint8Array( await a_oFile.arrayBuffer() );
+				var iOffset = 0, iFiles = 0;
+				while ( iOffset + 512 <= a.length )
+				{
+					var aHeader = a.subarray( iOffset, iOffset + 512 );
+					if ( aHeader.every( function ( a_iByte ) { return a_iByte == 0; } ) ) break;
+					var szName = SaveTarString( aHeader, 0, 100 );
+					var szPrefix = SaveTarString( aHeader, 345, 155 );
+					if ( szPrefix ) szName = szPrefix + "/" + szName;
+					var iSize = SaveTarOctal( aHeader, 124, 12 );
+					var szType = SaveTarString( aHeader, 156, 1 );
+					iOffset += 512;
+					if ( !szName || szName[ 0 ] == "/" || szName.split( "/" ).some( function ( a_szPart ) { return a_szPart == ".."; } ) ) throw new Error( "Invalid path in backup archive." );
+					if ( szType == "5" ) { iOffset += Math.ceil( iSize / 512 ) * 512; continue; }
+					if ( szType && szType != "0" ) { iOffset += Math.ceil( iSize / 512 ) * 512; continue; }
+					if ( iOffset + iSize > a.length ) throw new Error( "Backup archive is incomplete." );
+					var szPath = "/Save/" + szName.replace(/^Save\\//, "");
+					var aPath = szPath.split( "/" ); aPath.pop();
+					var szDir = "";
+					for ( var szPart of aPath ) { szDir += "/" + szPart; if ( !FS.analyzePath( szDir ).exists ) FS.mkdir( szDir ); }
+					FS.writeFile( szPath, a.subarray( iOffset, iOffset + iSize ) );
+					iFiles++; iOffset += Math.ceil( iSize / 512 ) * 512;
+				}
+				if ( !iFiles ) throw new Error( "No save files found in this backup." );
+				await new Promise( function ( a_fnResolve, a_fnReject ) { FS.syncfs( false, function ( a_oError ) { a_oError ? a_fnReject( a_oError ) : a_fnResolve(); } ); } );
+				alert( "Imported " + iFiles + " save file(s). Restart the game to load them." );
+			}
+			catch ( a_oError ) { alert( "Could not import saves: " + a_oError.message ); }
+			finally { oButton.disabled = false; oButton.textContent = "Import saves"; document.getElementById( "settingsSaveFile" ).value = ""; }
+		}
+
+		document.getElementById( "settingsSaveExport" ).addEventListener( "click", ExportSaves );
+		document.getElementById( "settingsSaveImport" ).addEventListener( "click", function () { document.getElementById( "settingsSaveFile" ).click(); } );
+		document.getElementById( "settingsSaveFile" ).addEventListener( "change", function ( a_oEvent ) {
+			var oFile = a_oEvent.target.files[ 0 ]; if ( oFile ) ImportSaves( oFile );
 		} );
 
 		// Drops the kept page files (not the game data) and loads them again from the server
