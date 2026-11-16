@@ -2436,3 +2436,37 @@ html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background:
 #dataWelcome button[hidden] {
 	display: none !important;
 }
+
+
+/* Welcome screen actions: make Play and Settings a deliberate, aligned button group. */
+#dataWelcome #welcomePlay {
+	display: block;
+	width: 100%;
+	min-height: 58px;
+	margin: 0 0 10px;
+	font-size: 17px;
+	font-weight: 800;
+	letter-spacing: .005em;
+	box-shadow: 0 8px 24px rgba(56,168,255,.2);
+}
+#dataWelcome #welcomePlay:hover:not(:disabled) {
+	background: #62baff;
+}
+#dataWelcome .welcome-alt {
+	margin-top: 0;
+}
+#dataWelcome .welcome-alt #welcomeSettings {
+	width: 100%;
+	min-height: 48px;
+	background: rgba(8,17,29,.72);
+	color: #fff;
+	border: 1px solid rgba(255,255,255,.24);
+	font-size: 14px;
+	font-weight: 700;
+}
+#dataWelcome .welcome-alt #welcomeSettings:hover:not(:disabled) {
+	background: rgba(34,69,99,.92);
+}
+#dataWelcome button[hidden] {
+	display: none !important;
+}
