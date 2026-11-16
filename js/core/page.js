@@ -395,6 +395,21 @@ async function LoadGame()
 	// A stored data pack is ready: wait for the player's explicit Play action.
 	if ( bHasStoredPack && !bAppMode )
 	{
+		var oDownloadButton = document.getElementById( "welcomeDownload" );
+		var oFolderButton = document.getElementById( "welcomeFolder" );
+		var oDescription = document.getElementById( "welcomeDescription" );
+		var szLanguage = oPageSettings.oValues.szLanguage || "en";
+		var oReadyText = {
+			en : "Your game data is ready. Press Play whenever you want to start.",
+			ru : "Игровые данные готовы. Нажмите «Играть», когда захотите начать.",
+			de : "Deine Spieldaten sind bereit. Drücke auf „Spielen“, wenn du starten möchtest.",
+			fr : "Les données du jeu sont prêtes. Appuyez sur « Jouer » pour commencer.",
+			es : "Los datos del juego están listos. Pulsa «Jugar» cuando quieras empezar."
+		};
+		if ( oDescription )
+			oDescription.textContent = oReadyText[ szLanguage ] || oReadyText.en;
+		if ( oDownloadButton ) oDownloadButton.hidden = true;
+		if ( oFolderButton ) oFolderButton.hidden = true;
 		if ( oPlayButton )
 		{
 			oPlayButton.hidden = false;
