@@ -2430,3 +2430,9 @@ html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background:
 	line-height: 1.2 !important;
 	padding: 0 12px 22px !important;
 }
+
+
+/* Respect the hidden state of welcome actions when switching between install and play modes. */
+#dataWelcome button[hidden] {
+	display: none !important;
+}
