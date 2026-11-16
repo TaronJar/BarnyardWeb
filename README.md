@@ -22,7 +22,7 @@ BarnyardWeb brings OpenBarnyard to the browser with a custom web interface and s
 
 **[Open BarnyardWeb](https://openbarnyard-wasm.pages.dev/)**
 
-You must provide your own game data from a legally obtained copy of *Barnyard*. Game files are not included in this repository.
+Game data can be loaded directly through the web interface or selected from a local `Data` folder. Game data is not stored in this repository.
 
 ### Credits
 
@@ -60,7 +60,7 @@ The original OpenBarnyard license and attribution requirements apply. See [Licen
 
 **[Открыть BarnyardWeb](https://openbarnyard-wasm.pages.dev/)**
 
-Для запуска необходимо самостоятельно предоставить игровые данные из легально полученной копии *Barnyard*. Игровые файлы не входят в этот репозиторий.
+Игровые данные можно загрузить непосредственно через веб-интерфейс или выбрать локальную папку `Data` на компьютере. Игровые данные не хранятся в этом репозитории.
 
 ### Благодарности
 
